@@ -47,6 +47,14 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('edit', 'Admin\ProvinceController@getAdd');
 
 	});
+	Route::group(['prefix' => 'district'], function(){
+		Route::get('list', 'Admin\DistrictController@getList');
+		Route::get('add', 'Admin\DistrictController@getAdd');
+		Route::post('add', 'Admin\DistrictController@postAdd');
+		Route::get('edit', 'Admin\DistrictController@getEdit');
+		Route::get('edit', 'Admin\DistrictController@getAdd');
+
+	});
 	Route::group(['prefix' => 'service'], function(){
 		Route::get('list', 'Admin\ServiceController@getList');
 		Route::get('add', 'Admin\ServiceController@getAdd');

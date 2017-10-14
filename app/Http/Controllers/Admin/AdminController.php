@@ -67,6 +67,6 @@ class AdminController extends Controller
         $admin->level = $req->level;
         $admin->save();
 
-        return redirect("admin/admin/add")->with("thongbao", "Thêm thành công ! ");
+        return redirect("admin/admin/add")->with("thongbao", " Thêm thành công ! ");
     }
 }

@@ -5,8 +5,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User
-                    <small>List</small>
+                <h1 class="page-header">Danh sách
+                    <small>Quận/ Huyện</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -14,38 +14,22 @@
                 <thead>
                     <tr align="center">
                         <th>ID</th>
-                        <th>Username</th>
-                        <th>Level</th>
-                        <th>Status</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
+                        <th>Quận/Huệne</th>
+                        <th>Tỉnh/Thành Phố</th>
+                        <th>Xóa</th>
+                        <th>Sửa</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($district as $t)
                     <tr class="odd gradeX" align="center">
-                        <td>1</td>
-                        <td>quoctuan</td>
-                        <td>Superadmin</td>
-                        <td>Hiện</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
+                        <td>{{ $t->id }}</td>
+                        <td>{{ $t->name }}</td>
+                        <td>{{ $t->province->name }}</td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/district/delete/{{ $t->id }}"> Delete</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/district/edit/{{ $t->id }}">Edit</a></td>
                     </tr>
-                    <tr class="even gradeC" align="center">
-                        <td>2</td>
-                        <td>kutun</td>
-                        <td>Admin</td>
-                        <td>Ẩn</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
-                    <tr class="odd gradeX" align="center">
-                        <td>3</td>
-                        <td>kuteo</td>
-                        <td>Member</td>
-                        <td>Hiện</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="#">Edit</a></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
