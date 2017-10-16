@@ -22,15 +22,14 @@
             </div>
         @endif
         @if(session('thongbao'))
-        <div class="alert alert-success">
             {{ session('thongbao') }}
-        </div>
         @endif
         <form name='form-login' action="admin/login" method="POST">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <span class="fontawesome-user"></span>
-            <input type="text" id="user" placeholder="Email">
+            <input type="text" id="user" placeholder="Email" name="email">
             <span class="fontawesome-lock"></span>
-            <input type="password" id"pass" placeholder="Password">
+            <input type="password" id="pass" placeholder="Password" name="password">
             <input type="submit" value="Login">
         </form>
 </body>

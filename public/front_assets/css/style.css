@@ -1,0 +1,19 @@
+.link-dangtin{
+	color: #fff !important;
+	box-shadow: 1px 10px 10px grey;
+}
+.link-dangtin:hover{
+	background-color: #235b23 !important;
+}
+.navbar-inverse{
+	padding-bottom: 10px;
+}
+.navbar-inverse{
+	background-color:  #003580;
+}
+.page-header{
+	color: #003580;
+}
+.navbar-default{
+	background-color: #f8f8f8;
+}

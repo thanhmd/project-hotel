@@ -10,13 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get('home', function () {
+    return view('pages.home');
 });
-Route::get('admin/login','AdminController@getLoginAdmin');
-Route::post('admin/login','AdminController@postLoginAdmin');
+Route::get('register', function () {
+    return view('pages.register');
+});
 
+Route::get('admin/login','Admin\AdminController@getLoginAdmin');
+Route::post('admin/login','Admin\AdminController@postLoginAdmin');
+// Route::get('register', 'PagesController@getRegister');
+// Route::post('register', 'PagesController@postRegister');
 // Route::group(['prefix' => 'admin'], function(){
 // 	Route::group(['prefix' => 'admin'], function(){
 // 		Route::get('list', 'AdminController@getList');
@@ -29,6 +33,7 @@ Route::post('admin/login','AdminController@postLoginAdmin');
 
 // 	});
 // });
+// 
 // 
 Route::group(['prefix' => 'admin'], function(){
 	Route::group(['prefix' => 'admin'], function(){
@@ -62,5 +67,19 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('edit', 'Admin\ServiceController@getEdit');
 		Route::get('edit', 'Admin\ServiceController@getAdd');
 
+	});
+});
+Route::group(['prefix' => 'hotel'], function(){
+	Route::group(['prefix' => 'info'], function(){
+		Route::get('add', 'UnithotelController@getAddinfo');
+		Route::get('edit', 'UnithotelController@getEditinfo');
+	});
+	Route::group(['prefix' => 'placeofthought'], function(){
+		Route::get('add', 'UnithotelController@getPlaceofthought');
+		Route::get('edit', 'UnithotelController@getPlaceofthought');
+	});
+	Route::group(['prefix' => 'room'], function(){
+		Route::get('add', 'UnithotelController@getAddroom');
+		Route::get('edit', 'UnithotelController@getAddinfo');
 	});
 });

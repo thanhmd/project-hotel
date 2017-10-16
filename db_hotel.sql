@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.9
--- https://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 14, 2017 at 03:59 AM
--- Server version: 5.6.35
--- PHP Version: 7.1.2
+-- Generation Time: Oct 15, 2017 at 08:00 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_hotel`
+-- Database: `ks`
 --
 
 -- --------------------------------------------------------
@@ -26,7 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -34,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `level` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `admin`
@@ -57,11 +59,11 @@ INSERT INTO `admin` (`id`, `email`, `password`, `full_name`, `level`, `created_a
 -- Table structure for table `District`
 --
 
-CREATE TABLE IF NOT EXISTS `District` (
+CREATE TABLE `District` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `province_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `District`
@@ -81,15 +83,61 @@ INSERT INTO `District` (`id`, `name`, `province_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `hotel-system`
+--
+
+CREATE TABLE `hotel-system` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `website` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hotel-system`
+--
+
+INSERT INTO `hotel-system` (`id`, `name`, `address`, `website`) VALUES
+(1, 'Saigon Prince Hotel', '63 Nguyen Hue Blvd, District 1, Ho Chi Minh City, Nguyễn Huệ, Bến Nghé, Quận 1, Hồ Chí Minh', 'wwww.google.vn'),
+(2, 'Khách Sạn Vissai SaiGon', '144 Nguyễn Văn Trỗi, phường 8, Phú Nhuận, Hồ Chí Minh', 'wwww.google.vn');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hotel-system-detail`
+--
+
+CREATE TABLE `hotel-system-detail` (
+  `contact-name` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `star-number` int(11) NOT NULL,
+  `number-of-room` int(11) NOT NULL,
+  `district-id` int(11) NOT NULL,
+  `country` varchar(100) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `hotel-system-id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `hotel-system-detail`
+--
+
+INSERT INTO `hotel-system-detail` (`contact-name`, `phone`, `star-number`, `number-of-room`, `district-id`, `country`, `city`, `hotel-system-id`) VALUES
+('a.hung', '0999999999', 3, 10, 3, 'VN', 'HCM', 1),
+('A.THANH', '0999999999', 5, 20, 7, 'VN', 'TPHCM', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Province`
 --
 
-CREATE TABLE IF NOT EXISTS `Province` (
+CREATE TABLE `Province` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Province`
@@ -118,12 +166,12 @@ INSERT INTO `Province` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `service`
 --
 
-CREATE TABLE IF NOT EXISTS `service` (
+CREATE TABLE `service` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `service`
@@ -135,7 +183,79 @@ INSERT INTO `service` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (3, 'Cà phê sáng', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (4, 'Máy Lạnh', '2017-10-13 20:35:14', '2017-10-13 20:35:14'),
 (5, 'Mát sa', '2017-10-13 20:35:23', '2017-10-13 20:35:23'),
-(6, 'Gym', '2017-10-14 02:57:22', '2017-10-14 02:57:22');
+(6, 'Gym', '2017-10-14 02:57:22', '2017-10-14 02:57:22'),
+(7, 'Internet', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 'Check in/out time', '2017-10-15 00:00:00', '2017-10-15 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service-check-in-out-time`
+--
+
+CREATE TABLE `service-check-in-out-time` (
+  `id` varchar(10) NOT NULL,
+  `check-in-from` time DEFAULT NULL,
+  `check-in-to` time DEFAULT NULL,
+  `check-out-from` time DEFAULT NULL,
+  `check-out-to` time DEFAULT NULL,
+  `service-id` int(11) NOT NULL,
+  `hotel-system-id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `service-check-in-out-time`
+--
+
+INSERT INTO `service-check-in-out-time` (`id`, `check-in-from`, `check-in-to`, `check-out-from`, `check-out-to`, `service-id`, `hotel-system-id`) VALUES
+('CHK001', '03:00:00', '20:00:00', '03:00:00', '20:00:00', 8, 1),
+('CHK002', '03:00:00', '11:00:00', '00:00:00', '10:00:00', 8, 2),
+('CHK003', '00:00:00', '02:00:00', '00:00:00', '02:00:00', 8, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service-internet`
+--
+
+CREATE TABLE `service-internet` (
+  `id` varchar(10) NOT NULL,
+  `isAvailable` tinyint(1) NOT NULL,
+  `isFree` tinyint(1) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `price` double NOT NULL,
+  `available-location` varchar(100) NOT NULL,
+  `service-id` int(11) NOT NULL,
+  `hotel-system-id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `service-internet`
+--
+
+INSERT INTO `service-internet` (`id`, `isAvailable`, `isFree`, `type`, `price`, `available-location`, `service-id`, `hotel-system-id`) VALUES
+('NET01', 1, 0, 'wifi', 10, 'public', 7, 1),
+('NET02', 1, 1, 'wifi', 0, 'public', 7, 1),
+('NET03', 1, 1, 'wifi', 0, 'public', 7, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Users`
+--
+
+CREATE TABLE `Users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `Users`
+--
+
+INSERT INTO `Users` (`id`, `email`, `password`) VALUES
+(1, 'tranthihonghue19it@gmail.com', '123456');
 
 --
 -- Indexes for dumped tables
@@ -155,6 +275,19 @@ ALTER TABLE `District`
   ADD KEY `province_id` (`province_id`);
 
 --
+-- Indexes for table `hotel-system`
+--
+ALTER TABLE `hotel-system`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hotel-system-detail`
+--
+ALTER TABLE `hotel-system-detail`
+  ADD KEY `hotel-system-id` (`hotel-system-id`),
+  ADD KEY `district-id` (`district-id`);
+
+--
 -- Indexes for table `Province`
 --
 ALTER TABLE `Province`
@@ -167,6 +300,28 @@ ALTER TABLE `service`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `service-check-in-out-time`
+--
+ALTER TABLE `service-check-in-out-time`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `service-id` (`service-id`),
+  ADD KEY `hotel-system-id` (`hotel-system-id`);
+
+--
+-- Indexes for table `service-internet`
+--
+ALTER TABLE `service-internet`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `service-id` (`service-id`),
+  ADD KEY `hotel-system-id` (`hotel-system-id`);
+
+--
+-- Indexes for table `Users`
+--
+ALTER TABLE `Users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -174,22 +329,38 @@ ALTER TABLE `service`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `District`
 --
 ALTER TABLE `District`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `hotel-system`
+--
+ALTER TABLE `hotel-system`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `Province`
 --
 ALTER TABLE `Province`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `Users`
+--
+ALTER TABLE `Users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- Constraints for dumped tables
 --
@@ -199,6 +370,28 @@ ALTER TABLE `service`
 --
 ALTER TABLE `District`
   ADD CONSTRAINT `district_ibfk_1` FOREIGN KEY (`province_id`) REFERENCES `Province` (`id`);
+
+--
+-- Constraints for table `hotel-system-detail`
+--
+ALTER TABLE `hotel-system-detail`
+  ADD CONSTRAINT `hotel-system-detail_ibfk_1` FOREIGN KEY (`hotel-system-id`) REFERENCES `hotel-system` (`id`),
+  ADD CONSTRAINT `hotel-system-detail_ibfk_2` FOREIGN KEY (`district-id`) REFERENCES `District` (`id`);
+
+--
+-- Constraints for table `service-check-in-out-time`
+--
+ALTER TABLE `service-check-in-out-time`
+  ADD CONSTRAINT `service-check-in-out-time_ibfk_1` FOREIGN KEY (`service-id`) REFERENCES `service` (`id`),
+  ADD CONSTRAINT `service-check-in-out-time_ibfk_2` FOREIGN KEY (`hotel-system-id`) REFERENCES `hotel-system` (`id`);
+
+--
+-- Constraints for table `service-internet`
+--
+ALTER TABLE `service-internet`
+  ADD CONSTRAINT `service-internet_ibfk_1` FOREIGN KEY (`service-id`) REFERENCES `service` (`id`),
+  ADD CONSTRAINT `service-internet_ibfk_2` FOREIGN KEY (`hotel-system-id`) REFERENCES `hotel-system` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,0 +1,42 @@
+.link-dangtin{
+	color: #fff !important;
+	box-shadow: 1px 10px 10px grey;
+}
+.link-dangtin:hover{
+	background-color: #235b23 !important;
+}
+.navbar-inverse{
+	padding-bottom: 10px;
+}
+.navbar-inverse{
+	background-color:  #003580;
+}
+.page-header{
+	color: #003580;
+}
+.infohotel{
+    padding: 50px 100px;
+    border: 2px solid #003580;
+}
+.addresshotel{
+	margin-top: 50px;
+	padding: 50px 100px;
+    border: 2px solid #003580;
+}
+.mycenter {
+   	margin-top: 20px;
+    display: grid;
+}
+.tieptuc{
+	
+    color: #fff;
+    background-color: #0898ff;
+    -webkit-transition: background-color .3s ease;
+    -moz-transition: background-color .3s ease;
+    -ms-transition: background-color .3s ease;
+    -o-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+}
+.navbar-default{
+    background-color: #8fd0d3
+}
