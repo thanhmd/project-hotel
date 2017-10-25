@@ -1,4 +1,4 @@
-@extends("hotel.layout.index")
+@extends("unithotel.layout.index")
 @section("content")
 <!-- Page Content -->
 <div id="page-wrapper">

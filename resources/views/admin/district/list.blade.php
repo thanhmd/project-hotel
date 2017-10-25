@@ -10,11 +10,23 @@
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
+            @if(count($errors) >0 )
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $err)
+                {{ $err }} <br>
+                @endforeach
+            </div>
+            @endif
+            @if(session('thongbao'))
+            <div class="alert alert-success">
+                {{ session('thongbao') }}
+            </div>
+            @endif
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
                         <th>ID</th>
-                        <th>Quận/Huệne</th>
+                        <th>Quận/Huyện</th>
                         <th>Tỉnh/Thành Phố</th>
                         <th>Xóa</th>
                         <th>Sửa</th>

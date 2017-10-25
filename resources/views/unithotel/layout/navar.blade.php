@@ -15,17 +15,16 @@
             <li>
                 <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
-            <li>
+           {{--  <li>
                 <a href="#"><i class="fa fa-cube fa-fw"></i> Thông Tin Khách Sạn<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="hotel/info/add">Thêm Thông Tin Phòng</a>
+                        <a href="hotel/info/add">Thêm Thông Tin Khách Sạn</a>
                     </li>
                     <li>
-                        <a href="">Chỉnh Sửa Thông Tin Phòng</a>
+                        <a href="">Chỉnh Sửa Thông Tin Khách Sạn</a>
                     </li>
                 </ul>
-                <!-- /.nav-second-level -->
             </li>
             <li>
                 <a href="#"><i class="fa fa-cube fa-fw"></i>Chi tiết chỗ nghĩ<span class="fa arrow"></span></a>
@@ -37,7 +36,6 @@
                         <a href="">Chỉnh Sửa Thông Tin Chỗ Nghĩ</a>
                     </li>
                 </ul>
-                <!-- /.nav-second-level -->
             </li>
             <li>
                 <a href="#"><i class="fa fa-cube fa-fw"></i> Chi Tiết Phòng<span class="fa arrow"></span></a>
@@ -49,30 +47,13 @@
                         <a href="hotel/room/index">Sửa Chi Tiết Phòng</a>
                     </li>
                 </ul>
-                <!-- /.nav-second-level -->
             </li>
             <li>
                 <a href="#"><i class="fa fa-cube fa-fw"></i> Hình Anh<span class="fa arrow"></span></a>
-                {{-- <ul class="nav nav-second-level">
-                    <li>
-                        <a href="admin/district/list">List District</a>
-                    </li>
-                    <li>
-                        <a href="admin/district/add">Add District</a>
-                    </li>
-                </ul> --}}
             </li>
             <li>
                 <a href="#"><i class="fa fa-cube fa-fw"></i> Hợp đồng<span class="fa arrow"></span></a>
-                {{-- <ul class="nav nav-second-level">
-                    <li>
-                        <a href="admin/service/list">List Service</a>
-                    </li>
-                    <li>
-                        <a href="admin/service/add">Add Service</a>
-                    </li>
-                </ul> --}}
-            </li>
+            </li> --}}
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

@@ -5,34 +5,48 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User
-                    <small>Add</small>
+                <h1 class="page-header">Danh Sách
+                    <small>Quận/Huyện</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
+            @if(count($errors) >0 )
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $err)
+                {{ $err }} <br>
+                @endforeach
+            </div>
+            @endif
+            @if(session('thongbao'))
+            <div class="alert alert-success">
+                {{ session('thongbao') }}
+            </div>
+            @endif
             <div class="col-lg-7" style="padding-bottom:120px">
-                <form action="" method="POST">
+                
+                <form action="admin/district/add" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label>Tỉnh/ Thành Phố</label>
-                        <select class="form-control" name="theloai">
-                            <option value="">Thành Phố Hồ Chí Minh</option>
-                            <option value="">Hà Nội</option>
-                            <option value="">Quãng Ngãi</option>
+                        <select class="form-control" name="province">
+                            @foreach($province as $pr )
+                            <option value="{{ $pr->id }}">{{ $pr->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Username</label>
-                        <input class="form-control" name="txtUser" placeholder="Please Enter Username" />
+                        <label>Quận/Huyện</label>
+                        <input class="form-control" name="name" placeholder="Nhập tên Quận/Huyện" />
                     </div>
                     
-                    <button type="submit" class="btn btn-default">User Add</button>
+                    <button type="submit" class="btn btn-default">Thêm Quận/Huyện</button>
                     <button type="reset" class="btn btn-default">Reset</button>
-                <form>
-            </div>
-        </div>
+                    <form>
+                    </div>
+                </div>
                 <!-- /.row -->
-    </div>
+            </div>
             <!-- /.container-fluid -->
-</div>
-<!-- /#page-wrapper -->
-@endsection
+        </div>
+        <!-- /#page-wrapper -->
+        @endsection

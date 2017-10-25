@@ -33,7 +33,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        @include("hotel.layout.header")
+        @include("unithotel.layout.header")
 
         @yield('content')
 

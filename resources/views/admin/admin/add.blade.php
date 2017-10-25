@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Thêm
-                    <small>Admin</small>
+                    <small>Quản Trị</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -44,7 +44,7 @@
                         <input type="password" class="form-control" name="re_password" placeholder="Nhập lại mật khẩu" />
                     </div>
                     <div class="form-group">
-                        <label>Level</label>
+                        <label>Chức Vụ</label>
                         <label class="radio-inline">
                             <input name="level" value="0" checked="" type="radio">CEO
                         </label>

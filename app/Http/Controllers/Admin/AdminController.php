@@ -2,43 +2,53 @@
 
 
 namespace App\Http\Controllers\Admin;
+// namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Admin;
-use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth; // library login
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Validator;
+// use Auth;
 
 class AdminController extends Controller
 {
-    //
-    
-    public function getLoginAdmin() {
-    	return view("admin.login");
+    public function __construct()
+    {
+        // $this->middleware('auth');
     }
-    public function postLoginAdmin(Request $req) {
-        // var_dump($req->email); exit();
-        $this->validate($req, 
-         [
-            "email"    => "required",
-            "password" => "required|min:3|max:32",
-         ],
-         [
-            "email.required"    => "Vui lòng nhập email",
-            "password.required" => "Vui lòng nhập password",
-            "password.min"      => "Mật khẩu tối thiểu 3 kí tự",
-            "password.max"      => "Mật khẩu tối đa 32 kí tự"
-        ]);
-        if(Auth::attempt(['email'=>$req->email,'password'=>$req->password ])) { // if login ok->true
-            return redirect("admin/admin/list");
-        }
-        else {
-            return redirect("admin/login")->with("thongbao", "Đăng nhập không thành công. Kt lại");
-        }
+    public function index() {
+        // return view("")
+    }
+    // use RegistersUsers, ThrottlesLogins;
+    // protected $redirectTo = 'admin/province/list';
 
-    }
-    // public function postLoginAdmin(Request $req) {
-    //     
     
+    // public function getLoginAdmin() {
+    // 	return view("admin.login");
+    // }
+    // public function postLoginAdmin(Request $req) {
+    //     $this->validate($req, 
+    //      [
+    //         "email"    => "required",
+    //         "password" => "required|min:3|max:32",
+    //      ],
+    //      [
+    //         "email.required"    => "Vui lòng nhập email",
+    //         "password.required" => "Vui lòng nhập password",
+    //         "password.min"      => "Mật khẩu tối thiểu 3 kí tự",
+    //         "password.max"      => "Mật khẩu tối đa 32 kí tự"
+    //     ]);
+
+    //     if(Auth::guard('admin')->attempt(['email'=>$req->email,'password'=>$req->password ])) {
+    //         return redirect("admin/province/list");
+    //     }
+    //     else {
+    //         return redirect("admin/login")->with("thongbao", "Đăng nhập không thành công. Kt lại");
+    //     }   
+
     // }
     public function getList() {
         // get list user

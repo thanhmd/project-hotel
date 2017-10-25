@@ -6,19 +6,20 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Danh sách
-                    <small>Admin</small>
+                    <small>Quản Trị</small>
                 </h1>
+
             </div>
             <!-- /.col-lg-12 -->
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
                         <th>ID</th>
-                        <th>Full Name</th>
+                        <th>Họ Và Tên</th>
                         <th>Email</th>
-                        <th>Level</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
+                        <th>Chức Vụ</th>
+                        <th>Xóa</th>
+                        <th>Sửa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Quản Trị</a>
         </div>
         <!-- /.row -->
     </div>

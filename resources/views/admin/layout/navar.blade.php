@@ -13,52 +13,51 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="admin/trangchu"><i class="fa fa-dashboard fa-fw"></i> QUẢN LÍ KHÁCH SẠN</a>
             </li>
-            <li>
-                <a href="#"><i class="fa fa-users fa-fw"></i></i> Admin<span class="fa arrow"></span></a>
+            {{-- <li>
+                <a href="#"><i class="fa fa-users fa-fw"></i></i> QUẢN TRỊ<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="admin/admin/list">List Admin</a>
+                        <a href="admin/admin/list">Danh Sách Quản Trị</a>
                     </li>
                     <li>
-                        <a href="admin/admin/add">Add Admin</a>
+                        <a href="admin/admin/add">Thêm Quản Trị</a>
+                    </li>
+                </ul>
+            </li> --}}
+            <li>
+                <a href="#"><i class="fa fa-cube fa-fw"></i>TỈNH/ THÀNH PHỐ<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="admin/province/list">Danh sách Tỉnh/ Thành Phố</a>
+                    </li>
+                    <li>
+                        <a href="admin/province/add">Thêm Tỉnh/ Thành Phố</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i> Province <span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-cube fa-fw"></i>QUẬN/ HUYỆN<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="admin/province/list">List Province</a>
+                        <a href="admin/district/list">Danh Sách Quận/ Huyện</a>
                     </li>
                     <li>
-                        <a href="admin/province/add">Add Province</a>
+                        <a href="admin/district/add">Thêm Quận/ Huyện</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i> Dictrict<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-cube fa-fw"></i>DỊCH VỤ<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="admin/district/list">List District</a>
+                        <a href="admin/service/list">Danh Sách Dịch Vụ</a>
                     </li>
                     <li>
-                        <a href="admin/district/add">Add District</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i> Service<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="admin/service/list">List Service</a>
-                    </li>
-                    <li>
-                        <a href="admin/service/add">Add Service</a>
+                        <a href="admin/service/add">Thêm Dịch Vụ</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

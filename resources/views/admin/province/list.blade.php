@@ -6,10 +6,15 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Danh sách
-                    <small>Admin</small>
+                    <small>Tỉnh/ Thành Phố</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
+            @if(session('thongbao'))
+                <div class="alert alert-success">
+                    {{ session('thongbao') }}
+                </div>
+            @endif
             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                     <tr align="center">
@@ -30,6 +35,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Tỉnh/ Thành Phố</a>
         </div>
         <!-- /.row -->
     </div>

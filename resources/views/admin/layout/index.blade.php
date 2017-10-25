@@ -7,7 +7,7 @@
     <meta name="description" content="Booking muiti hotels">
     <base href="{{ asset('') }}">
     <meta name="author" content="">
-    <title>Admin - Lăng Kỳ Doanh</title>
+    <title>Admin |Hồng Huệ</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="admin_assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +26,7 @@
 
     <!-- DataTables Responsive CSS -->
     <link href="admin_assets/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    <link href="admin_assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>

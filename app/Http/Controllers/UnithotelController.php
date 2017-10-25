@@ -3,16 +3,86 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth; // thư viện login
+use App\User;
 class UnithotelController extends Controller
 {
     public function getAddinfo() {
-    	return view("hotel.info.add");
+    	return view("unithotel.info.add");
     }
     public function getAddroom() {
-    	return view("hotel.room.add");
+    	return view("unithotel.room.add");
     }
     public function getPlaceofthought() {
-    	return view("hotel.placeofthought.add");
+    	return view("unithotel.placeofthought.add");
+    }
+    public function getLogin(){
+    	return view("unithotel.login_and_register_tabbed_form");
+    }
+    public function postLogin(Request $req){
+    	// var_dump($req->email); exit();
+    	$this->validate($req,
+    		[
+    			"email"    => "required",
+    			"password" =>  "required|min:3|max:32",
+    		],
+    		[
+    			"email.required"    => "Bạn chưa nhập email",
+    			"password.required" => "Bạn chưa nhập password",
+    			"password.min"      => "Mật khẩu tối thiểu 3 kí tự",
+    			"password.max"      => "Mật khẩu tối đa 32 kí tự",
+    		]
+    	);
+
+    	if(Auth::attempt(['email'=>$req->email,'password'=>$req->password ])) {
+            return redirect("unithotel/info/home");
+        }
+        else {
+            return redirect("unithotel/login")->with("thongbao", " Đăng nhập không thành công. Hãy kiểm tra lại! Nếu chưa có tài khoản vui lòng đăng ký");
+        }   
+    }
+    public function getRegister(){
+    	return view("unithotel.login_and_register_tabbed_form");
+    }
+    public function postRegister(Request $req) {
+    	$this->validate($req,
+            [
+                "name"        => "required|min:3|max:32",
+                "email"       => "required|email|unique:users,email", // unique in table admin column email
+                "password"    => "required|min:3|max:32",
+                "re_password" => "required|same:password",
+            ],
+            [
+                "name.required"        => "Bạn chưa nhập tên người dùng ",
+                "name.min"             => "Tên người dùng phải có ít nhất 3 kí tự",
+                "name.max"             => "Tên người dùng phải tối đa kí tự",
+                "email.required"       => "Bạn chưa nhập email",
+                "email.email"          => "Bạn chưa nhập đúng định dạng email",
+                "email.unique"         => "Email này đã tồn tại",
+                "password.required"    => "Bạn chưa nhập mật khẩu",
+                "password.min"         => "Mật khẩu phải có it nhất 3 kí tự",
+                "passwoed.max"         => "Mật khẩu phải có tối đa 32 kí tự",
+                "re_password.required" => "Bạn chưa nhập lại mật khẩu",
+                "re_password.same"     => "Mật khẩu không khớp",
+            ]);
+        // var_dump($req->name); exit();
+        $user = new User;
+        $user->name = $req->name;
+        $user->email = $req->email;
+        $user->password = bcrypt($req->password);
+        $user->level = 1;
+        $user->save();
+        return redirect("unithotel/login")->with("thongbao1", " Đăng ký thành công ! ");
+    }
+    public function getLogout() {
+    	Auth::logout();
+    	return redirect("unithotel/login");
+    }
+    public function getindex() {
+        return view("unithotel.info.homeunithotel");
+    }
+    public function getProfile(){
+        $user = Auth::user(); // lấy ra thông tin người dùng đã login
+        return view("unithotel.info.profilehotel", ['user'=>$user]);
     }
 }

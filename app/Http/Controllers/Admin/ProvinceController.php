@@ -30,4 +30,29 @@ class ProvinceController extends Controller
 
         return redirect("admin/province/add")->with("thongbao", "Thêm thành công ! ");
     } 
+    public function getEdit($id){
+        $province = Province::find($id);
+        return view("admin.province.edit", ["province" => $province]);
+    }
+    public function postEdit(Request $req, $id){
+        $province = Province::find($id);
+        $this->validate($req,
+            [
+                "name"        => "required|unique:province,name|min:3|max:32",
+            ],
+            [
+                "name.required"        => "Bạn chưa nhập tên tỉnh/thành phố ",
+                "name.unique"          => "Tên Tỉnh/Thành phố này đã bị trùng ",
+            ]);
+        $province->name = $req->name;
+        // dd($req->name); die();
+        $province->save();
+
+        return redirect('admin/province/edit/'.$id)->with("thongbao", "Sửa thành công ! ");
+    }
+    public function getDelete($id){
+        $province = Province::find($id);
+        $province->delete();
+        return redirect('admin/province/list')->with('thongbao', 'xóa thành công');
+    }
 }

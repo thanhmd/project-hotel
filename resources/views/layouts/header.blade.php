@@ -36,7 +36,7 @@
                     <a href="#">Đăng xuất</a>
                 </li>
                <li>
-                   <a href="register" class="btn btn-success link-dangtin">Đăng Hotel Của Qúi Vị</a>
+                   <a href="unithotel/login" class="btn btn-success link-dangtin">Đăng Hotel Của Qúi Vị</a>
                </li>
             </ul>
    </div>
