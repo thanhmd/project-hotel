@@ -87,6 +87,15 @@
 										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="">
 									</div>
 									<div class="form-group">
+										<input type="text" name="sdt" id="email" tabindex="1" class="form-control" placeholder="Số điện thoại" value="">
+									</div>
+									<div class="form-group">
+										<input type="text" name="cmnd_passport" id="email" tabindex="1" class="form-control" placeholder="CMND hoặc hộ chiếu" value="">
+									</div>
+									<div class="form-group">
+										<input type="text" name="address" id="address" tabindex="1" class="form-control" placeholder="Địa chỉ" value="">
+									</div>
+									<div class="form-group">
 										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mật khẩu">
 									</div>
 									<div class="form-group">

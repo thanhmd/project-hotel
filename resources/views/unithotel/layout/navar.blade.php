@@ -15,7 +15,10 @@
                 <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-dashboard fa-fw"></i>QUẢN LÍ THÔNG TIN</a>
+                <a href="unithotel/info/profile"><i class="fa fa-dashboard fa-fw"></i>QUẢN LÍ THÔNG TIN</a>
+            </li>
+            <li>
+                <a href=""><i class="fa fa-dashboard fa-fw"></i>QUẢN LÍ KHÁCH SẠN</a>
             </li>
             <li>
                 <ul class="nav nav-second-level">

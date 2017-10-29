@@ -20,10 +20,10 @@
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="unithotel/info/profile"><i class="fa fa-user fa-fw"></i> Cập Nhật Profile</a>
+                {{-- <li><a href="unithotel/info/profile"><i class="fa fa-user fa-fw"></i> Cập Nhật Profile</a>
                 </li>
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
+                </li> --}}
                 <li class="divider"></li>
                 <li><a href="unithotel/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>

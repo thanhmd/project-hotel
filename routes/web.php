@@ -109,10 +109,12 @@ Route::group(['prefix' => 'unithotel'], function(){
 	Route::group(['prefix' => 'info'], function(){
 		Route::get('home', 'UnithotelController@getindex');
 		Route::get('profile', 'UnithotelController@getProfile');
-		Route::post('profile', 'UnithotelController@postProfile');
+		Route::get('edit-profile', 'UnithotelController@getEditProfile');
+		Route::post('edit-profile', 'UnithotelController@postEditProfile');
 
-		Route::get('add', 'UnithotelController@getAddinfo');
+		// Route::get('add', 'UnithotelController@getAddinfo');
 		Route::get('edit', 'UnithotelController@getEditinfo');
+		Route::post('edit/{id}', 'Admin\RoomController@postEdit');
 	});
 	Route::group(['prefix' => 'placeofthought'], function(){
 		Route::get('add', 'UnithotelController@getPlaceofthought');

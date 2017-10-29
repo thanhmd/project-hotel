@@ -42,7 +42,9 @@
             </li>
             <li>
                 <li>
-                    <a href=""><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span></span>QUẢN LÍ HỢP ĐỒNG</a>
+                    <a href="admin/admin/list">
+                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ HỢP ĐỒNG
+                    </a>
                 </li>
             </li>
             <li>
@@ -75,13 +77,14 @@
                     <a href="admin/room/list"><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ PHÒNG
                 </li>
             </li>
-            <li>
+            {{-- <li>
                 <li>
-                    <a href="admin/province/list">
+                    <a href="">
                         <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ HỢP ĐỒNG
                     </a>
                 </li>
-            </li>
+            </li> --}}
+            
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

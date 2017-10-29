@@ -47,30 +47,40 @@ class UnithotelController extends Controller
     public function postRegister(Request $req) {
     	$this->validate($req,
             [
-                "name"        => "required|min:3|max:32",
-                "email"       => "required|email|unique:users,email", // unique in table admin column email
-                "password"    => "required|min:3|max:32",
-                "re_password" => "required|same:password",
+                "name"          => "required|min:3|max:32",
+                "email"         => "required|email|unique:users,email", // unique in table admin column email
+                "sdt"           => "required",
+                "cmnd_passport" => "required|unique:users,cmnd_passport",
+                "address"       => "required|",
+                "password"      => "required|min:3|max:32",
+                "re_password"   => "required|same:password",
             ],
             [
-                "name.required"        => "Bạn chưa nhập tên người dùng ",
-                "name.min"             => "Tên người dùng phải có ít nhất 3 kí tự",
-                "name.max"             => "Tên người dùng phải tối đa kí tự",
-                "email.required"       => "Bạn chưa nhập email",
-                "email.email"          => "Bạn chưa nhập đúng định dạng email",
-                "email.unique"         => "Email này đã tồn tại",
-                "password.required"    => "Bạn chưa nhập mật khẩu",
-                "password.min"         => "Mật khẩu phải có it nhất 3 kí tự",
-                "passwoed.max"         => "Mật khẩu phải có tối đa 32 kí tự",
-                "re_password.required" => "Bạn chưa nhập lại mật khẩu",
-                "re_password.same"     => "Mật khẩu không khớp",
+                "name.required"          => "Bạn chưa nhập tên người dùng ",
+                "name.min"               => "Tên người dùng phải có ít nhất 3 kí tự",
+                "name.max"               => "Tên người dùng phải tối đa kí tự",
+                "email.required"         => "Bạn chưa nhập email",
+                "email.email"            => "Bạn chưa nhập đúng định dạng email",
+                "email.unique"           => "Email này đã tồn tại",
+                "sdt.required"           => "Bạn chưa nhập SĐT",
+                "cmnd_passport.required" => "Bạn chưa nhập CMND hoặc hộ chiếu",
+                "cmnd_passport.unique"   => "CMND hoặc hộ chiếu này đã tồn tại",
+                "address.required"       => "Bạn chưa nhập địa chỉ",
+                "password.required"      => "Bạn chưa nhập mật khẩu",
+                "password.min"           => "Mật khẩu phải có it nhất 3 kí tự",
+                "passwoed.max"           => "Mật khẩu phải có tối đa 32 kí tự",
+                "re_password.required"   => "Bạn chưa nhập lại mật khẩu",
+                "re_password.same"       => "Mật khẩu không khớp",
             ]);
         // var_dump($req->name); exit();
-        $user = new User;
-        $user->name = $req->name;
-        $user->email = $req->email;
-        $user->password = bcrypt($req->password);
-        $user->level = 1;
+        $user           = new User;
+        $user->name     = $req->name;
+        $user->email    = $req->email;
+        $user->sdt      = $req->sdt;
+        $user->cmnd_passport = $req->cmnd_passport;
+        $user->address       = $req->address;
+        $user->password      = bcrypt($req->password);
+        $user->level         = 1;
         $user->save();
         return redirect("unithotel/login")->with("thongbao1", " Đăng ký thành công ! ");
     }
@@ -82,7 +92,51 @@ class UnithotelController extends Controller
         return view("unithotel.info.homeunithotel");
     }
     public function getProfile(){
-        $user = Auth::user(); // lấy ra thông tin người dùng đã login
+        $user = Auth::user();
         return view("unithotel.info.profilehotel", ['user'=>$user]);
+    }
+    public function getEditProfile(){
+        $user = Auth::user();
+        return view("unithotel.info.editprofile", ['user'=>$user]);
+    }
+    public function postEditProfile(Request $req){
+        $user = Auth::user();
+        $this->validate($req, [
+                'name'        => 'required',
+                'sdt'         => 'required',
+                // "password"      => "required|min:3|max:32",
+                // "passwordAgain" => "required|same:password",
+                // "address"       => "required",
+
+            ],
+            [
+                'name.required'     => 'Bạn chưa nhập tên',
+                'sdt.required'      => 'Bạn chưa nhập sđt',
+                'addpress.required' => 'Bạn chưa nhập địa chỉ',
+                // "password.min"         => "Mật khẩu phải có it nhất 3 kí tự",
+                // "passwoed.max"         => "Mật khẩu phải có tối đa 32 kí tự",
+                // "passwordAgain.required" => "Bạn chưa nhập lại mật khẩu",
+                // "passwordAgain.same"     => "Mật khẩu không khớp",
+            ]);
+        $user->name= $req->name;
+        $user->sdt = $req->sdt;
+        $user->address = $req->address;
+        if($req->changePassword == "on"){
+            $this->validate($req, [
+                "password"      => "required|min:3|max:32",
+                "passwordAgain" => "required|same:password",
+                "address"       => "required",
+
+            ],
+            [
+                "password.min"         => "Mật khẩu phải có it nhất 3 kí tự",
+                "passwoed.max"         => "Mật khẩu phải có tối đa 32 kí tự",
+                "passwordAgain.required" => "Bạn chưa nhập lại mật khẩu",
+                "passwordAgain.same"     => "Mật khẩu không khớp",
+            ]);
+            $user->password = bcrypt($req->password);
+        }
+        $user->save();
+        return redirect('unithotel/info/profile')->with('thongbao', 'sửa thành công');
     }
 }
