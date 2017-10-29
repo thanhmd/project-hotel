@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 // namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Admin;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth; // library login
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Validator;
+use DB;
+use App\Quotation;
 // use Auth;
 
 class AdminController extends Controller
@@ -26,33 +28,31 @@ class AdminController extends Controller
     // protected $redirectTo = 'admin/province/list';
 
     
-    // public function getLoginAdmin() {
-    // 	return view("admin.login");
-    // }
-    // public function postLoginAdmin(Request $req) {
-    //     $this->validate($req, 
-    //      [
-    //         "email"    => "required",
-    //         "password" => "required|min:3|max:32",
-    //      ],
-    //      [
-    //         "email.required"    => "Vui lòng nhập email",
-    //         "password.required" => "Vui lòng nhập password",
-    //         "password.min"      => "Mật khẩu tối thiểu 3 kí tự",
-    //         "password.max"      => "Mật khẩu tối đa 32 kí tự"
-    //     ]);
+    public function getLoginAdmin() {
+    	return view("admin.login");
+    }
+    public function postLoginAdmin(Request $req) {
+        $this->validate($req, 
+         [
+            "email"    => "required",
+            "password" => "required|min:3|max:32",
+         ],
+         [
+            "email.required"    => "Vui lòng nhập email",
+            "password.required" => "Vui lòng nhập password",
+            "password.min"      => "Mật khẩu tối thiểu 3 kí tự",
+            "password.max"      => "Mật khẩu tối đa 32 kí tự"
+        ]);
 
-    //     if(Auth::guard('admin')->attempt(['email'=>$req->email,'password'=>$req->password ])) {
-    //         return redirect("admin/province/list");
-    //     }
-    //     else {
-    //         return redirect("admin/login")->with("thongbao", "Đăng nhập không thành công. Kt lại");
-    //     }   
-
-    // }
+        if(Auth::guard('admin')->attempt(['email'=>$req->email,'password'=>$req->password ])) {
+            return redirect("admin/province/list");
+        }
+        else {
+            return redirect("admin/login")->with("thongbao", "Đăng nhập không thành công. Kt lại");
+        }
+    }
     public function getList() {
-        // get list user
-        $admin = Admin::all();
+        $admin = DB::table('users')->where('level', 2)->get();
         return view("admin.admin.list", ["admin" => $admin]);
     }
 
@@ -64,9 +64,10 @@ class AdminController extends Controller
         $this->validate($req,
             [
                 "name"        => "required|min:3|max:32",
-                "email"       => "required|email|unique:admin,email", // unique in table admin column email
+                "email"       => "required|email|unique:users,email", // unique in table admin column email
                 "password"    => "required|min:3|max:32",
                 "re_password" => "required|same:password",
+                "sdt"         =>  "required",
             ],
             [
                 "name.required"        => "Bạn chưa nhập tên người dùng ",
@@ -80,13 +81,15 @@ class AdminController extends Controller
                 "passwoed.max"         => "Mật khẩu phải có tối đa 32 kí tự",
                 "re_password.required" => "Bạn chưa nhập lại mật khẩu",
                 "re_password.same"     => "Mật khẩu không khớp",
+                "sdt.required"        => "Bạn chưa nhập số điện thoại ",
             ]);
         // var_dump($req->name); exit();
-        $admin = new Admin;
-        $admin->full_name = $req->name;
+        $admin = new User;
+        $admin->name = $req->name;
         $admin->email = $req->email;
+        $admin->sdt = $req->sdt;
         $admin->password = bcrypt($req->password);
-        $admin->level = $req->level;
+        $admin->level = 2;
         $admin->save();
 
         return redirect("admin/admin/add")->with("thongbao", " Thêm thành công ! ");

@@ -13,7 +13,7 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="admin/trangchu"><i class="fa fa-dashboard fa-fw"></i> QUẢN LÍ KHÁCH SẠN</a>
+                <a href="admin/trangchu"><i class="fa fa-dashboard fa-fw"></i> QUẢN LÍ DANH MỤC</a>
             </li>
             {{-- <li>
                 <a href="#"><i class="fa fa-users fa-fw"></i></i> QUẢN TRỊ<span class="fa arrow"></span></a>
@@ -27,40 +27,60 @@
                 </ul>
             </li> --}}
             <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i>TỈNH/ THÀNH PHỐ<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="admin/province/list">Danh sách Tỉnh/ Thành Phố</a>
-                    </li>
-                    <li>
-                        <a href="admin/province/add">Thêm Tỉnh/ Thành Phố</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
+                <li>
+                    <a href="admin/customer/list">
+                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ KHÁCH HÀNG
+                    </a>
+                </li>
             </li>
             <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i>QUẬN/ HUYỆN<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="admin/district/list">Danh Sách Quận/ Huyện</a>
-                    </li>
-                    <li>
-                        <a href="admin/district/add">Thêm Quận/ Huyện</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
+                <li>
+                    <a href="admin/admin/list">
+                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ NHÂN VIÊN
+                    </a>
+                </li>
             </li>
             <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i>DỊCH VỤ<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="admin/service/list">Danh Sách Dịch Vụ</a>
-                    </li>
-                    <li>
-                        <a href="admin/service/add">Thêm Dịch Vụ</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
+                <li>
+                    <a href=""><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span></span>QUẢN LÍ HỢP ĐỒNG</a>
+                </li>
+            </li>
+            <li>
+                <li>
+                    <a href="admin/province/list"><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span></span>QUẢN LÍ TỈNH/T.PHỐ</a>
+                </li>
+            </li>
+            <li>
+                <li>
+                    <a href="admin/district/list"><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ QUẬN/ HUYỆN</a>
+                </li>
+            </li>
+            <li>
+                <li>
+                    <a href=""><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ LOẠI DỊCH VỤ</a>
+                </li>
+            </li>
+            <li>
+                <li>
+                    <a href="admin/service/list"><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ DỊCH VỤ</a>
+                </li>
+            </li>
+           <li>
+                <li>
+                    <a href="admin/typeroom/list"><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ LOẠI PHÒNG</a>
+                </li>
+            </li>
+            <li>
+                <li>
+                    <a href="admin/room/list"><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ PHÒNG
+                </li>
+            </li>
+            <li>
+                <li>
+                    <a href="admin/province/list">
+                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ HỢP ĐỒNG
+                    </a>
+                </li>
             </li>
         </ul>
     </div>

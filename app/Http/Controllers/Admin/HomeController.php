@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
 	public function __construct()
 	{
-        // $this->middleware('auth');
+        $this->middleware('auth');
 	}
 
 	public function index(){
@@ -23,25 +23,24 @@ class HomeController extends Controller
 	}
 	public function postLoginAdmin(Request $req){
     	// var_dump($req->email); exit();
-		$this->validate($req,
-			[
-				"email"    => "required",
-				"password" =>  "required|min:3|max:32",
-			],
-			[
-				"email.required"    => "Bạn chưa nhập email",
-				"password.required" => "Bạn chưa nhập password",
-				"password.min"      => "Mật khẩu tối thiểu 3 kí tự",
-				"password.max"      => "Mật khẩu tối đa 32 kí tự",
-			]
-		);
-		//var_dump(Auth::attempt(['email'=>$req->email,'password'=>$req->password ])); exit();
-		if(Auth::attempt(['email'=>$req->email,'password'=>$req->password ])) {
-			return redirect("admin/trangchu");
-		}
-		else {
-			return redirect("admin/login")->with("thongbao", "Đăng nhập không thành công");
-		}   
+		$this->validate($req, 
+         [
+            "email"    => "required",
+            "password" => "required|min:3|max:32",
+         ],
+         [
+            "email.required"    => "Vui lòng nhập email",
+            "password.required" => "Vui lòng nhập password",
+            "password.min"      => "Mật khẩu tối thiểu 3 kí tự",
+            "password.max"      => "Mật khẩu tối đa 32 kí tự"
+        ]);
+
+        if(Auth::guard('admin')->attempt(['email'=>$req->email,'password'=>$req->password ])) {
+            return redirect("admin/province/list");
+        }
+        else {
+            return redirect("admin/login")->with("thongbao", "Đăng nhập không thành công. Kt lại");
+        }
 	}
 	public function getLogout() {
     	Auth::logout();

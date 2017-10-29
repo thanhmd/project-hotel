@@ -10,6 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::group(['middleware' => ['web']], function () {
+//     Route::get('login', 'UserLoginController@getUserLogin');
+//     Route::post('login', ['as'=>'user.auth','uses'=>'UserLoginController@userAuth']);
+//     Route::get('admin/login', 'AdminLoginController@getAdminLogin');
+//     Route::post('admin/login', ['as'=>'admin.auth','uses'=>'AdminLoginController@adminAuth']);
+//     Route::group(['middleware' => ['admin']], function () {
+//         Route::get('admin/dashboard', ['as'=>'admin.dashboard','uses'=>'AdminController@dashboard']);
+//     });
+// });
+
 Route::get('home', function () {
 	return view('pages.home');
 });
@@ -19,28 +29,11 @@ Route::get('register', function () {
 Route::get('admin', function () {
 	return view('admin.trangchuadmin');
 });
+
 Route::get('admin/login','Admin\HomeController@getLoginAdmin');
 Route::post('admin/login','Admin\HomeController@postLoginAdmin');
 Route::post('admin/logout', 'Admin\HomeController@getLogout');
-// Route::get('register', 'PagesController@getRegister');
-// Route::post('register', 'PagesController@postRegister');
-// Route::group(['prefix' => 'admin'], function(){
-// 	Route::group(['prefix' => 'admin'], function(){
-// 		Route::get('list', 'AdminController@getList');
 
-// 		Route::get('add', 'AdminController@getAdd');
-// 		Route::post('add', 'AdminController@postAdd');
-// 		Route::get('edit', 'AdminController@getEdit');
-
-// 		Route::get('edit', 'AdminController@getAdd');
-
-// 	});
-// });
-// 
-// 
-// Auth::routes();
-// Route::get('home','Admin\HomeController@index');
-// Route::get('home','Admin\AdimController@index');
 
 Route::group(['prefix' => 'admin'], function(){
 	Route::group(['prefix' => 'trangchu'], function(){
@@ -82,6 +75,33 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('edit/{id}', 'Admin\ServiceController@getEdit');
 		Route::post('edit/{id}', 'Admin\ServiceController@postEdit');
 		Route::get('delete/{id}', 'Admin\ServiceController@getDelete');
+
+	});
+	Route::group(['prefix' => 'customer'], function(){
+		Route::get('list', 'Admin\CustomerController@getList');
+		Route::get('add', 'Admin\CustomerController@getAdd');
+		Route::post('add', 'Admin\CustomerController@postAdd');
+		Route::get('edit/{id}', 'Admin\CustomerController@getEdit');
+		Route::post('edit/{id}', 'Admin\CustomerController@postEdit');
+		Route::get('delete/{id}', 'Admin\CustomerController@getDelete');
+
+	});
+	Route::group(['prefix' => 'typeroom'], function(){
+		Route::get('list', 'Admin\TyperoomController@getList');
+		Route::get('add', 'Admin\TyperoomController@getAdd');
+		Route::post('add', 'Admin\TyperoomController@postAdd');
+		Route::get('edit/{id}', 'Admin\TyperoomController@getEdit');
+		Route::post('edit/{id}', 'Admin\TyperoomController@postEdit');
+		Route::get('delete/{id}', 'Admin\TyperoomController@getDelete');
+
+	});
+	Route::group(['prefix' => 'room'], function(){
+		Route::get('list', 'Admin\RoomController@getList');
+		Route::get('add', 'Admin\RoomController@getAdd');
+		Route::post('add', 'Admin\RoomController@postAdd');
+		Route::get('edit/{id}', 'Admin\RoomController@getEdit');
+		Route::post('edit/{id}', 'Admin\RoomController@postEdit');
+		Route::get('delete/{id}', 'Admin\RoomController@getDelete');
 
 	});
 });

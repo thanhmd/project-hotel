@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Admin;
+use App\User;
 
 class AdminController extends Controller
 {
     //
     
-    public function getLoginAdmin() {
-    	return view("admin.login");
-    }
+    // public function getLoginAdmin() {
+    // 	return view("admin.login");
+    // }
     //public function postLoginAdmin(Request $req) {
     //	$this->validate($req, 
     //	[
@@ -27,11 +27,10 @@ class AdminController extends Controller
     //
     //}
     
-    public function getList() {
-        // get list user
-        $admin = Admin::all();
-        return view("admin.admin.list", ["admin" => $admin]);
-    }
+    // public function getList() {
+    //     $admin = User::all();
+    //     return view("admin.admin.list", ["admin" => $admin]);
+    // }
 
     public function getAdd() {
         return view("admin.admin.add");
@@ -59,7 +58,7 @@ class AdminController extends Controller
                 "re_password.same"     => "Mật khẩu không khớp",
             ]);
         // var_dump($req->name); exit();
-        $admin = new Admin;
+        $admin = new User;
         $admin->full_name = $req->name;
         $admin->email = $req->email;
         $admin->password = bcrypt($req->password);

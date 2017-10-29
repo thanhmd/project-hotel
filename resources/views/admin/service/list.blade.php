@@ -35,7 +35,8 @@
                     @endforeach
                 </tbody>
             </table>
-            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Dịch Vụ</a>
+            <a class="btn btn-lg btn-info btnprovinceadd" href="admin/service/add" role="button">Thêm Tỉnh/Thành Phố</a>
+            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Tỉnh/ Thành Phố</a>
         </div>
         <!-- /.row -->
     </div>

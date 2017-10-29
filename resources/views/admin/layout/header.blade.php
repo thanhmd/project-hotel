@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Chào bạn</a>
+        <a class="navbar-brand" href="index.html">HOTEL PROJECT</a>
         {{-- <img src="images/hinhdaidien/{{  }}" alt=""> --}}
     </div>
     <!-- /.navbar-header -->

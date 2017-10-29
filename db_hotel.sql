@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.4.15.9
+-- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 15, 2017 at 08:00 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Generation Time: Oct 29, 2017 at 01:14 PM
+-- Server version: 5.6.35
+-- PHP Version: 7.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,16 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ks`
+-- Database: `db_hotel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Table structure for table `admins`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(11) NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -36,13 +34,13 @@ CREATE TABLE `admin` (
   `level` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `admin`
+-- Dumping data for table `admins`
 --
 
-INSERT INTO `admin` (`id`, `email`, `password`, `full_name`, `level`, `created_at`, `updated_at`) VALUES
+INSERT INTO `admins` (`id`, `email`, `password`, `full_name`, `level`, `created_at`, `updated_at`) VALUES
 (1, 'langkidoanhit@gmail.com', '123456', 'Lăng Kỳ Doanh', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (2, 'tranthihonghue19it@gmail.com', '123456', 'Trần Thị Hồng Huệ', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (3, 'tranthihonghue13bs@gmail.com', '123456', 'Trần Thị Hồng Cẩm', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -59,26 +57,22 @@ INSERT INTO `admin` (`id`, `email`, `password`, `full_name`, `level`, `created_a
 -- Table structure for table `District`
 --
 
-CREATE TABLE `District` (
+CREATE TABLE IF NOT EXISTS `District` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `province_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `province_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `District`
 --
 
-INSERT INTO `District` (`id`, `name`, `province_id`) VALUES
-(3, 'Quận 1', 1),
-(4, 'Quận 2', 1),
-(5, 'Quận 3', 1),
-(6, 'Quận 4', 1),
-(7, 'Quận 5', 1),
-(8, 'Quận 6', 1),
-(9, 'Quận 7', 1),
-(10, 'Quận 8', 1),
-(11, 'Quận 9', 1);
+INSERT INTO `District` (`id`, `name`, `province_id`, `created_at`, `updated_at`) VALUES
+(3, 'Quận 6', 1, '2017-10-23 06:16:16', '2017-10-22 23:16:16'),
+(7, 'Quận 5', 1, '2017-10-23 05:43:59', '0000-00-00 00:00:00'),
+(12, 'Hà Tây1', 2, '2017-10-23 06:16:31', '2017-10-22 23:16:31');
 
 -- --------------------------------------------------------
 
@@ -86,12 +80,12 @@ INSERT INTO `District` (`id`, `name`, `province_id`) VALUES
 -- Table structure for table `hotel-system`
 --
 
-CREATE TABLE `hotel-system` (
+CREATE TABLE IF NOT EXISTS `hotel-system` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `address` varchar(255) NOT NULL,
   `website` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `hotel-system`
@@ -107,7 +101,7 @@ INSERT INTO `hotel-system` (`id`, `name`, `address`, `website`) VALUES
 -- Table structure for table `hotel-system-detail`
 --
 
-CREATE TABLE `hotel-system-detail` (
+CREATE TABLE IF NOT EXISTS `hotel-system-detail` (
   `contact-name` varchar(255) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `star-number` int(11) NOT NULL,
@@ -132,33 +126,45 @@ INSERT INTO `hotel-system-detail` (`contact-name`, `phone`, `star-number`, `numb
 -- Table structure for table `Province`
 --
 
-CREATE TABLE `Province` (
+CREATE TABLE IF NOT EXISTS `Province` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Province`
 --
 
 INSERT INTO `Province` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Hồ Chí Minh', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Hà Nội', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'Quảng Ngãi', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 'Quảng Bình', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 'Đồng Nai', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(6, 'Lâm Đồng', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(7, 'Nghệ An', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 'Hà Tĩnh', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 'Đà Lạt', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, 'Bình Định', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(11, 'Huế', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(12, 'Đà Nẵng', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(13, 'Yên Bái', '2017-10-13 20:18:49', '2017-10-13 20:18:49'),
-(14, 'Long An', '2017-10-13 20:19:28', '2017-10-13 20:19:28'),
-(15, 'Tiền Giang', '2017-10-13 20:20:05', '2017-10-13 20:20:05');
+(1, 'Hồ Chí Minh', '0000-00-00 00:00:00', '2017-10-22 17:32:43'),
+(2, 'Hà Nội', '2017-10-23 05:37:33', '2017-10-23 05:37:44'),
+(3, 'Long An', '2017-10-23 08:33:31', '2017-10-23 08:33:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room`
+--
+
+CREATE TABLE IF NOT EXISTS `room` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `price` double NOT NULL,
+  `typeroom_id` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`id`, `name`, `price`, `typeroom_id`, `status`) VALUES
+(1, 'Phòng 1', 10000, 1, 1),
+(2, 'Phòng 2', 20000, 2, 0),
+(3, 'Phòng 3', 30000, 3, 0),
+(4, 'Phòng 4', 400000, 4, 0);
 
 -- --------------------------------------------------------
 
@@ -166,26 +172,21 @@ INSERT INTO `Province` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `service`
 --
 
-CREATE TABLE `service` (
+CREATE TABLE IF NOT EXISTS `service` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `service`
 --
 
 INSERT INTO `service` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Hồ Bơi', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Xông Hơi', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'Cà phê sáng', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 'Máy Lạnh', '2017-10-13 20:35:14', '2017-10-13 20:35:14'),
-(5, 'Mát sa', '2017-10-13 20:35:23', '2017-10-13 20:35:23'),
-(6, 'Gym', '2017-10-14 02:57:22', '2017-10-14 02:57:22'),
-(7, 'Internet', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 'Check in/out time', '2017-10-15 00:00:00', '2017-10-15 00:00:00');
+(7, 'Internet1', '0000-00-00 00:00:00', '2017-10-23 05:40:19'),
+(8, 'Check in/out time', '2017-10-15 00:00:00', '2017-10-15 00:00:00'),
+(10, 'Gym', '2017-10-23 05:08:48', '2017-10-23 05:08:48');
 
 -- --------------------------------------------------------
 
@@ -193,7 +194,7 @@ INSERT INTO `service` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- Table structure for table `service-check-in-out-time`
 --
 
-CREATE TABLE `service-check-in-out-time` (
+CREATE TABLE IF NOT EXISTS `service-check-in-out-time` (
   `id` varchar(10) NOT NULL,
   `check-in-from` time DEFAULT NULL,
   `check-in-to` time DEFAULT NULL,
@@ -218,7 +219,7 @@ INSERT INTO `service-check-in-out-time` (`id`, `check-in-from`, `check-in-to`, `
 -- Table structure for table `service-internet`
 --
 
-CREATE TABLE `service-internet` (
+CREATE TABLE IF NOT EXISTS `service-internet` (
   `id` varchar(10) NOT NULL,
   `isAvailable` tinyint(1) NOT NULL,
   `isFree` tinyint(1) NOT NULL,
@@ -241,30 +242,70 @@ INSERT INTO `service-internet` (`id`, `isAvailable`, `isFree`, `type`, `price`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `type_room`
+--
+
+CREATE TABLE IF NOT EXISTS `type_room` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `type_room`
+--
+
+INSERT INTO `type_room` (`id`, `name`) VALUES
+(1, 'Standard'),
+(2, 'Superior'),
+(3, 'Deluxe'),
+(4, 'Suite');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Users`
 --
 
-CREATE TABLE `Users` (
+CREATE TABLE IF NOT EXISTS `Users` (
   `id` int(11) NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `level` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `img` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gioitinh` int(11) DEFAULT NULL,
+  `sdt` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`id`, `email`, `password`) VALUES
-(1, 'tranthihonghue19it@gmail.com', '123456');
+INSERT INTO `Users` (`id`, `email`, `password`, `level`, `name`, `created_at`, `updated_at`, `img`, `gioitinh`, `sdt`) VALUES
+(4, 'conguyen@gmail.com', '$2y$10$GtpmOIWVgi2cbjNaMwNu7.3y/jQmYGhX9rpMemGoGof6VNNIjN5nG', 1, 'Trần Văn Cò', '2017-10-22 14:18:33', '2017-10-22 14:18:33', '', 0, NULL),
+(5, 'luatran@gmail.com', '$2y$10$63W73Yu2kURUk2/heExLvuIJ83qD3qsTty2DlTDrWlLSZGHVl7W.i', 1, 'Trần Thi Lụa', '2017-10-22 14:20:11', '2017-10-22 14:20:11', '', 0, NULL),
+(6, 'hongocha@gmail.com', '$2y$10$YA/gysRfKv1amsHMtjUO6ukcQXt2x76UpP1LDCBL/gGw06z7qRi6G', 1, 'Hồ Ngọc Hà', '2017-10-22 14:21:17', '2017-10-22 14:21:17', '', 0, NULL),
+(7, 'tungnui@gmail.com', '$2y$10$nT3mZqHG3HBsHDU383fNEO8QYncpGjVSa3rqiCR/b.8FRGKu6tiBm', 1, 'Son Tung MTP', '2017-10-22 14:23:41', '2017-10-22 14:23:41', '', 0, NULL),
+(8, 'mai@gmail.com', '$2y$10$wQjPKOItDG8gJmFURh1.hOrrEy16SiyfBLB47b0Ug5EGl98qwcbE.', 1, 'Mai Nguyễn', '2017-10-22 21:56:57', '2017-10-22 14:56:28', 'mai.jpg', 0, NULL),
+(9, 'btran@gmail.com', '$2y$10$05EFS3V03Eoi5ERT5zYLNuipanolS/OnPtdm.6E.faLdpOn.hnCC.', 1, 'Trần Văn B', '2017-10-22 18:37:31', '2017-10-22 18:37:31', NULL, NULL, NULL),
+(10, 'tranthihongcam@gmail.com', '123456', 2, 'Tran Thi Hong Cam', '2017-10-23 04:14:56', '0000-00-00 00:00:00', NULL, NULL, NULL),
+(12, 'ti@gmail.com', '$2y$10$6QU4q7RRXVosigVlaTTYr./lCoJkX3zAnUMvsY87T./49XhjT/c26', 1, 'Trần Văn Tí', '2017-10-22 23:25:27', '2017-10-22 23:25:27', NULL, NULL, NULL),
+(13, 'hue@gmail.com', '$2y$10$QXcgMvSskFd6W84EIHS05u8hM7BacWA2I1JK3GVQp16z1DuvIkV6m', 1, 'Hồng Huệ', '2017-10-23 01:48:08', '2017-10-23 01:48:08', NULL, NULL, NULL),
+(14, 'd@gmail.com', '$2y$10$MRkQNdZ5V6bqCV7zyuUujuCPFh87DSbb9iliHvXjtVYZSdZ0E0s6S', 0, 'Trần Văn D', '2017-10-29 04:45:44', '2017-10-29 04:45:44', NULL, NULL, NULL),
+(15, 'a@gmail.com', '$2y$10$Pa8Cp8p/6rHqw0QxdV3cYu52V8OE5mymOcfBTL/MbiUg4C78tBknO', 2, 'Hue', '2017-10-29 05:05:49', '2017-10-29 05:05:49', NULL, NULL, NULL),
+(16, 'binh@gmail.com', '$2y$10$6p8HBuEjNI7LfzarAYbF5OelceCpeqcgVem/SPljTBtHWYazcRBTW', 2, 'Nguyễn Văn Bình', '2017-10-29 05:07:50', '2017-10-29 05:07:50', NULL, NULL, NULL),
+(17, 'co@gmail.com', '$2y$10$CU2AxL1NrK5V/8EEmil/keToQyZ3j7Rja9xowlcmTqxfN5hF1HaCK', 2, 'Trần Cò', '2017-10-29 05:09:49', '2017-10-29 05:09:49', NULL, NULL, '325345687698');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indexes for table `admins`
 --
-ALTER TABLE `admin`
+ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -294,6 +335,13 @@ ALTER TABLE `Province`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_group` (`typeroom_id`);
+
+--
 -- Indexes for table `service`
 --
 ALTER TABLE `service`
@@ -316,6 +364,12 @@ ALTER TABLE `service-internet`
   ADD KEY `hotel-system-id` (`hotel-system-id`);
 
 --
+-- Indexes for table `type_room`
+--
+ALTER TABLE `type_room`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `Users`
 --
 ALTER TABLE `Users`
@@ -326,41 +380,45 @@ ALTER TABLE `Users`
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT for table `admins`
 --
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `District`
 --
 ALTER TABLE `District`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `hotel-system`
 --
 ALTER TABLE `hotel-system`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `Province`
 --
 ALTER TABLE `Province`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `type_room`
+--
+ALTER TABLE `type_room`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- Constraints for dumped tables
 --
@@ -379,6 +437,12 @@ ALTER TABLE `hotel-system-detail`
   ADD CONSTRAINT `hotel-system-detail_ibfk_2` FOREIGN KEY (`district-id`) REFERENCES `District` (`id`);
 
 --
+-- Constraints for table `room`
+--
+ALTER TABLE `room`
+  ADD CONSTRAINT `fk_group` FOREIGN KEY (`typeroom_id`) REFERENCES `type_room` (`id`);
+
+--
 -- Constraints for table `service-check-in-out-time`
 --
 ALTER TABLE `service-check-in-out-time`
@@ -391,7 +455,6 @@ ALTER TABLE `service-check-in-out-time`
 ALTER TABLE `service-internet`
   ADD CONSTRAINT `service-internet_ibfk_1` FOREIGN KEY (`service-id`) REFERENCES `service` (`id`),
   ADD CONSTRAINT `service-internet_ibfk_2` FOREIGN KEY (`hotel-system-id`) REFERENCES `hotel-system` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
