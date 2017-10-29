@@ -94,4 +94,10 @@ class AdminController extends Controller
 
         return redirect("admin/admin/add")->with("thongbao", " Thêm thành công ! ");
     }
+    // xóa admin thì nó nằm trg controller Admin, hàm này trùng tên vs route
+    public function getDelete($id){
+        $admin = User::find($id); // từ bảng user nên gọi model User
+        $admin->delete();
+        return redirect('admin/admin/list')->with('thongbao', 'xóa thành công'); // xóa xong trả về trang ds admin, coi lại thử nảy truyền cái id đúng chưa, xoa rồi đó mà chưa có thông báo, ok
+    }
 }

@@ -47,7 +47,7 @@
                         <label>Số điện thoại</label>
                         <input type="sdt"  class="form-control" name="sdt" placeholder="Nhập số điện thoại" />
                     </div>
-                    {{-- <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Chức Vụ</label>
                         <label class="radio-inline">
                             <input name="level" value="0" checked="" type="radio">CEO
@@ -55,7 +55,7 @@
                         <label class="radio-inline">
                             <input name="level" value="1" type="radio">Staff
                         </label>
-                    </div> --}}
+                    </div> -->
                     <button type="submit" class="btn btn-default">Thêm Nhân Viên</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                 <form>

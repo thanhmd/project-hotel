@@ -39,17 +39,15 @@
                     <tr class="odd gradeX" align="center">
                         <td>{{ $r->id }}</td>
                         <td>{{ $r->name }}</td>
-                        <td>
                             <td>
-                                @if($r->status ==1) {{ "Có Khách" }}
-                                @else {{ "Trống" }}
+                                @if($r->status ==0) {{ "Trống" }}
+                                @else {{ "Có khách" }}
                                 @endif
                             </td>
-                        </td>
                         <td>{{ $r->price }}VNĐ</td>
                         <td>{{ $r->type_room->name }}</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/district/delete/{{ $r->id }}"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/district/edit/{{ $r->id }}">Edit</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/room/delete/{{ $r->id }}"> Delete</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/room/edit/{{ $r->id }}">Edit</a></td>
                     </tr>
                     @endforeach
                 </tbody>

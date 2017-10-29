@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Thêm
-                    <small>Tỉnh/Thành Phố</small>
+                    <small>Loại Phòng</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -25,13 +25,13 @@
                 </div>
                 @endif
 
-                <form action="admin/province/add" method="POST">
+                <form action="admin/typeroom/add" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <label>Tên Tỉnh/Thành Phố</label>
-                        <input class="form-control" name="name" placeholder="Thêm Tỉnh/Thành phố" />
+                        <label>Tên Phòng</label>
+                        <input class="form-control" name="name" placeholder="Nhập tên phòng" />
                     </div>
-                    <button type="submit" class="btn btn-default">Thêm Tỉnh/Thành Phố</button>
+                    <button type="submit" class="btn btn-default">Thêm Phòng</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                 <form>
             </div>
