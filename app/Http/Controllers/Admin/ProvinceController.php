@@ -51,7 +51,7 @@ class ProvinceController extends Controller
         return redirect('admin/province/edit/'.$id)->with("thongbao", "Sửa thành công ! ");
     }
     public function getDelete($id){
-        $province = Province::find($id);
+        $province = Province::find($id); // ở đây model Tỉnh
         $province->delete();
         return redirect('admin/province/list')->with('thongbao', 'xóa thành công');
     }

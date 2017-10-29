@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Danh Sách
-                    <small>Quận/Huyện</small>
+                    <small>Phòng</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -24,22 +24,36 @@
             @endif
             <div class="col-lg-7" style="padding-bottom:120px">
                 
-                <form action="admin/district/add" method="POST">
+                <form action="admin/room/add" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <label>Tỉnh/ Thành Phố</label>
-                        <select class="form-control" name="province">
-                            @foreach($province as $pr )
-                            <option value="{{ $pr->id }}">{{ $pr->name }}</option>
+                        <label>Loại Phòng</label>
+                        <select class="form-control" name="typeroom">
+                            @foreach($typeroom as $tr )
+                            <option value="{{ $tr->id }}">{{ $tr->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Quận/Huyện</label>
-                        <input class="form-control" name="name" placeholder="Nhập tên Quận/Huyện" />
+                        <label>Phòng</label>
+                        <input class="form-control" name="name" placeholder="Nhập tên Phòng" />
+
                     </div>
-                    
-                    <button type="submit" class="btn btn-default">Thêm Quận/Huyện</button>
+                    <div class="form-group">
+                        <label>Gía</label>
+                        <input class="form-control" name="price" placeholder="Nhập tên giá phòng" />
+                    </div>
+                    <div class="form-group">
+                        <label>Tình trạng phòng</label>
+                        <label class="radio-inline">
+                            <input name="status" value="0" checked="" type="radio">Trống
+                        </label>
+                        <label class="radio-inline">
+                            <input name="status" value="1" type="radio">Có Khách
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Thêm Phòng</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                     <form>
                     </div>

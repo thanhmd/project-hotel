@@ -37,12 +37,12 @@ class DistrictController extends Controller
     	return redirect("admin/district/list")->with("thongbao", "Thêm thành công ! ");
     }
     public function getDelete($id){
-        $district = District::find($id);
+        $district = District::find($id); // cai này model quận , huện
         $district->delete();
         return redirect('admin/district/list')->with('thongbao', 'xóa thành công');
     }
-    public function getEdit($id) {
-        $province = Province::all();
+    public function getEdit($id) { 
+        $province = Province::all(); 
         $district = District::find($id);
         return view('admin.district.edit', ['province'=>$province, 'district'=>$district]);
     }
