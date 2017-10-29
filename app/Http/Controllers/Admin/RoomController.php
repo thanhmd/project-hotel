@@ -51,4 +51,34 @@ class RoomController extends Controller
     	return redirect("admin/room/list")->with("thongbao", "Thêm thành công ! ");
     }
 
+    public function getEdit($id)
+    {
+        $room = Room::find($id);
+        $typeroom = Typeroom::all();
+        return view('admin.room.edit', ['room' => $room, 'typeroom' => $typeroom]);
+    }
+
+    public function postEdit(Request $req, $id)
+    {
+        $this->validate($req, [
+                'name'  => 'required|unique:room,name',
+                'typeroom'=> 'required',
+                'price'=>'required',
+            ],
+            [
+                'name.required' => 'Bạn chưa nhập tên phòng',
+                'name.unique'   => 'Tên phòng này đã tồn tại',
+                'typeroom.required' => 'Bạn chưa chọn loại phòng',
+                'price.required'=> "Bạn chưa nhập giá phòng"
+            ]);
+        $room = Room::find($id);
+        // dd($req->name); exit();
+        $room->name= $req->name;
+        $room->typeroom_id   = $req->typeroom;
+        $room->price = $req->price;
+        $room->status=$req->status;
+        $room->save();
+        return redirect('admin/room/edit/'.$id)->with('thongbao', 'sửa thành công');
+    }
+
 }

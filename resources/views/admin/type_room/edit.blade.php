@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Sửa thông tin 
-                    <small>{{ $province->name }}</small>
+                    <small>{{ $typeroom->name }}</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -24,14 +24,14 @@
             @endif
             <div class="col-lg-7" style="padding-bottom:120px">
                 
-                <form action="admin/province/edit/{{ $province->id }}" method="POST">
+                <form action="admin/typeroom/edit/{{ $typeroom->id }}" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" >
                     <div class="form-group">
-                        <label>Tỉnh/Thành Phố</label>
-                        <input class="form-control" name="name" value="{{ $province->name }}"  />
+                        <label>Loại Phòng</label>
+                        <input class="form-control" name="name" value="{{ $typeroom->name }}"  />
                     </div>
                     
-                    <button type="submit" class="btn btn-default">Sửa Tỉnh/Thành Phố</button>
+                    <button type="submit" class="btn btn-default">Sửa Loại Phòng</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                     <form>
                     </div>

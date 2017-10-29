@@ -39,4 +39,26 @@ class TyperoomController extends Controller
 
         return redirect("admin/typeroom/list")->with("thongbao", "Thêm thành công ! ");
     }
+
+    public function getEdit($id){
+    	$typeroom = Typeroom::find($id);
+    	return view('admin.type_room.edit', ['typeroom' => $typeroom]);
+    }
+
+    public function postEdit(Request $req, $id){
+    	$typeroom = Typeroom::find($id);
+        $this->validate($req,
+            [
+                "name"        => "required|unique:type_room,name|min:3|max:32",
+            ],
+            [
+                "name.required"        => "Bạn chưa nhập tên loại phòng",
+                "name.unique"          => "Tên loại phòng này đã bị trùng ",
+            ]);
+        $typeroom->name = $req->name;
+        // dd($req->name); die();
+        $typeroom->save();
+
+        return redirect('admin/typeroom/edit/'.$id)->with("thongbao", "Sửa thành công ! ");
+    }
 }
