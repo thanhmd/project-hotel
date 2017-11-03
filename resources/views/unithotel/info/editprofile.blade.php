@@ -5,7 +5,7 @@
 			<div id="page-wrapper">
 				<div class="container-fluid">
 
-					<h1 style="text-align: center;">CẬP NHẬT THÔNG TIN ĐĂNG KÝ CỦA QUÝ VỊ</h1>
+					<h1 style="text-align: center;">CẬP NHẬT THÔNG TIN TÀI KHOẢN CỦA QUÝ VỊ</h1>
 					<div class="container">
 						<!-- slider -->
 						<div class="row carousel-holder">
@@ -23,7 +23,7 @@
 									{{ session('thongbao') }}
 								</div>
 								@endif
-								<form action="unithotel/info/edit-profile" method="post">
+								<form action="unithotel/info/edit-profile" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									<div class="panel panel-default">
 										<div class="panel-heading">Thông tin tài khoản</div>
@@ -68,9 +68,13 @@
 												<label>Địa chỉ</label>
 												<input type="text" class="form-control" name="address" aria-describedby="basic-addon1"  value="{{ $user->address }}" 
 												>
-											</div>
+											</div><br>
+											<div>
+												<label>Ảnh đại diện</label>
+												<input type="file" class="form-control" name="image">
+											</div> <br>
 											{{-- <div class="panel-heading">Đổi mật khẩu</div> --}}
-											<div class="panel-body">
+											{{-- <div class="panel-body">
 												<div>
 													<input type="checkbox" class="" name="changePassword" id="changePassword">
 													<label>Đổi mật khẩu</label>
@@ -80,7 +84,7 @@
 													<label>Nhập lại mật khẩu</label>
 													<input type="password" class="form-control password" name="passwordAgain" aria-describedby="basic-addon1" disabled="">
 												</div>
-											</div>
+											</div> --}}
 											<button style="" type="submit" class="btn btn-primary">Cập Nhật</button>
 										</div>
 									</form>

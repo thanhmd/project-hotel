@@ -20,7 +20,7 @@ class UnithotelController extends Controller
     	return view("unithotel.login_and_register_tabbed_form");
     }
     public function postLogin(Request $req){
-    	// var_dump($req->email); exit();
+    	// var_dump($req->password); exit();
     	$this->validate($req,
     		[
     			"email"    => "required",
@@ -33,7 +33,7 @@ class UnithotelController extends Controller
     			"password.max"      => "Mật khẩu tối đa 32 kí tự",
     		]
     	);
-
+        // var_dump(Auth::attempt(['email'=>$req->email,'password'=>bcrypt($req->password) ])); exit();
     	if(Auth::attempt(['email'=>$req->email,'password'=>$req->password ])) {
             return redirect("unithotel/info/home");
         }
@@ -72,7 +72,7 @@ class UnithotelController extends Controller
                 "re_password.required"   => "Bạn chưa nhập lại mật khẩu",
                 "re_password.same"       => "Mật khẩu không khớp",
             ]);
-        // var_dump($req->name); exit();
+        
         $user           = new User;
         $user->name     = $req->name;
         $user->email    = $req->email;
@@ -80,7 +80,12 @@ class UnithotelController extends Controller
         $user->cmnd_passport = $req->cmnd_passport;
         $user->address       = $req->address;
         $user->password      = bcrypt($req->password);
+        // var_dump(bcrypt($req->password)); echo "<br/>";
+        // var_dump($user->password); exit();
+
+        //$user->password      = bcrypt($req->password);
         $user->level         = 1;
+
         $user->save();
         return redirect("unithotel/login")->with("thongbao1", " Đăng ký thành công ! ");
     }
@@ -102,41 +107,100 @@ class UnithotelController extends Controller
     public function postEditProfile(Request $req){
         $user = Auth::user();
         $this->validate($req, [
-                'name'        => 'required',
-                'sdt'         => 'required',
+            'name'        => 'required',
+            'sdt'         => 'required',
                 // "password"      => "required|min:3|max:32",
                 // "passwordAgain" => "required|same:password",
                 // "address"       => "required",
 
-            ],
-            [
-                'name.required'     => 'Bạn chưa nhập tên',
-                'sdt.required'      => 'Bạn chưa nhập sđt',
-                'addpress.required' => 'Bạn chưa nhập địa chỉ',
+        ],
+        [
+            'name.required'     => 'Bạn chưa nhập tên',
+            'sdt.required'      => 'Bạn chưa nhập sđt',
+            'addpress.required' => 'Bạn chưa nhập địa chỉ',
                 // "password.min"         => "Mật khẩu phải có it nhất 3 kí tự",
                 // "passwoed.max"         => "Mật khẩu phải có tối đa 32 kí tự",
                 // "passwordAgain.required" => "Bạn chưa nhập lại mật khẩu",
                 // "passwordAgain.same"     => "Mật khẩu không khớp",
-            ]);
+        ]);
         $user->name= $req->name;
         $user->sdt = $req->sdt;
         $user->address = $req->address;
-        if($req->changePassword == "on"){
-            $this->validate($req, [
-                "password"      => "required|min:3|max:32",
-                "passwordAgain" => "required|same:password",
-                "address"       => "required",
+        // if($req->changePassword == "on"){
+        //     $this->validate($req, [
+        //         "password"      => "required|min:3|max:32",
+        //         "passwordAgain" => "required|same:password",
+        //         "address"       => "required",
 
-            ],
-            [
-                "password.min"         => "Mật khẩu phải có it nhất 3 kí tự",
-                "passwoed.max"         => "Mật khẩu phải có tối đa 32 kí tự",
-                "passwordAgain.required" => "Bạn chưa nhập lại mật khẩu",
-                "passwordAgain.same"     => "Mật khẩu không khớp",
-            ]);
-            $user->password = bcrypt($req->password);
+        //     ],
+        //     [
+        //         "password.min"           => "Mật khẩu phải có it nhất 3 kí tự",
+        //         "passwoed.max"           => "Mật khẩu phải có tối đa 32 kí tự",
+        //         "passwordAgain.required" => "Bạn chưa nhập lại mật khẩu",
+        //         "passwordAgain.same"     => "Mật khẩu không khớp",
+        //     ]);
+        //     $user->password = bcrypt($req->password);
+        // }
+        // 
+        // var_dump($req->hasFile('image')); exit();
+        if($req->hasFile('image')){
+            $file = $req->file('image');
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
+                return redirect('unithotel/info/editprofile')->with('thongbao', 'bạn chỉ được chọn file vơi đuôi png, jpg, jpeg');
+            }
+            $duoi  = $file->getClientOriginalName();
+            $image = str_random(4)."-".$duoi;
+            while(file_exists("upload/imageuser/".$image)){
+                $image = str_random(4)."-".$duoi;
+            }
+            $file->move("upload/imageuser", $image);
+            $user->image =$image;
+            
+        }else {
+            $user->image = "ko co hinh";
         }
+        // var_dump($user->image); exit();
         $user->save();
         return redirect('unithotel/info/profile')->with('thongbao', 'sửa thành công');
+    }
+    public function getListhotel(){
+        return view("unithotel.hotel.listhotel");
+    }
+    public function getAddhotel() {
+        return view("unithotel.hotel.addhotel");
+    }
+    public function getChangepassword(){
+        $user = Auth::user();
+        return view("unithotel.info.changepassword", ['user'=>$user]);
+    }
+    public function postChangepassword(Request $req){
+        // $user = Auth::user();
+        $this->validate($req, [
+            "cur_password"            => "required",
+            "new_password"            => "required|min:3|max:32",
+            "renew_password"          => "required|same:new_password",
+
+        ],
+        [
+            "new_password.min"         => "Mật khẩu mới phải có it nhất 3 kí tự",
+            "new_password.max"         => "Mật khẩu mới phải có tối đa 32 kí tự",
+            "cur_password.required"    => "Bạn chưa nhập lại mật khẩu cũ",
+            "renew_password.required"  => "Bạn chưa nhập lại mật khẩu",
+            "renew_password.same"      => "Mật khẩu không khớp",
+        ]);
+            // $user->password = bcrypt($req->password);
+            // var_dump($user->password); echo "<br>";
+            // var_dump(bcrypt($req->cur_password)); 
+            // exit();
+        var_dump(Auth::attempt(['password'=>$req->cur_password ])); exit();
+        // if(Auth::attempt(['password'=>$req->cur_password ])){
+        //     $user->password = $req->cur_password;
+        //     return redirect("unithotel/info/home")->with("thongbao", "Đổi mật khẩu thành công!");
+        // }else {
+        //     return redirect("unithotel/info/changepassword")->with("thongbao", "Mật khẩu của bạn không đúng, kiểm tra lại ! ");
+        // }
+        // var_dump(); exit();
+
     }
 }

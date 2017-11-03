@@ -112,19 +112,25 @@ Route::group(['prefix' => 'unithotel'], function(){
 		Route::get('profile', 'UnithotelController@getProfile');
 		Route::get('edit-profile', 'UnithotelController@getEditProfile');
 		Route::post('edit-profile', 'UnithotelController@postEditProfile');
+		Route::get('changepassword', 'UnithotelController@getChangepassword');
+		Route::post('changepassword', 'UnithotelController@postChangepassword');
 
 		// Route::get('add', 'UnithotelController@getAddinfo');
-		Route::get('edit', 'UnithotelController@getEditinfo');
-		Route::post('edit/{id}', 'Admin\RoomController@postEdit');
+		// Route::get('edit', 'UnithotelController@getEditinfo');
+		// Route::post('edit/{id}', 'Admin\RoomController@postEdit');
 	});
-	Route::group(['prefix' => 'placeofthought'], function(){
-		Route::get('add', 'UnithotelController@getPlaceofthought');
-		Route::get('edit', 'UnithotelController@getPlaceofthought');
+	Route::group(['prefix' => 'hotel'], function(){
+		Route::get('list', 'UnithotelController@getListhotel');
+		Route::get('add', 'UnithotelController@getAddhotel');
 	});
-	Route::group(['prefix' => 'room'], function(){
-		Route::get('add', 'UnithotelController@getAddroom');
-		Route::get('edit', 'UnithotelController@getAddinfo');
-	});
+	// Route::group(['prefix' => 'placeofthought'], function(){
+	// 	Route::get('add', 'UnithotelController@getPlaceofthought');
+	// 	Route::get('edit', 'UnithotelController@getPlaceofthought');
+	// });
+	// Route::group(['prefix' => 'room'], function(){
+	// 	Route::get('add', 'UnithotelController@getAddroom');
+	// 	Route::get('edit', 'UnithotelController@getAddinfo');
+	// });
 });
 // Auth::routes();
 

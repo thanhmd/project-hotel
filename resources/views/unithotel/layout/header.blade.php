@@ -6,9 +6,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
+
         <a class="navbar-brand" href="index.html">Chào Bạn <span style="color: red;font-size: 20px; font-style: italic;font-weight: bold;">{{ Auth::user()->name }}</span>
-            {{-- <img src="images/hinhdaidien/{{ Auth::user()->img }}" alt="" style="width: 100px; height:100px;"> --}}
-        </a>
+        </a> <br>
         
     </div>
     <!-- /.navbar-header -->
@@ -33,7 +33,7 @@
         <!-- /.dropdown -->
     </ul>
     <!-- /.navbar-top-links -->
-
+    {{-- <img src="upload/imageuser/{{ Auth::user()->image }}" alt="" style="width: 100px; height:100px;border-radius: 50%; position: absolute;z-index: 99;margin-top: 20px;"> --}}
     @include("unithotel.layout.navar")
     <!-- /.navbar-static-side -->
 </nav>

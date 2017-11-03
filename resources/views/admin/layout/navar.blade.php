@@ -29,7 +29,7 @@
             <li>
                 <li>
                     <a href="admin/customer/list">
-                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ KHÁCH HÀNG
+                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ ĐƠN VỊ KHÁCH SẠN
                     </a>
                 </li>
             </li>
