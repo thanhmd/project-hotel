@@ -4,7 +4,7 @@
 <!-- Page Content -->
 <div id="page-wrapper">
 	<div class="container-fluid">  
-		{{-- @if(count($errors) >0 )
+		@if(count($errors) >0 )
 		<div class="alert alert-danger">
 			@foreach($errors->all() as $err)
 			{{ $err }} <br>
@@ -15,12 +15,12 @@
 		<div class="alert alert-success">
 			{{ session('thongbao') }}
 		</div>
-		@endif  --}}
+		@endif 
 		<div class="container">
 			<form action="unithotel/info/changepassword" method="POST" role="form" style="width: 50%">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<legend>THAY ĐỔI PASSWORD</legend>
-				<span>Bạn nên sử dụng mật khẩu mạnh mà mình chưa sử dụng ở đâu khác</span> <br>
+				{{-- <span>Bạn nên sử dụng mật khẩu mạnh mà mình chưa sử dụng ở đâu khác</span> <br> --}}
 				<div class="form-group">
 					<label for="">Nhập lại mật khẩu</label>
 					<input type="password" class="form-control" id="" placeholder="" name="cur_password">

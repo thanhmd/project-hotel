@@ -7,7 +7,18 @@
 
 					<h1 style="text-align: center;">THÔNG TIN ĐĂNG KÝ CỦA QUÝ VỊ</h1>
 					<div class="container">
-
+						@if(count($errors) >0 )
+						<div class="alert alert-danger">
+							@foreach($errors->all() as $err)
+							{{ $err }} <br>
+							@endforeach
+						</div>
+						@endif
+						@if(session('thongbao'))
+						<div class="alert alert-success">
+							{{ session('thongbao') }}
+						</div>
+						@endif 
 						<div class="container">
 							<div class="row">
 								<div class="col-xs-12 col-sm-6 col-md-6">
@@ -21,22 +32,22 @@
 												<p>
 													<i class="glyphicon glyphicon-user">&nbsp;</i>
 													<b>Họ Và Tên :</b> {{ $user->name }}
-												<p>
-													<i class="glyphicon glyphicon-envelope">&nbsp;</i>
-													<b> Email :</b>{{ $user->email }}
-												</p>
-												<p>
-													<i class="glyphicon glyphicon-earphone">&nbsp;</i>
-													<b> Số điện thoai :</b>{{ $user->sdt }}
-												</p>
-												<p>
-													<i class="glyphicon glyphicon-sound-5-1">&nbsp;</i>
-													<b> CMND-Hộ Chiếu :</b>{{ $user->cmnd_passport }}
-												</p>
-												<p>
-													<i class="glyphicon glyphicon-globe">&nbsp;</i>
-													<b> Địa chỉ :</b>{{ $user->address }}
-												</p>
+													<p>
+														<i class="glyphicon glyphicon-envelope">&nbsp;</i>
+														<b> Email :</b>{{ $user->email }}
+													</p>
+													<p>
+														<i class="glyphicon glyphicon-earphone">&nbsp;</i>
+														<b> Số điện thoai :</b>{{ $user->sdt }}
+													</p>
+													<p>
+														<i class="glyphicon glyphicon-sound-5-1">&nbsp;</i>
+														<b> CMND-Hộ Chiếu :</b>{{ $user->cmnd_passport }}
+													</p>
+													<p>
+														<i class="glyphicon glyphicon-globe">&nbsp;</i>
+														<b> Địa chỉ :</b>{{ $user->address }}
+													</p>
 												</p>
 											</div>
 										</div>
