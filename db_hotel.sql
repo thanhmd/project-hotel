@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 29, 2017 at 01:14 PM
+-- Generation Time: Nov 04, 2017 at 12:53 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.2
 
@@ -50,6 +50,20 @@ INSERT INTO `admins` (`id`, `email`, `password`, `full_name`, `level`, `created_
 (7, 'canhtran@gmail.com', '$2y$10$eu6jFpUQGxD02CYhOWpK9uoBosaMHs2lvFpVy1UEsnmtZly/JuprK', 'Trần Cảnh', 1, '2017-10-13 19:25:54', '2017-10-13 19:25:54'),
 (8, 'trinhnguyen408@gmail.com', '$2y$10$E.a3496FYbajCI.YdehWuerlDoA3XuV1K/xHM.Z271pCkXxmR8N9W', 'Trinh Nguyễn', 1, '2017-10-13 19:26:17', '2017-10-13 19:26:17'),
 (9, 'tungnui@gmail.com', '$2y$10$npw6QBOWX.w3beurPJNJOeiipxQKeWuR1Jdm6mK1mb7HNgcgDB9RS', 'Sơn Tùng', 1, '2017-10-14 02:21:21', '2017-10-14 02:21:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contract`
+--
+
+CREATE TABLE IF NOT EXISTS `contract` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `hotel_id` int(11) NOT NULL,
+  `date_effective` date NOT NULL,
+  `out_date_effective` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -154,17 +168,14 @@ CREATE TABLE IF NOT EXISTS `room` (
   `price` double NOT NULL,
   `typeroom_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `room`
 --
 
 INSERT INTO `room` (`id`, `name`, `price`, `typeroom_id`, `status`) VALUES
-(1, 'Phòng 1', 10000, 1, 1),
-(2, 'Phòng 2', 20000, 2, 0),
-(3, 'Phòng 3', 30000, 3, 0),
-(4, 'Phòng 4', 400000, 4, 0);
+(3, 'Phòng 3', 30000, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -175,69 +186,8 @@ INSERT INTO `room` (`id`, `name`, `price`, `typeroom_id`, `status`) VALUES
 CREATE TABLE IF NOT EXISTS `service` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `service`
---
-
-INSERT INTO `service` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(7, 'Internet1', '0000-00-00 00:00:00', '2017-10-23 05:40:19'),
-(8, 'Check in/out time', '2017-10-15 00:00:00', '2017-10-15 00:00:00'),
-(10, 'Gym', '2017-10-23 05:08:48', '2017-10-23 05:08:48');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `service-check-in-out-time`
---
-
-CREATE TABLE IF NOT EXISTS `service-check-in-out-time` (
-  `id` varchar(10) NOT NULL,
-  `check-in-from` time DEFAULT NULL,
-  `check-in-to` time DEFAULT NULL,
-  `check-out-from` time DEFAULT NULL,
-  `check-out-to` time DEFAULT NULL,
-  `service-id` int(11) NOT NULL,
-  `hotel-system-id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `service-check-in-out-time`
---
-
-INSERT INTO `service-check-in-out-time` (`id`, `check-in-from`, `check-in-to`, `check-out-from`, `check-out-to`, `service-id`, `hotel-system-id`) VALUES
-('CHK001', '03:00:00', '20:00:00', '03:00:00', '20:00:00', 8, 1),
-('CHK002', '03:00:00', '11:00:00', '00:00:00', '10:00:00', 8, 2),
-('CHK003', '00:00:00', '02:00:00', '00:00:00', '02:00:00', 8, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `service-internet`
---
-
-CREATE TABLE IF NOT EXISTS `service-internet` (
-  `id` varchar(10) NOT NULL,
-  `isAvailable` tinyint(1) NOT NULL,
-  `isFree` tinyint(1) NOT NULL,
-  `type` varchar(10) NOT NULL,
-  `price` double NOT NULL,
-  `available-location` varchar(100) NOT NULL,
-  `service-id` int(11) NOT NULL,
-  `hotel-system-id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `service-internet`
---
-
-INSERT INTO `service-internet` (`id`, `isAvailable`, `isFree`, `type`, `price`, `available-location`, `service-id`, `hotel-system-id`) VALUES
-('NET01', 1, 0, 'wifi', 10, 'public', 7, 1),
-('NET02', 1, 1, 'wifi', 0, 'public', 7, 1),
-('NET03', 1, 1, 'wifi', 0, 'public', 7, 2);
+  `typeservice_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -255,10 +205,20 @@ CREATE TABLE IF NOT EXISTS `type_room` (
 --
 
 INSERT INTO `type_room` (`id`, `name`) VALUES
-(1, 'Standard'),
 (2, 'Superior'),
 (3, 'Deluxe'),
 (4, 'Suite');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type_service`
+--
+
+CREATE TABLE IF NOT EXISTS `type_service` (
+  `id` int(11) NOT NULL,
+  `service` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -276,27 +236,33 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `img` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `gioitinh` int(11) DEFAULT NULL,
-  `sdt` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `sdt` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cmnd_passport` int(20) DEFAULT NULL,
+  `address` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`id`, `email`, `password`, `level`, `name`, `created_at`, `updated_at`, `img`, `gioitinh`, `sdt`) VALUES
-(4, 'conguyen@gmail.com', '$2y$10$GtpmOIWVgi2cbjNaMwNu7.3y/jQmYGhX9rpMemGoGof6VNNIjN5nG', 1, 'Trần Văn Cò', '2017-10-22 14:18:33', '2017-10-22 14:18:33', '', 0, NULL),
-(5, 'luatran@gmail.com', '$2y$10$63W73Yu2kURUk2/heExLvuIJ83qD3qsTty2DlTDrWlLSZGHVl7W.i', 1, 'Trần Thi Lụa', '2017-10-22 14:20:11', '2017-10-22 14:20:11', '', 0, NULL),
-(6, 'hongocha@gmail.com', '$2y$10$YA/gysRfKv1amsHMtjUO6ukcQXt2x76UpP1LDCBL/gGw06z7qRi6G', 1, 'Hồ Ngọc Hà', '2017-10-22 14:21:17', '2017-10-22 14:21:17', '', 0, NULL),
-(7, 'tungnui@gmail.com', '$2y$10$nT3mZqHG3HBsHDU383fNEO8QYncpGjVSa3rqiCR/b.8FRGKu6tiBm', 1, 'Son Tung MTP', '2017-10-22 14:23:41', '2017-10-22 14:23:41', '', 0, NULL),
-(8, 'mai@gmail.com', '$2y$10$wQjPKOItDG8gJmFURh1.hOrrEy16SiyfBLB47b0Ug5EGl98qwcbE.', 1, 'Mai Nguyễn', '2017-10-22 21:56:57', '2017-10-22 14:56:28', 'mai.jpg', 0, NULL),
-(9, 'btran@gmail.com', '$2y$10$05EFS3V03Eoi5ERT5zYLNuipanolS/OnPtdm.6E.faLdpOn.hnCC.', 1, 'Trần Văn B', '2017-10-22 18:37:31', '2017-10-22 18:37:31', NULL, NULL, NULL),
-(10, 'tranthihongcam@gmail.com', '123456', 2, 'Tran Thi Hong Cam', '2017-10-23 04:14:56', '0000-00-00 00:00:00', NULL, NULL, NULL),
-(12, 'ti@gmail.com', '$2y$10$6QU4q7RRXVosigVlaTTYr./lCoJkX3zAnUMvsY87T./49XhjT/c26', 1, 'Trần Văn Tí', '2017-10-22 23:25:27', '2017-10-22 23:25:27', NULL, NULL, NULL),
-(13, 'hue@gmail.com', '$2y$10$QXcgMvSskFd6W84EIHS05u8hM7BacWA2I1JK3GVQp16z1DuvIkV6m', 1, 'Hồng Huệ', '2017-10-23 01:48:08', '2017-10-23 01:48:08', NULL, NULL, NULL),
-(14, 'd@gmail.com', '$2y$10$MRkQNdZ5V6bqCV7zyuUujuCPFh87DSbb9iliHvXjtVYZSdZ0E0s6S', 0, 'Trần Văn D', '2017-10-29 04:45:44', '2017-10-29 04:45:44', NULL, NULL, NULL),
-(15, 'a@gmail.com', '$2y$10$Pa8Cp8p/6rHqw0QxdV3cYu52V8OE5mymOcfBTL/MbiUg4C78tBknO', 2, 'Hue', '2017-10-29 05:05:49', '2017-10-29 05:05:49', NULL, NULL, NULL),
-(16, 'binh@gmail.com', '$2y$10$6p8HBuEjNI7LfzarAYbF5OelceCpeqcgVem/SPljTBtHWYazcRBTW', 2, 'Nguyễn Văn Bình', '2017-10-29 05:07:50', '2017-10-29 05:07:50', NULL, NULL, NULL),
-(17, 'co@gmail.com', '$2y$10$CU2AxL1NrK5V/8EEmil/keToQyZ3j7Rja9xowlcmTqxfN5hF1HaCK', 2, 'Trần Cò', '2017-10-29 05:09:49', '2017-10-29 05:09:49', NULL, NULL, '325345687698');
+INSERT INTO `Users` (`id`, `email`, `password`, `level`, `name`, `created_at`, `updated_at`, `img`, `gioitinh`, `sdt`, `cmnd_passport`, `address`, `image`) VALUES
+(22, 'cuong@gmail.com', '1234567', 1, 'Cường Trần', '2017-11-03 12:09:43', '2017-11-03 05:09:43', NULL, NULL, '123456', 12345678, 'Gò Vấp', 'CKgX-20992612_1994465510789281_5661697735635033214_n.jpg'),
+(23, 'quan@gmail.com', '$2y$10$aH8I/Xe02rml0.nEx5BtGeezw7rH8xn3WWGn9T1KJ4rw2/owkXFOu', 1, 'Quan Nguyen', '2017-11-03 02:32:29', '2017-11-03 02:32:29', NULL, NULL, '123', 98765, 'Gò Vấp', NULL),
+(24, 'huehong@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 'Hồng Huệ', '2017-11-03 02:51:09', '2017-11-03 02:51:09', NULL, NULL, '23243543', 54756876, 'Gò Vấp', NULL),
+(25, 'tuan@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 'Tuấn Nguyễn', '2017-11-03 02:54:08', '2017-11-03 02:54:08', NULL, NULL, '12423543', 645756876, 'Gò Vấp', NULL),
+(26, 'betran@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 'Trần Thị Bé', '2017-11-03 02:56:26', '2017-11-03 02:56:26', NULL, NULL, '76876', 346345634, 'Gò Vấp', NULL),
+(27, 'hoahue@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 'Nguyễn Thị Hoa', '2017-11-03 03:06:28', '2017-11-03 03:06:28', NULL, NULL, '768769', 987089089, 'Gò Vấp', NULL),
+(28, 'ta@gmail.com', '$2y$10$A6UvqU54Jw/YwKFeFH6u4OS1dxZtQtThc9La.W1syDj2WiKZi10lC', 1, 'ta nguyen', '2017-11-03 11:41:40', '2017-11-03 04:41:40', NULL, NULL, '645768', 97809909, 'Gò Vấp', 'Ba6S-hue1.jpg'),
+(29, 'teo@gmail.com', '$2y$10$766ppWoiIcd4lXaWhB81t.fu6zNMkZD0EZmUN4Y3tD9M24JJe8yTK', 1, 'Nguyễn Văn Tèo', '2017-11-03 12:27:27', '2017-11-03 05:27:27', NULL, NULL, '46457568', 567568, 'Gò Vấp', 'fUaO-20992612_1994465510789281_5661697735635033214_n.jpg'),
+(30, 'doanh@gmail.com', '$2y$10$CadJmhfQ8aNFoB2MWMupd.pzSgv1G6Rbjt5K6Ed0NsvyKaN1JPb4K', 1, 'Lăng Kỳ Doanh', '2017-11-03 12:39:43', '2017-11-03 05:39:43', NULL, NULL, '326475', 56457568, 'Hồ Chí Minh', 'IfnG-21765175_1617270015024134_8324302426733873053_n.jpg'),
+(31, 'tun@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 'tun nguyen', '2017-11-03 05:51:37', '2017-11-03 05:51:37', NULL, NULL, '123456', 547568769, 'Hồ Chí Minh', NULL),
+(32, 'ha@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 'Hồ Ngọc Hà', '2017-11-03 05:55:45', '2017-11-03 05:55:45', NULL, NULL, '56768', 54645768, 'Hồ Chí Minh', NULL),
+(33, 'btran@gmail.com', '$2y$10$2eWA30v/LUZk4/Hc3utYsOuaUay696CZnhCJp2vG0jvaxSE73mW0.', 1, 'Nguyễn Văn B', '2017-11-03 13:00:07', '2017-11-03 06:00:07', NULL, NULL, '645756', 56574889, 'Hồ Chí Minh', 'kqFJ-20992612_1994465510789281_5661697735635033214_n.jpg'),
+(34, 'c@gmail.com', '$2y$10$sL/lOdqAteghOhCVTtfJi.jTOTchgdrFOIBsiRIH0wIbsh00Az6q2', 1, 'Nguyễn Thị C', '2017-11-03 19:01:17', '2017-11-03 19:01:17', NULL, NULL, '23545764', 235436, 'Hồ Chí Minh', NULL),
+(35, 'd@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, 'sdsfdgfds', '2017-11-03 20:42:27', '2017-11-03 20:42:27', NULL, NULL, '436456', 5676876, 'Hồ Chí Minh', NULL),
+(36, 'tunnguyen@gmail.com', '123456', 1, 'Nguyễn Văn Tũn', '2017-11-04 12:01:03', '2017-11-04 05:01:03', NULL, NULL, '5346', 47567856, 'Gò Vấp', '2o8e-21151194_1997208403848325_7705792957530574691_n.jpg'),
+(37, 'tuantuan@gmail.com', '$2y$10$DM/l6UWKanZanz7Kf37Y.edGZN5FIvgtuUgAGfQm6/yYRowiFZpbe', 1, 'Trần Văn Tuân', '2017-11-04 12:32:22', '2017-11-04 05:32:22', NULL, NULL, '12423546', 457697890, 'Gò Vấp', 'jl7S-z769693331549_b4084e3ccea9b1e697a7b372950714ce.jpg');
 
 --
 -- Indexes for dumped tables
@@ -306,6 +272,12 @@ INSERT INTO `Users` (`id`, `email`, `password`, `level`, `name`, `created_at`, `
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contract`
+--
+ALTER TABLE `contract`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -339,35 +311,28 @@ ALTER TABLE `Province`
 --
 ALTER TABLE `room`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_group` (`typeroom_id`);
+  ADD UNIQUE KEY `typeroom_id` (`typeroom_id`);
 
 --
 -- Indexes for table `service`
 --
 ALTER TABLE `service`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `service-check-in-out-time`
---
-ALTER TABLE `service-check-in-out-time`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `service-id` (`service-id`),
-  ADD KEY `hotel-system-id` (`hotel-system-id`);
-
---
--- Indexes for table `service-internet`
---
-ALTER TABLE `service-internet`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `service-id` (`service-id`),
-  ADD KEY `hotel-system-id` (`hotel-system-id`);
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `type_room`
 --
 ALTER TABLE `type_room`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `type_service`
+--
+ALTER TABLE `type_service`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD UNIQUE KEY `service` (`service`);
 
 --
 -- Indexes for table `Users`
@@ -384,6 +349,11 @@ ALTER TABLE `Users`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `contract`
+--
+ALTER TABLE `contract`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `District`
 --
@@ -403,22 +373,27 @@ ALTER TABLE `Province`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `type_room`
 --
 ALTER TABLE `type_room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `type_service`
+--
+ALTER TABLE `type_service`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
 --
 -- Constraints for dumped tables
 --
@@ -441,20 +416,6 @@ ALTER TABLE `hotel-system-detail`
 --
 ALTER TABLE `room`
   ADD CONSTRAINT `fk_group` FOREIGN KEY (`typeroom_id`) REFERENCES `type_room` (`id`);
-
---
--- Constraints for table `service-check-in-out-time`
---
-ALTER TABLE `service-check-in-out-time`
-  ADD CONSTRAINT `service-check-in-out-time_ibfk_1` FOREIGN KEY (`service-id`) REFERENCES `service` (`id`),
-  ADD CONSTRAINT `service-check-in-out-time_ibfk_2` FOREIGN KEY (`hotel-system-id`) REFERENCES `hotel-system` (`id`);
-
---
--- Constraints for table `service-internet`
---
-ALTER TABLE `service-internet`
-  ADD CONSTRAINT `service-internet_ibfk_1` FOREIGN KEY (`service-id`) REFERENCES `service` (`id`),
-  ADD CONSTRAINT `service-internet_ibfk_2` FOREIGN KEY (`hotel-system-id`) REFERENCES `hotel-system` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
