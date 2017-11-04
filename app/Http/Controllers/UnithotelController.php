@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // thư viện login
 use App\User;
+use Hash;
 class UnithotelController extends Controller
 {
     public function getAddinfo() {
@@ -33,7 +34,7 @@ class UnithotelController extends Controller
     			"password.max"      => "Mật khẩu tối đa 32 kí tự",
     		]
     	);
-        // var_dump(Auth::attempt(['email'=>$req->email,'password'=>bcrypt($req->password) ])); exit();
+        // var_dump(Auth::attempt(['email'=>$req->email,'password'=>$req->password ])); exit();
     	if(Auth::attempt(['email'=>$req->email,'password'=>$req->password ])) {
             return redirect("unithotel/info/home");
         }
@@ -79,11 +80,11 @@ class UnithotelController extends Controller
         $user->sdt      = $req->sdt;
         $user->cmnd_passport = $req->cmnd_passport;
         $user->address       = $req->address;
-        $user->password      = bcrypt($req->password);
-        // var_dump(bcrypt($req->password)); echo "<br/>";
+        $user->password      = Hash::make($req->password);
+        // var_dump(Hash::make($req->password)); echo "<br/>";
         // var_dump($user->password); exit();
 
-        //$user->password      = bcrypt($req->password);
+        //$user->password      = Hash::make($req->password);
         $user->level         = 1;
 
         $user->save();
@@ -139,7 +140,7 @@ class UnithotelController extends Controller
         //         "passwordAgain.required" => "Bạn chưa nhập lại mật khẩu",
         //         "passwordAgain.same"     => "Mật khẩu không khớp",
         //     ]);
-        //     $user->password = bcrypt($req->password);
+        //     $user->password = Hash::make($req->password);
         // }
         // 
         // var_dump($req->hasFile('image')); exit();
@@ -164,9 +165,9 @@ class UnithotelController extends Controller
         $user->save();
         return redirect('unithotel/info/profile')->with('thongbao', 'sửa thành công');
     }
-    public function getListhotel(){
-        return view("unithotel.hotel.listhotel");
-    }
+    // public function getListhotel(){
+    //     return view("unithotel.hotel.listhotel");
+    // }
     public function getAddhotel() {
         return view("unithotel.hotel.addhotel");
     }
@@ -175,7 +176,7 @@ class UnithotelController extends Controller
         return view("unithotel.info.changepassword", ['user'=>$user]);
     }
     public function postChangepassword(Request $req){
-        // $user = Auth::user();
+        $user = Auth::user();
         $this->validate($req, [
             "cur_password"            => "required",
             "new_password"            => "required|min:3|max:32",
@@ -189,18 +190,19 @@ class UnithotelController extends Controller
             "renew_password.required"  => "Bạn chưa nhập lại mật khẩu",
             "renew_password.same"      => "Mật khẩu không khớp",
         ]);
-            // $user->password = bcrypt($req->password);
-            // var_dump($user->password); echo "<br>";
-            // var_dump(bcrypt($req->cur_password)); 
-            // exit();
-        var_dump(Auth::attempt(['password'=>$req->cur_password ])); exit();
-        // if(Auth::attempt(['password'=>$req->cur_password ])){
-        //     $user->password = $req->cur_password;
-        //     return redirect("unithotel/info/home")->with("thongbao", "Đổi mật khẩu thành công!");
-        // }else {
-        //     return redirect("unithotel/info/changepassword")->with("thongbao", "Mật khẩu của bạn không đúng, kiểm tra lại ! ");
-        // }
-        // var_dump(); exit();
+            //var_dump( $user->password ); echo "<br>";
+            if(Hash::check($req->cur_password , $user->password ))
+            {
+                $user->password = Hash::make($req->new_password);
+                $user->save();
+                return redirect("unithotel/info/profile")->with("thongbao", "Đổi mật khẩu thành công!");
+                // echo "string";
+            }else {
+                return redirect("unithotel/info/changepassword")->with("thongbao", "Mật khẩu của bạn không đúng, kiểm tra lại ! ");
+            }
 
+    }
+    public function getListhotel(){
+        return view("unithotel.hotel.listhotel");
     }
 }
