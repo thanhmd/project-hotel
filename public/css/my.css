@@ -48,3 +48,15 @@
     margin-left: 50px;
     border: 3px solid #1DE14F;
 }
+.page-header{
+    font-family: 'Pacifico', cursive;
+}
+.noidungchuy{
+    font-family: 'Lobster', cursive;
+    color: red;
+}
+legend {
+    font-family: 'Oswald', sans-serif;
+    color: #3B2AC6;
+    font-weight: bold;
+}

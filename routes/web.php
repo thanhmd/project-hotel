@@ -114,6 +114,7 @@ Route::group(['prefix' => 'unithotel'], function(){
 		Route::post('edit-profile', 'UnithotelController@postEditProfile');
 		Route::get('changepassword', 'UnithotelController@getChangepassword');
 		Route::post('changepassword', 'UnithotelController@postChangepassword');
+		Route::get('delete'        ,   'UnithotelController@getDeleteAcount');
 		// Route::get('add', 'UnithotelController@getAddinfo');
 		// Route::get('edit', 'UnithotelController@getEditinfo');
 		// Route::post('edit/{id}', 'Admin\RoomController@postEdit');
@@ -133,6 +134,10 @@ Route::group(['prefix' => 'unithotel'], function(){
 	// 	Route::get('add', 'UnithotelController@getAddroom');
 	// 	Route::get('edit', 'UnithotelController@getAddinfo');
 	// });
+	Route::group(['prefix' => 'ajax'], function(){
+		Route::get('district/{province_id}', 'AjaxController@getDistrict');
+	
+	});
 });
 // Auth::routes();
 

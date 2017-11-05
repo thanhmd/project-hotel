@@ -83,12 +83,14 @@ class UnithotelController extends Controller
         $user->sdt      = $req->sdt;
         $user->cmnd_passport = $req->cmnd_passport;
         $user->address       = $req->address;
+
         $user->password      = Hash::make($req->password);
         // var_dump(Hash::make($req->password)); echo "<br/>";
         // var_dump($user->password); exit();
 
         //$user->password      = Hash::make($req->password);
         $user->level         = 1;
+        $user->status        = 1;
 
         $user->save();
         return redirect("unithotel/login")->with("thongbao1", " Đăng ký thành công ! ");
@@ -212,10 +214,30 @@ class UnithotelController extends Controller
     public function getAddhotel() {
         $district = District::all();
         $province = Province::all();
-        return view("unithotel.hotel.addhotel", ['district' => $district, 'province' => $province]);
+        return view("unithotel.hotel.addhotel", ['district' => $district, 'province' => $province]); 
+    }
+    public function postAddhotel(Request $req) {
+        $this->validate($req, 
+            [
+            "name"              => "required",
+            "start"             => "required",
+            "address_detail"    => "required"
+            'province'          => "required",
+            "distric"           => "required",
+        ],
+        [
+
+        ]);
+
     }
     public function getEdithotel($id) {
         $hotel = Hotel::find($id);
         return view("unithotel.hotel.edithotel", ["hotel" => $hotel]);
+    }
+    public function getDeleteAcount() {
+        $user = Auth::user();
+        $user->status = 0;
+        $user->save();
+        return view("unithotel.login_and_register_tabbed_form");
     }
 }
