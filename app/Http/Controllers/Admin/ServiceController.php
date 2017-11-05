@@ -62,3 +62,5 @@ class ServiceController extends Controller
         return redirect('admin/service/list')->with('thongbao', 'xóa thành công');
     } 
 }
+
+// Hello GIT
