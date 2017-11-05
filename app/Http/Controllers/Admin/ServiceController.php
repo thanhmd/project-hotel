@@ -5,50 +5,53 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service;
+use App\Typeservice;
 class ServiceController extends Controller
 {
     public function getList() {
-        // get list user
         $service = Service::all();
         return view("admin.service.list", ["service" => $service]);
     }
     public function getAdd() {
-        return view("admin.service.add");
+        $typeservice = Typeservice::all();
+        return view("admin.service.add", ['typeservice' => $typeservice]);
     }
     public function postAdd(Request $req) {
-    	 $this->validate($req,
+        $this->validate($req,
             [
-                "name"        => "required|min:3|max:32",
+                "typeservice"             => "required",
+                "name"                    => "required|unique:service,name",
             ],
             [
-                "name.required"        => "Bạn chưa nhập tên dịch vụ ",
+                "typeservice.required"    => "Bạn chưa chọn loại dịch vụ",
+                "name.required"           => "Bạn chưa nhập tên dịch vụ ",
+                "name.unique"             => "Tên dịch vụ đã tồn tại ",
             ]);
-        // var_dump($req->name); exit();
-        $service = new Service;
-        $service->name = $req->name;
+        $service                    = new Service;
+        $service->name              = $req->name;
+        $service->typeservice_id    = $req->typeservice;
         $service->save();
-
-        return redirect("admin/service/add")->with("thongbao", "Thêm thành công ! ");
+        return redirect("admin/service/list")->with("thongbao", "Thêm thành công ! ");
     }
     public function getEdit($id){
         $service = Service::find($id);
-        return view("admin.service.edit", ["service" => $service]);
+        $typeservice = Typeservice::all();
+        return view("admin.service.edit", ["service" => $service, "typeservice" => $typeservice]);
     }
-    public function postEdit(Request $req, $id){
-        $service = Service::find($id);
-        $this->validate($req,
-            [
-                "name"                => "required|unique:service,name|min:3|max:32",
+    public function postEdit(Request $req, $id) {
+        $this->validate($req, [
+                'name'                  => 'required',
+                'typeservice'           => 'required',
             ],
             [
-                "name.required"        => "Bạn chưa nhập tên tỉnh/thành phố ",
-                "name.unique"          => "Tên Dịch vụ này đã bị trùng ",
+                'name.required'         => 'Bạn chưa nhập tên dịch vụ',
+                'typeservice.required'  => 'Bạn chưa chọn loại dịch vụ'
             ]);
+        $service = Service::find($id);
         $service->name = $req->name;
-        // dd($req->name); die();
+        $service->typeservice_id = $req->typeservice;
         $service->save();
-
-        return redirect('admin/service/edit/'.$id)->with("thongbao", "Sửa thành công ! ");
+        return redirect('admin/service/edit/'.$id)->with('thongbao', 'sửa thành công');
     }
     public function getDelete($id){
         $service = Service::find($id);

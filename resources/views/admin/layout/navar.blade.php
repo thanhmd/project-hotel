@@ -59,7 +59,7 @@
             </li>
             <li>
                 <li>
-                    <a href=""><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ LOẠI DỊCH VỤ</a>
+                    <a href="admin/typeservice/list"><span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ LOẠI DỊCH VỤ</a>
                 </li>
             </li>
             <li>
