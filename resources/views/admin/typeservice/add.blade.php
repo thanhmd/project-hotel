@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Thêm
-                    <small>Dịch Vụ</small>
+                    <small>Loại Dịch Vụ</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -25,21 +25,13 @@
                 </div>
                 @endif
 
-                <form action="admin/service/add" method="POST">
+                <form action="admin/typeservice/add" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <label>Loại Dịch Vụ</label>
-                        <select class="form-control" name="typeservice">
-                            @foreach($typeservice as $ts )
-                            <option value="{{ $ts->id }}">{{ $ts->service }}</option>
-                            @endforeach
-                        </select>
+                        <label>Tên Loại Dịch Vụ</label>
+                        <input class="form-control" name="name" placeholder="Thêm Loại Dịch Vụ" />
                     </div>
-                    <div class="form-group">
-                        <label>Tên Dịch Vụ</label>
-                        <input class="form-control" name="name" placeholder="Thêm Dịch Vụ" />
-                    </div>
-                    <button type="submit" class="btn btn-default">Thêm Dịch Vụ</button>
+                    <button type="submit" class="btn btn-default">Thêm Loại Dịch Vụ</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                 <form>
             </div>

@@ -20,6 +20,7 @@
                     <tr align="center">
                         <th>ID</th>
                         <th>Tên Dịch Vụ</th>
+                        <th>Tên Loại Dịch Vụ</th>
                         <th>Xóa</th>
                         <th>Sửa</th>
                     </tr>
@@ -29,14 +30,15 @@
                     <tr class="odd gradeX" align="center">
                         <td>{{ $s->id }}</td>
                         <td>{{ $s->name }}</td>
+                        <td>{{ $s->type_service->service }}</td>
                         <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/service/delete/{{ $s->id }}"> Delete</a></td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/service/edit/{{ $s->id }}">Edit</a></td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <a class="btn btn-lg btn-info btnprovinceadd" href="admin/service/add" role="button">Thêm Tỉnh/Thành Phố</a>
-            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Tỉnh/ Thành Phố</a>
+            <a class="btn btn-lg btn-info btnprovinceadd" href="admin/service/add" role="button">Thêm Dịch Vụ</a>
+            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Dịch Vụ</a>
         </div>
         <!-- /.row -->
     </div>
