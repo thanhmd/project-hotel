@@ -69,6 +69,15 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('delete/{id}', 'Admin\DistrictController@getDelete');
 
 	});
+	Route::group(['prefix' => 'typeservice'], function(){
+		Route::get('list', 'Admin\TypeserviceController@getList');
+		Route::get('add', 'Admin\TypeserviceController@getAdd');
+		Route::post('add', 'Admin\TypeserviceController@postAdd');
+		Route::get('edit/{id}', 'Admin\TypeserviceController@getEdit');
+		Route::post('edit/{id}', 'Admin\TypeserviceController@postEdit');
+		Route::get('delete/{id}', 'Admin\TypeserviceController@getDelete');
+
+	});
 	Route::group(['prefix' => 'service'], function(){
 		Route::get('list', 'Admin\ServiceController@getList');
 		Route::get('add', 'Admin\ServiceController@getAdd');
