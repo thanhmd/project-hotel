@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class District extends Model
+class Hotel extends Model
 {
-    protected $table = "district";
+    protected $table = "hotel";
     public function province() {
     	return $this->belongsTo('App\Province', 'province_id', 'id');
     }
-    public function hotel() {
-    	return $this->hasMany('App\Hotel', 'district_id', 'id');
+    public function district() {
+    	return $this->belongsTo('App\District', 'district_id', 'id');
     }
 }

@@ -23,7 +23,7 @@
                 <a href="unithotel/hotel/list"><i class="fa fa-dashboard fa-fw"></i>QUẢN LÍ KHÁCH SẠN</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-cube fa-fw"></i> Hợp đồng<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-cube fa-fw"></i> HỢP ĐỒNG<span class="fa arrow"></span></a>
             </li>
         </ul>
     </div>

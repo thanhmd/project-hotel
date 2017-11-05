@@ -10,4 +10,7 @@ class Province extends Model
     public function district() {
     	return $this->hasMany('App\District', 'province_id', 'id');
     }
+    public function hotel() {
+    	return $this->hasMany('App\Hotel', 'province_id', 'id');
+    }
 }

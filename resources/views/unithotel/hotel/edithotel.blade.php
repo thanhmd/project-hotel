@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Xin chào {{  Auth::user()->name }} <br>
-					<small>Để bắt đầu, chúng tôi chỉ cần một số thông tin cơ bản, Quý vị có thể chỉnh sửa hoặc cập nhật phần này sau đó, nếu muốn.</small>
+					<small>CẬP NHẬT LẠI THÔNG TIN KHÁCH SẠN CỦA QUÝ VỊ.</small>
 				</h1>
 			</div>
                 <form action="unithotel/hotel/post" method="POST" role="form">
@@ -15,11 +15,11 @@
                 		<legend>Thông Tin Cơ Bản</legend>
                 		<div class="form-group">
                 			<label for="">Tên chỗ nghĩ</label>
-                			<input type="text" class="form-control" id="" placeholder="Jade Hotel">
+                			<input type="text" class="form-control" id="" value="{{ $hotel->name }}">
                 		</div>
                 		<div class="form-group">
                 			<label for="">Số sao</label>
-                			<input type="text" class="form-control" id="" placeholder="5">
+                			<input type="text" class="form-control" id="" value="{{ $hotel->start }}">
                 		</div>
                 		{{-- <div class="form-group">
                 			<label for="">Loại Phòng</label>
@@ -37,11 +37,11 @@
                 		<legend>Địa chỉ Khách Sạn</legend>
                 		<div class="form-group">
                 			<label for="">Tỉnh/Thành Phố</label>
-                			<select class="form-control" name="province">
+                			{{-- <select class="form-control" name="province">
                                 @foreach($province as $pr )
                                 <option value="{{ $pr->id }}">{{ $pr->name }}</option>
                                 @endforeach
-                            </select>
+                            </select> --}}
                 		</div>
                 		<div class="form-group">
                 			<label for="">Quận/Huyện</label>
@@ -53,7 +53,7 @@
                 		</div>
                 		<div class="form-group">
                 			<label for="">Địa chỉ cho tiết</label>
-                			<input type="text" class="form-control" id="" placeholder="123 Điện Biên Phủ">
+                			<input type="text" class="form-control" id="" value="{{ $hotel->address_detail }}">
                 		</div>
 						{{-- <div class="form-group">
                 			<label for="">Dòng địa chỉ</label>

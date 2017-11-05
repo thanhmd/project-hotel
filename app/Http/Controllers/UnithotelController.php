@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // thư viện login
 use App\User;
 use Hash;
+use App\District;
+use App\Province;
+use App\Hotel;
 class UnithotelController extends Controller
 {
     public function getAddinfo() {
@@ -168,9 +171,7 @@ class UnithotelController extends Controller
     // public function getListhotel(){
     //     return view("unithotel.hotel.listhotel");
     // }
-    public function getAddhotel() {
-        return view("unithotel.hotel.addhotel");
-    }
+    
     public function getChangepassword(){
         $user = Auth::user();
         return view("unithotel.info.changepassword", ['user'=>$user]);
@@ -203,6 +204,18 @@ class UnithotelController extends Controller
 
     }
     public function getListhotel(){
-        return view("unithotel.hotel.listhotel");
+        $district = District::all();
+        $province = Province::all();
+        $hotel    = Hotel::all();
+        return view("unithotel.hotel.listhotel", ['district' => $district, 'province' => $province, 'hotel'=>$hotel]);
+    }
+    public function getAddhotel() {
+        $district = District::all();
+        $province = Province::all();
+        return view("unithotel.hotel.addhotel", ['district' => $district, 'province' => $province]);
+    }
+    public function getEdithotel($id) {
+        $hotel = Hotel::find($id);
+        return view("unithotel.hotel.edithotel", ["hotel" => $hotel]);
     }
 }

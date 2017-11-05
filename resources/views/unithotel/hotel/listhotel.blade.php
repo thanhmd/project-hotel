@@ -28,44 +28,29 @@
                     <tr align="center">
                         <th>ID</th>
                         <th>Tên Khách Sạn</th>
-                        <th>Địa Chỉ Khách Sạn</th>
-                        <th>Loại Phòng</th>
-                        <th>Số Lượng Phòng</th>
-                        <th>Dịch Vụ</th>
-                        <th>Loại Dịch Vụ</th>
+                        <th>Địa Chỉ Cụ Thể</th>
+                        <th>Huyện</th>
+                        <th>Tỉnh</th>
+                        <th>Xóa</th>
                         <th>Sửa</th>
-                        <td>Xóa</td>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach($room as $r) --}}
+                    @foreach($hotel as $h)
                     <tr class="odd gradeX" align="center">
-                        <td>1</td>
-                        <td>White Hotel</td>
-                        <td>12 Nguyễn Kiệm, Gò Vấp, TP HCM</td>
-                        <td>Phòng Vip</td>
-                        <td>10</td>
-						<td>Massage</td>
-						<td>Làm Đẹp</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/room/delete/"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/room/edit/">Edit</a></td>
+                        <td>{{ $h->id }}</td>
+                        <td>{{ $h->name }}</td>
+                        <td>{{ $h->address_detail }}</td>
+                        <td>{{ $h->province->name }}</td>
+                        <td>{{ $h->district->name }}</td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/room/delete/"> Xóa </a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="unithotel/hotel/edit/{{ $h->id }}"> Sửa </a></td>
                     </tr>
-                    <tr class="odd gradeX" align="center">
-                        <td>2</td>
-                        <td>White Hotel54645</td>
-                        <td>12 Nguyễn Kiệm, Gò Vấp, TP HCM</td>
-                        <td>Phòng Vip</td>
-                        <td>10</td>
-						<td>Massage</td>
-						<td>Làm Đẹp</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/room/delete/"> Delete</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/room/edit/">Edit</a></td>
-                    </tr>
-                    {{-- @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
-            <a class="btn btn-lg btn-info btnprovinceadd" href="admin/room/add" role="button">Thêm Khách Sạn</a>
-            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Khách Sạn</a>
+            <a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/hotel/add" role="button">Thêm Khách Sạn</a>
+            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Khách Sạ</a>
         </div>
         <!-- /.row -->
     </div>

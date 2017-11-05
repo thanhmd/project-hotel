@@ -121,6 +121,9 @@ Route::group(['prefix' => 'unithotel'], function(){
 	Route::group(['prefix' => 'hotel'], function(){
 		Route::get('list', 'UnithotelController@getListhotel');
 		Route::get('add', 'UnithotelController@getAddhotel');
+		Route::post('add', 'UnithotelController@postAddhotel');
+		Route::get('edit/{id}', 'UnithotelController@getEdithotel');
+		Route::post('edit/{id}', 'UnithotelController@postEdithotel');
 	});
 	// Route::group(['prefix' => 'placeofthought'], function(){
 	// 	Route::get('add', 'UnithotelController@getPlaceofthought');
