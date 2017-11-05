@@ -12,7 +12,6 @@ class DistrictController extends Controller
     	$district = District::all();
     	$province = Province::all();
         return view("admin.district.list", ["district" => $district, "province" => $province]);
-    	
     }
     public function getAdd() {
     	$province = Province::all();
@@ -21,8 +20,8 @@ class DistrictController extends Controller
     public function postAdd(Request $req) {
     	$this->validate($req,
             [
-                "province"             => "required",
-                "name"             => "required|unique:district,name",
+                "province"                 => "required",
+                "name"                     => "required|unique:district,name",
             ],
             [
             	"province.required"        => "Bạn chưa chọn tỉnh/thành phố ",
@@ -48,8 +47,8 @@ class DistrictController extends Controller
     }
     public function postEdit(Request $req, $id) {
         $this->validate($req, [
-                'name'  => 'required|unique:district,name',
-                'province'=> 'required',
+                'name'          => 'required|unique:district,name',
+                'province'      => 'required',
             ],
             [
                 'name.required' => 'Bạn chưa nhập tên quận, huyện',
@@ -57,11 +56,9 @@ class DistrictController extends Controller
                 'theloai.required'       => 'Ban chua chon the loai'
             ]);
         $district = District::find($id);
-        // dd($req->name); exit();
         $district->name= $req->name;
         $district->province_id   = $req->province;
         $district->save();
         return redirect('admin/district/edit/'.$id)->with('thongbao', 'sửa thành công');
-
     }
 }

@@ -76,7 +76,7 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('edit/{id}', 'Admin\TypeserviceController@getEdit');
 		Route::post('edit/{id}', 'Admin\TypeserviceController@postEdit');
 		Route::get('delete/{id}', 'Admin\TypeserviceController@getDelete');
-
+		
 	});
 	Route::group(['prefix' => 'service'], function(){
 		Route::get('list', 'Admin\ServiceController@getList');

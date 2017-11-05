@@ -41,7 +41,6 @@
                             <label>Tên Dịch Vụ</label>
                             <input type="text" class="form-control" name="name" value="{{ $service->name }}" />
                         </div>
-
                         <button type="submit" class="btn btn-default">Sửa</button>
                         <button type="reset" class="btn btn-default">Reset</button>
                         </form>

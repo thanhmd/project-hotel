@@ -17,7 +17,7 @@ class TypeserviceController extends Controller
     public function postAdd(Request $req) {
     	 $this->validate($req,
             [
-                "name"        => "required|min:3|max:32",
+                "name"                 => "required|min:3|max:32",
             ],
             [
                 "name.required"        => "Bạn chưa nhập tên loại dịch vụ",
@@ -26,10 +26,8 @@ class TypeserviceController extends Controller
         $typeservice = new Typeservice;
         $typeservice->service = $req->name;
         $typeservice->save();
-
         return redirect("admin/typeservice/add")->with("thongbao", "Thêm thành công ! ");
     }
-
     public function getEdit($id){
         $typeservice = Typeservice::find($id);
         return view("admin.typeservice.edit", ["typeservice" => $typeservice]);
@@ -38,7 +36,7 @@ class TypeserviceController extends Controller
         $typeservice = Typeservice::find($id);
         $this->validate($req,
             [
-                "name"        => "required|unique:type_service,service|min:3|max:32",
+                "name"                 => "required|unique:type_service,service|min:3|max:32",
             ],
             [
                 "name.required"        => "Bạn chưa nhập tên loại dịch vụ ",
@@ -47,7 +45,6 @@ class TypeserviceController extends Controller
         $typeservice->service = $req->name;
         // dd($req->name); die();
         $typeservice->save();
-
         return redirect('admin/typeservice/edit/'.$id)->with("thongbao", "Sửa thành công ! ");
     }
     public function getDelete($id){
