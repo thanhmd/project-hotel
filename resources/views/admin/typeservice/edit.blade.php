@@ -23,14 +23,12 @@
             </div>
             @endif
             <div class="col-lg-7" style="padding-bottom:120px">
-                
                 <form action="admin/typeservice/edit/{{ $typeservice->id }}" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" >
                     <div class="form-group">
                         <label>Loại Dịch Vụ</label>
                         <input class="form-control" name="name" value="{{ $typeservice->service }}"  />
                     </div>
-                    
                     <button type="submit" class="btn btn-default">Sửa Loại Dịch Vụ</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                     <form>

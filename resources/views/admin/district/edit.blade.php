@@ -41,7 +41,6 @@
                             <label>Quận/Huyện</label>
                             <input type="text" class="form-control" name="name" value="{{ $district->name }}" />
                         </div>
-
                         <button type="submit" class="btn btn-default">User Edit</button>
                         <button type="reset" class="btn btn-default">Reset</button>
                         </form>
