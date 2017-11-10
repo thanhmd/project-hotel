@@ -1,0 +1,582 @@
+.breadcrumbs {
+  background: none!important;
+  padding-top: 5px!important;
+  padding-bottom: 0px!important;
+  position: relative;
+  z-index: 10;
+}
+
+div.row div.rooms {
+  float: left;
+  margin: 0 0 5px 0;
+}
+
+div.row div.room-selector {
+  float: left;
+  width: 126px;
+}
+
+div.row div.room-number {
+  float: left;
+  width: 100px;
+}
+
+div.row div.children {
+  float: left;
+  width: 60px;
+}
+
+.booking-date {
+  /*margin-top: -20px;*/
+  margin-bottom: 0px!important;
+  padding-bottom: 25px!important;
+}
+
+.booking-date .row .search-box {
+  padding-right: 0;
+}
+
+.booking-date .testimonials {
+  padding-left: 10px;
+  margin-left: 0;
+}
+
+.booking-date .testimonials-box {
+  padding-left: 0;
+}
+
+span.thd {
+  font-size: .85em;
+  font-weight: normal;
+}
+
+.ui-menu .ui-state-focus a,.ui-menu .ui-menu-item a {
+  display: inline-block!important;
+  padding-right: 0px;
+}
+
+.ui-menu .ui-state-focus {
+  padding-right: 0px;
+  display: inline-block!important;
+  width: 100%;
+}
+
+.ui-autocomplete-loading {
+  background: url(../../img/loading.gif) no-repeat right;
+}
+
+.featuredCampaigns .nav-featured li:hover {
+  cursor: pointer;
+}
+
+/* #searchForm control default - start */
+
+.errorInput {
+  border: solid 2px red !important;
+}
+
+#searchForm .fa.fa-search {
+  padding-left: 6px;
+}
+
+#searchForm.form-inline .btn-primary {
+  background: #86b817 none repeat scroll 0 0;
+  border-radius: 0 !important;
+  border: 1px solid #86b817;
+  color: #fff;
+  padding-left: 10px;
+  padding-right: 9px;
+  margin-top: 33px;
+  font-family: Arial, Verdana;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  width: 115px;
+}
+
+::-webkit-input-placeholder {
+  color: #ccc !important;
+  font-family: Arial,sans-serif!important;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #ccc !important;
+  font-family: Arial,sans-serif!important;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #ccc !important;
+  font-family: Arial,sans-serif!important;
+}
+
+:-ms-input-placeholder {
+  color: #ccc !important;
+  font-family: Arial,sans-serif!important;
+}
+
+.form-control {
+  height: 34px !important;
+}
+
+#searchForm.form-inline label {
+  white-space: nowrap;
+}
+
+#searchForm input.form-control {
+  color: #555!important;
+  /*font-size: 10pt!important;*/
+  font-family: Arial,sans-serif!important;
+  font-style: normal;
+}
+
+#searchForm .btn-default.active,.btn-default.focus,.btn-default:active,.btn-default:focus,.btn-default:hover,.open > .dropdown-toggle.btn-default {
+  background: none!important;
+}
+
+#searchForm .form-control
+.selectpicker span.filter-option {
+  /*font-size: 10pt!important;*/
+  font-family: Arial,sans-serif!important;
+  font-style: normal;
+}
+
+#searchForm.form-inline .input-city {
+  max-width: 197px;
+  margin-right: 11px;
+}
+
+#searchForm.form-inline .input-hotel {
+  max-width: 190px;
+  margin-right: 10px;
+}
+
+#searchForm.form-inline .input-hotel i {
+  background: transparent !important;
+  color: #86b817;
+  font-size: 16pt;
+}
+
+.ui-autocomplete a span:hover {
+  color: #fff !important;
+}
+
+#searchForm.form-inline .input-date,#searchForm.form-inline .input-arrival {
+  max-width: 138px;
+  margin-right: 10px;
+}
+
+#searchForm .bootstrap-select.btn-group .btn .filter-option {
+  width: 160px;
+}
+
+/* #searchForm control default - end */
+
+.title-testimonials {
+  text-transform: initial !important;
+  color: #4A8ECF !important;
+}
+
+.popluar-hotel .popluar-category .title-popluar {
+  font-weight: bold;
+}
+
+.popluar .title-popluar {
+  font-weight: bold;
+}
+
+.selectpicker a.placeholder {
+  display: none;
+}
+
+.selectpicker a {
+  font-size: 13px!important;
+  font-style: normal;
+  padding: 3px 5px !important;
+  line-height: 8px!important;
+}
+
+.selectpicker a.Attraction {
+  color: #777;
+  font-size: 11px!important;
+  font-style: normal;
+  line-height: 10px!important;
+}
+
+.selectpicker a.Attraction span {
+  margin: 0 0 0 10px;
+}
+
+.selectpicker button[title='Chọn thành phố'] span.filter-option {
+  color: #ccc !important;
+  font-style: normal;
+}
+
+.selectpicker button span.filter-option {
+  color: #555 !important;
+  font-style: normal;
+}
+
+.selectpicker span.filter-option {
+  color: #ccc;
+  font-style: normal;
+}
+
+.selectpicker .btn,.selectpicker .input-group-btn,.selectpicker .btn .btn-default {
+  background: none !important;
+}
+
+.bootstrap-select .btn:focus {
+  background: none !important;
+}
+
+.selectpicker .btn-default .active,.selectpicker .btn-default .focus,.selectpicker .btn-default:active,.selectpicker .btn-default:focus,.selectpicker .btn-default:hover,.selectpicker .open > .dropdown-toggle .btn-default {
+  color: #333;
+  background-color: none !important;
+}
+
+.selectpicker li.selected a,.selectpicker li a:hover,.selectpicker li a span:hover {
+  background: #86b817;
+  color: #fff !important;
+  font-style: normal;
+}
+
+.dropdown-toggle.btn-default {
+  background: none;
+  border-radius: 0px;
+  color: #333;
+}
+
+div.containers {
+  width: 100%;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+a.grey {
+  color: #666;
+}
+
+div.wrapperTopCities {
+  width: 100%;
+  margin: 0 auto;
+}
+
+div.wrapperTopCities .TopCities-title {
+  display: none;
+}
+
+div.TopHotelResort {
+  background: #f0f0f0;
+  width: 100%;
+}
+
+div.wrapperTopHotelResort {
+  width: 100%;
+  margin: 0 auto;
+}
+
+div.Title {
+  color: #64b342;
+  display: block;
+  padding: 30px 0px 25px 0px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.ddlTopCities tr td:last-child {
+  border-right: none!important;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+.ddlTopCitiesTD {
+  background: #f0f0f0;
+  border-right: 25px solid #fff;
+  border-left: none!important;
+  border-bottom: 30px solid #fff;
+  padding-bottom: 0px!important;
+}
+
+.ddlTopCitiesTD a img {
+  height: 100%;
+  max-width: none;
+}
+
+.ddlTopCitiesTD .CityName {
+  padding: 30px 0px 30px 20px;
+}
+
+.ddlTopCitiesTD .CityName a {
+  font-size: 18px;
+}
+
+.ddlTopHotelResort tr td:last-child {
+  border-right: none!important;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+.ddlTopHotelResortTD {
+  background: #fff;
+  border-right: 25px solid #f0f0f0;
+  border-left: none!important;
+  border-bottom: 30px solid #f0f0f0;
+  padding-bottom: 0px!important;
+}
+
+.ddlTopHotelResortTD div.Items {
+  margin-bottom: 5px;
+  width: 208px;
+}
+
+.ddlTopHotelResortTD .CityName {
+  font-size: 18px;
+  color: #666;
+  padding: 20px 0px 5px 20px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.ddlTopHotelResortTD .HotelName {
+  padding: 0px 20px 20px 20px;
+}
+
+.ddlTopHotelResortTD .HotelName a {
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+  line-height: 18px;
+}
+
+.ddlTopPopularCitiesTD {
+  border-left: 20px solid #f0f0f0;
+  border-right: 20px solid #f0f0f0;
+  border-top: 30px solid #f0f0f0;
+  border-bottom: 30px solid #f0f0f0;
+  padding-bottom: 0px!important;
+  width: 25%;
+}
+
+.ddlTopPopularCitiesTD div.Title {
+  color: #666;
+  font-size: 18px;
+  padding: 15px 0px 5px 0px;
+  text-transform: none;
+}
+
+.ddlTopPopularCitiesTD div.ExtraInfo a {
+  color: #666;
+  display: inline-block;
+  font-size: 13px;
+  font-family: Arial, Tahoma;
+  margin: 0px 0px;
+  padding: 0px 0px;
+  overflow: hidden;
+  width: 100%;
+  height: 18px;
+}
+
+.hotel-cities {
+  background: #f0f0f0;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.hotel-cities div.wrapperTopCities .TopCities-title {
+  display: block;
+}
+
+.hotel-cities div.wrapperTopCities .TopCities-title h3 {
+  color: #64b342;
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.hotel-cities div.wrapperTopCities .TopCities-title span.TopCities {
+  display: none;
+}
+
+.hotel-cities .row {
+  padding: 0 15px;
+}
+
+.hotel-cities .col {
+  float: left;
+  width: 21%;
+  border-right: 20px solid #f0f0f0;
+  margin: 0px 0px 0px 0px;
+  padding-bottom: 30px;
+  /*height: 310px;*/
+  /*background:#f0f0f0;*/
+}
+
+.hotel-cities .col:last-child {
+  border-right: none!important;
+  width: 16%;
+}
+
+.hotel-cities .col div.HotelNames {
+  margin: 2px 0px;
+  display: block;
+}
+
+.hotel-cities .col div.HotelNames:first-child {
+  margin-top: 20px;
+}
+
+.hotel-cities .col:last-child {
+  /*width: 150px;*/
+  overflow: hidden;
+}
+
+.hotel-cities .col div.HotelNames a {
+  font-size: 13px;
+}
+
+.hotel-cities .col div.HotelNames a.bold {
+  font-weight: bold;
+}
+
+@media (min-width:1px) and (max-width:1199px) {
+  .ddlTopCitiesTD a img {
+    height: 188px;
+    width: 100%;
+  }
+
+  .hotel-cities .col {
+    width: 21%;
+    border-right: 10px solid #f0f0f0;
+  }
+
+  .hotel-cities .col:last-child {
+    border-right: none!important;
+    width: 16%;
+  }
+
+  .ddlTopHotelResortTD {
+    border-right: 20px solid #f0f0f0;
+  }
+
+  .ddlTopHotelResortTD div.Items {
+    width: 172px;
+  }
+
+  .ddlTopHotelResortTD .HotelName {
+    width: 170px;
+  }
+
+  .ddlTopHotelResortTD .HotelName a {
+    font-size: 14px;
+  }
+
+  .ddlTopPopularCitiesTD div.Title {
+    font-size: 16px;
+  }
+
+  .ddlTopPopularCitiesTD div.ExtraInfo a {
+    font-size: 13px;
+  }
+
+  .ddlTopPopularCitiesTD a img {
+    height: 138px;
+  }
+
+  .testimonials-box {
+    display: none;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .btn {
+    padding: 6px 12px!important;
+  }
+
+  .bootstrap-select.btn-group .btn .filter-option {
+    width: 205px !important;
+  }
+
+  #searchForm.form-inline .form-group {
+    float: left;
+  }
+
+  #searchForm.form-inline .input-city {
+    max-width: 250px!important;
+    margin-right: 10px;
+  }
+
+  #searchForm.form-inline .input-city .input-group {
+    width: 250px;
+  }
+
+  #searchForm.form-inline .input-hotel {
+    max-width: 255px!important;
+    margin-right: 10px;
+  }
+
+  #searchForm.form-inline .input-hotel .input-group {
+    width: 255px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Campaigns .nav-featured {
+    float: left;
+    width: 48.2882882883%;
+    border-bottom: 0;
+  }
+
+  .Campaigns .sub-featured {
+    float: left;
+    width: 51.7117117117%;
+  }
+
+  .featured-fampaigns .sub-featured {
+    display: none;
+    padding: 0 20px;
+    font-size: 13px;
+    color: #777;
+  }
+
+  .featured-fampaigns .sub-featured.displayed {
+    display: block;
+  }
+
+  #searchForm .bootstrap-select.btn-group .btn .filter-option {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  #searchForm.form-inline .input-city {
+    min-width: 120px!important;
+    margin-right: 10px!important;
+  }
+
+  #searchForm.form-inline .input-city .input-group {
+    width: 120px;
+  }
+
+  #searchForm.form-inline .input-hotel {
+    min-width: 120px!important;
+    margin-right: 10px!important;
+  }
+
+  #searchForm.form-inline .input-hotel .input-group {
+    width: 120px;
+  }
+
+  #searchForm.form-inline .input-date,  #searchForm.form-inline .input-arrival {
+    width: 148px!important;
+    margin-right: 10px!important;
+  }
+
+  #searchForm .bootstrap-select.btn-group .btn .filter-option {
+    width: 100px;
+  }
+}

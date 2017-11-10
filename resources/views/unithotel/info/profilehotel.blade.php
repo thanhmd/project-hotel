@@ -44,10 +44,9 @@
 								</div>
 							</div>
 						</div>
-
 						<a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/info/edit-profile" role="button">Cập Nhật Lại Thông Tin</a>
 						<a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/info/changepassword" role="button"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>Thay đổi password</a>
-						<a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/info/delete" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Xóa tài khoản</a>
+						{{-- <a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/info/delete" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Xóa tài khoản</a> --}}
 						<!-- end slide -->
 					</div>
 				</div>

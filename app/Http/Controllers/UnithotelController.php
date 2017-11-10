@@ -218,17 +218,30 @@ class UnithotelController extends Controller
     }
     public function postAddhotel(Request $req) {
         $this->validate($req, 
-            [
+        [
             "name"              => "required",
             "start"             => "required",
-            "address_detail"    => "required"
-            'province'          => "required",
-            "distric"           => "required",
+            "address_detail"    => "required",
+            "province"          => "required",
+            "district"          => "required",
         ],
         [
-
+            "name.required"             => "Bạn chưa nhập tên khách sạn",
+            "name.required"             => "Bạn chưa nhập số sao khách sạn",
+            "address_detail.required"   => "Bạn chưa nhập địa chỉ chi tiết",
+            "province.required"         => "Bạn chưa chọn tỉnh/thành phố",
+            "district.required"         =>  "Bạn chưa chọn quận/huyện",
         ]);
+        $hotel                 = new Hotel();
+        $hotel->name           = $req->name;
+        $hotel->start          = $req->start;
+        $hotel->address_detail = $req->address_detail;
+        $hotel->province_id    = $req->province;
+        $hotel->district_id    = $req->district;
 
+        $hotel->save();
+        return redirect("unithotel/hotel/add")->with("thongbao", "Thêm khách sạn thành công !Tiếp tục thêm khách sạn hoặc chọn menu để chuyển tác vụ");
+        
     }
     public function getEdithotel($id) {
         $hotel = Hotel::find($id);

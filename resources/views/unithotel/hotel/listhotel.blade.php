@@ -28,9 +28,9 @@
                     <tr align="center">
                         <th>ID</th>
                         <th>Tên Khách Sạn</th>
-                        <th>Địa Chỉ Cụ Thể</th>
-                        <th>Huyện</th>
-                        <th>Tỉnh</th>
+                        <th>Địa Chỉ</th>
+                        <th>Phòng</th>
+                        <th>Dịch Vụ</th>
                         <th>Xóa</th>
                         <th>Sửa</th>
                     </tr>
@@ -40,11 +40,11 @@
                     <tr class="odd gradeX" align="center">
                         <td>{{ $h->id }}</td>
                         <td>{{ $h->name }}</td>
-                        <td>{{ $h->address_detail }}</td>
-                        <td>{{ $h->province->name }}</td>
-                        <td>{{ $h->district->name }}</td>
+                        <td>{{ $h->address_detail }},{{ $h->province->name }}, {{ $h->district->name }}</td>
+                        <td class="center"><i class="fa fa-pencil-square-o" aria-hidden="true""></i><a href="admin/room/delete/"> QLí Phòng </a></td>
+                        <td class="center"><i class="fa fa-pencil-square-o" aria-hidden="true""></i><a href="admin/room/delete/"> QLí Dịch Vụ </a></td>
                         <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/room/delete/"> Xóa </a></td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="unithotel/hotel/edit/{{ $h->id }}"> Sửa </a></td>
+                        <td class="center"><i class="fa fa-pencil" aria-hidden="true""></i><a href="unithotel/hotel/edit/{{ $h->id }}"> Sửa </a></td>
                     </tr>
                     @endforeach
                 </tbody>

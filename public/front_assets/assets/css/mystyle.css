@@ -1,0 +1,13 @@
+.titelhotel{
+	font-size: 22px;
+    font-family: Arial;
+    color: #86b817;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+.titleprovince{
+	color: #4790cd;
+	font-family: inherit;
+	font-size: 25px;
+	font-weight: 600;
+}
