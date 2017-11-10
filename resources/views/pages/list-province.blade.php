@@ -2,23 +2,44 @@
 @section("content")
 <section class="mbr-section content8 cid-qAywCyYbRR" id="content8-f" data-rv-view="879">
  	<div class="container">
- 		<h1 style="" class="titelhotel">KHÁCH SẠN ĐÀ NẴNG</h1>
+ 		<h1 style="" class="titelhotel">KHÁCH SẠN {{ $province->name }}</h1>
  		<p>
- 			Nhiều khách sạn Đà Nẵng 5 sao, 4 sao tới 3 sao trở xuống đã ra đời trong những năm qua nhằm đáp ứng nhu cầu nghỉ dưỡng ngày càng cao và phong phú của du khách. Du lịch Đà Nẵng, không khó để tìm được một khách sạn hay resort Đà Nẵng ưng ý, phù hợp ngân sách. Đà Nẵng quy tụ từ những tên tuổi nghỉ dưỡng hàng đầu thế giới như Intercontinental, Hyatt, Accor, Furama...tới những thương hiệu danh tiếng trong nước như Fusion, Vinpearl, Naman... Nếu bạn muốn trải nghiệm biển thì bãi biển Bắc Mỹ Khê, Mỹ An, Non Nước hay bán đảo Sơn Trà là những lựa chọn hàng đầu. Nếu bạn muốn tận hưởng cảnh quan vùng núi hùng vĩ thì hãy chọn khách sạn núi Bà Nà. Còn để trải nghiệm thành phố Đà Nẵng, thì bạn có thể lựa chọn các khách sạn gần sông Hàn, trung tâm thành phố. Nếu cần được tư vấn thêm khi đặt phòng khách sạn Đà Nẵng thì hãy gọi ngay cho chúng tôi qua số điện thoại 24354 hoặc email : tranthihonghue19it@gmail.com
+ 			{{ $province->description }}
  		</p>
+ 		
  		@foreach($hotelByProvince as $hp)
-        <div class="row">
+        <div class="row infohotel" class="">
         	<div class="col-md-4">
-        		<div style="width: 300px; height: 300px;background-color: pink;">
-        			<img src="" alt="" >
+        		<div style="" class="imghotelprovince">
+        			<img src="upload/hinhkhachsan/{{ $hp->image }}" alt="" style="width: 100%;height: 100%" >
         		</div>
         	</div>
-        	<div class="col-md-8">
+        	<div class="col-md-5">
         		<h2 class="titleprovince" style="">{{ $hp->name }}</h2>
-        		<p>Số sao : {{ $hp->start }}</p>
+        		{{-- <p>Số sao : {{ $hp->start }}</p> --}}
+        		{{-- @while ($hp->start)
+    				<p><span class="glyphicon glyphicon-star" aria-hidden="true"></span></p>
+				@endwhile --}}
+
+				@for ($i = 0; $i < $hp->start ; $i++)
+    				
+    				
+    				<img src="front_assets/image/christmas_star.png" alt="" class="imgstart">
+    				
+				@endfor
         		<p>{{ $hp->address_detail }}</p>
         		{{-- <button type="button" class="btn btn-success">Đặt Phòng</button> --}}
-        		<button type="button" class="btn btn-primary">Đặt Phòng</button>
+        		{{--  --}}
+        	</div>
+        	<div class="col-md-3">
+        		{{-- <span >-40%</span> <br> --}}
+        		<div class="pricehotel">
+        			<div class="sale">-40%</div><br>
+        			<p>&ensp;</p>
+	        		<p class="price-old">1,800,000 đ</p>
+	        		<p class="price">1,331,000 đ</p>
+	        		</div>
+        		<button type="button" class="btn btn-primary">Xem Phòng</button>
         	</div>
         </div>
         <div>&nbsp; &nbsp;</div>

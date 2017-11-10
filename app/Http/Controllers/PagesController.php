@@ -15,7 +15,10 @@ class PagesController extends Controller
     }
     public function getListhotelByprovince($province_id) {
     	// lấy tất cả các khách sạn theo tỉnh, province_id: cột trong database, $province_id : tham số truyền vào
-    	$hotelByProvince = Hotel::where('province_id', $province_id)->get();
-    	return view("pages.list-province", compact('hotelByProvince'));
+    	$province 			= Province::findOrFail($province_id);
+    	$hotelByProvince 	= Hotel::where('province_id', $province_id)->get();
+    	// print_r($province['name']); exit();
+    	//dd($province->name); exit();
+    	return view("pages.list-province", compact('hotelByProvince', 'province' ));
     }
 }
