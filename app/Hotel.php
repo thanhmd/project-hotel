@@ -15,4 +15,10 @@ class Hotel extends Model
     public function district() {
     	return $this->belongsTo('App\District', 'district_id', 'id');
     }
+    public function images() {
+    	return $this->hasMany('App\Listimageshotel', 'hotel_id', 'id');
+    }
+    public function user() {
+        return $this->belongsTo('App\User', 'id_owner', 'id');
+    }
 }

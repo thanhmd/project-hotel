@@ -9,6 +9,7 @@ use Hash;
 use App\District;
 use App\Province;
 use App\Hotel;
+use App\Service;
 class UnithotelController extends Controller
 {
     public function getAddinfo() {
@@ -208,37 +209,63 @@ class UnithotelController extends Controller
     public function getListhotel(){
         $district = District::all();
         $province = Province::all();
+        //$service  = Service::wh
         $hotel    = Hotel::all();
         return view("unithotel.hotel.listhotel", ['district' => $district, 'province' => $province, 'hotel'=>$hotel]);
     }
     public function getAddhotel() {
         $district = District::all();
         $province = Province::all();
-        return view("unithotel.hotel.addhotel", ['district' => $district, 'province' => $province]); 
+        $service  = Service::all();
+        
+        // dd($province->name); exit();
+        return view("unithotel.hotel.addhotel", ['district' => $district, 'province' => $province, 'service' => $service]); 
     }
     public function postAddhotel(Request $req) {
-        $this->validate($req, 
-        [
-            "name"              => "required",
-            "start"             => "required",
-            "address_detail"    => "required",
-            "province"          => "required",
-            "district"          => "required",
-        ],
-        [
-            "name.required"             => "Bạn chưa nhập tên khách sạn",
-            "name.required"             => "Bạn chưa nhập số sao khách sạn",
-            "address_detail.required"   => "Bạn chưa nhập địa chỉ chi tiết",
-            "province.required"         => "Bạn chưa chọn tỉnh/thành phố",
-            "district.required"         =>  "Bạn chưa chọn quận/huyện",
-        ]);
+        // $this->validate($req, 
+        // [
+        //     "name"              => "required",
+        //     "start"             => "required",
+        //     "address_detail"    => "required",
+        //     "province"          => "required",
+        //     "district"          => "required",
+        // ],
+        // [
+        //     "name.required"             => "Bạn chưa nhập tên khách sạn",
+        //     "name.required"             => "Bạn chưa nhập số sao khách sạn",
+        //     "address_detail.required"   => "Bạn chưa nhập địa chỉ chi tiết",
+        //     "province.required"         => "Bạn chưa chọn tỉnh/thành phố",
+        //     "district.required"         =>  "Bạn chưa chọn quận/huyện",
+        // ]);
+        // dd($req->cat); 
+        // echo $req->cat["values"];exit();
+        if($req->hasFile('image')){
+            $file = $req->file('image');
+           
         $hotel                 = new Hotel();
+        $hotel->listservice    = implode(',', $req->cat);
+        //dd($hotel->listservice); exit();
         $hotel->name           = $req->name;
         $hotel->start          = $req->start;
+        $hotel->description    = $req->description;
         $hotel->address_detail = $req->address_detail;
         $hotel->province_id    = $req->province;
-        $hotel->district_id    = $req->district;
-
+        // $hotel->district_id    = $req->district;
+         $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
+                return redirect('unithotel/hotel/add')->with('thongbao', 'bạn chỉ được chọn file vơi đuôi png, jpg, jpeg');
+            }
+            $duoi  = $file->getClientOriginalName();
+            $image = str_random(4)."-".$duoi;
+            while(file_exists("upload/hinhkhachsan/".$image)){
+                $image = str_random(4)."-".$duoi;
+            }
+            $file->move("upload/hinhkhachsan", $image);
+            $hotel->image =$image;
+            
+        }else {
+            $hotel->image = "ko co hinh";
+        }
         $hotel->save();
         return redirect("unithotel/hotel/add")->with("thongbao", "Thêm khách sạn thành công !Tiếp tục thêm khách sạn hoặc chọn menu để chuyển tác vụ");
         

@@ -1,5 +1,9 @@
 @extends("layouts.index")
+@section('title', 'Trang chủ')
 @section("content")
+
+
+
 {{-- <section class="header1 cid-qAywgz60FV mbr-parallax-background" id="header1-b" data-rv-view="828">
     <div class="container">
         <div class="row justify-content-md-center">

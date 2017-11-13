@@ -140,7 +140,9 @@ Route::group(['prefix' => 'unithotel'], function(){
 Route::group(['prefix' => '/'], function(){
 		Route::get('', 'PagesController@getHome');
 		Route::get('listhotel/{province_id}', 'PagesController@getListhotelByprovince');
-
+		Route::get('detailhotel/{id}', 'PagesController@getDetailhotel');
+		Route::get('booking-room', 'PagesController@getBookingroom');
+		Route::post('booking-room', 'PagesController@postBookingroom');
 	});
 
 Route::get('unithotel/login', 'UnithotelController@getLogin');

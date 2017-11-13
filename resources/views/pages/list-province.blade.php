@@ -1,4 +1,5 @@
 @extends("layouts.index")
+@section('title', 'DS hotle theo Tỉnh')
 @section("content")
 <section class="mbr-section content8 cid-qAywCyYbRR" id="content8-f" data-rv-view="879">
  	<div class="container">
@@ -39,7 +40,7 @@
 	        		<p class="price-old">1,800,000 đ</p>
 	        		<p class="price">1,331,000 đ</p>
 	        		</div>
-        		<button type="button" class="btn btn-primary">Xem Phòng</button>
+        		<a href="detailhotel/{{ $hp->id }}" class="btn btn-primary" style="color: #fff">Xem Phòng</a>
         	</div>
         </div>
         <div>&nbsp; &nbsp;</div>

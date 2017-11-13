@@ -8,7 +8,7 @@
   <link rel="shortcut icon" href="front_assets/assets/images/logo2.png" type="image/x-icon">
   <meta name="description" content="Website Maker Description">
   <base href="{{ asset('') }}">
-  <title>Page 1</title>
+  <title>Hotel | @yield("title")</title>
   <link rel="stylesheet" href="front_assets/assets/web/assets/mobirise-icons/mobirise-icons.css">
   <link rel="stylesheet" href="front_assets/assets/tether/tether.min.css">
   <link rel="stylesheet" href="front_assets/assets/bootstrap/css/bootstrap.min.css">
@@ -49,6 +49,7 @@
     <script src="front_assets/assets/mobirise-gallery/script.js"></script>
     <script src="front_assets/assets/formoid/formoid.min.js"></script>
   
+    
   
 </body>
 </html>

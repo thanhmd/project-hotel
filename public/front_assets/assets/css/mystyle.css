@@ -72,3 +72,20 @@
 	box-sizing: border-box;
 
 }
+/*slide detail hotel*/
+#wowslider-container1{
+	margin-top: 100px;
+}
+/*end slide detail hotel*/
+.descriptionhotel{
+	margin-top: 50px;
+	text-align: justify;
+    color: #000;
+    font-size: 14px;
+}
+.dsloaiphong{
+	margin-top: 100px;
+}
+.nametyperoom{
+	text-align: center;
+}
