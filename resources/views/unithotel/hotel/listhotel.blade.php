@@ -28,9 +28,14 @@
                     <tr align="center">
                         <th>ID</th>
                         <th>Tên Khách Sạn</th>
-                        <th>Địa Chỉ</th>
-                       {{--  <th>Phòng</th> --}}
+                        <th>Số Sao</th>
+                        <th>Giới Thiệu Khách Sạn</th>
+                        <th>Hình ảnh Của khách sạn</th>
+                        <th>Địa Chỉ Khách Sạn</th>
+                        {{--  <th>Phòng</th> --}}
                         <th>Mã Dịch Vụ</th>
+                        <th>Mã Loai Phòng</th>
+                        <th>Quản lí Phòng</th>
                         <th>Xóa</th>
                         <th>Sửa</th>
                     </tr>
@@ -39,10 +44,21 @@
                     @foreach($hotel as $h)
                     <tr class="odd gradeX" align="center">
                         <td>{{ $h->id }}</td>
-                        <td>{{ $h->name }}</td>
-                        <td>{{ $h->address_detail }},{{ $h->province->name }}</td>
+                        <td>
+                            {{ $h->name }} <br>
+                            Hình Đại Diện
+                        </td>
+                        <td>5</td>
+                        <td>{{ $h->description }}</td>
+                        <td>List hình ảnh</td>
+                        <td>
+                            {{-- {{ $h->address_detail }},{{ $h->province->name }} --}}
+                            địa chỉ chi tiết khách sạn, mã huyện, mã tỉnh 
+                        </td>
                         {{-- <td class="center"><i class="fa fa-pencil-square-o" aria-hidden="true""></i><a href="admin/room/delete/"> QLí Phòng </a></td> --}}
-                        <td class="center">{{-- <i class="fa fa-pencil-square-o" aria-hidden="true""></i> --}}<a href="admin/room/delete/"> {{ $h->listservice }} </a></td>
+                        <td class="center">{{-- <i class="fa fa-pencil-square-o" aria-hidden="true""></i> --}}<a href=""> {{ $h->listservice }} </a></td>
+                        <td class="center">{{-- <i class="fa fa-pencil-square-o" aria-hidden="true""></i> --}}<a href=""> 4,5,6,7,8 </a></td>
+                        <td>Quản lí phòng</td>
                         <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/room/delete/"> Xóa </a></td>
                         <td class="center"><i class="fa fa-pencil" aria-hidden="true""></i><a href="unithotel/hotel/edit/{{ $h->id }}"> Sửa </a></td>
                     </tr>

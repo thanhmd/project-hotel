@@ -207,13 +207,16 @@ class UnithotelController extends Controller
 
     }
     public function getListhotel(){
+
         $district = District::all();
         $province = Province::all();
         //$service  = Service::wh
         $hotel    = Hotel::all();
-        return view("unithotel.hotel.listhotel", ['district' => $district, 'province' => $province, 'hotel'=>$hotel]);
+        return view("unithotel.hotel.listhotel", ['district' => $district, 'province' => $province, 'hotel'=>$hotel,'district' => $district ]);
+        
     }
     public function getAddhotel() {
+
         $district = District::all();
         $province = Province::all();
         $service  = Service::all();
