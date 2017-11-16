@@ -66,8 +66,9 @@
     });
     </script>
     {{-- chen script --}}
+    @yield("css")
     @yield('script')
-
+    
 </body>
 
 </html>

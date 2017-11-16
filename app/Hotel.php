@@ -8,7 +8,7 @@ class Hotel extends Model
 {
     protected $table     = "hotel";
     // public $timestamps =false;
-
+    
     public function province() {
     	return $this->belongsTo('App\Province', 'province_id', 'id');
     }
@@ -21,4 +21,7 @@ class Hotel extends Model
     public function user() {
         return $this->belongsTo('App\User', 'id_owner', 'id');
     }
+    // public function list_image(){
+    //     return $this->hasMany('App\Listimageshotel', 'hotel_id', 'id');
+    // }
 }

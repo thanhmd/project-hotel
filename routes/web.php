@@ -112,7 +112,18 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('edit/{id}', 'Admin\RoomController@getEdit');
 		Route::post('edit/{id}', 'Admin\RoomController@postEdit');
 		Route::get('delete/{id}', 'Admin\RoomController@getDelete');
+	});
+	Route::group(['prefix' => 'hotel_contract'], function(){
+		Route::get('list', 'Admin\HotelController@getList');
+		Route::get('checkshowhotel/{id}', 'Admin\HotelController@getCheckhotel');
+		Route::post('checkshowhotel/{id}', 'Admin\HotelController@postCheckhotel');
 
+
+		Route::get('add', 'Admin\HotelController@getAdd');
+		Route::post('add', 'Admin\HotelController@postAdd');
+		Route::get('edit/{id}', 'Admin\HotelController@getEdit');
+		Route::post('edit/{id}', 'Admin\HotelController@postEdit');
+		Route::get('delete/{id}', 'Admin\HotelController@getDelete');
 	});
 });
 Route::group(['prefix' => 'unithotel'], function(){
