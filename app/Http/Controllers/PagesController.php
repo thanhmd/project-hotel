@@ -6,6 +6,7 @@ use App\Province;
 use App\Hotel;
 use App\Listimageshotel;
 use App\Typeroom;
+use App\DetailHotelTyperoom;
 class PagesController extends Controller
 {
     public function xuli() {
@@ -53,7 +54,6 @@ class PagesController extends Controller
     public function getHome(){
     	$province = Province::all();
         $hotel    = Hotel::paginate(3);
-
         return view("pages.home", ["province" => $province, "hotel" => $hotel]);	
     }
     public function getListhotelByprovince($province_id) {
@@ -67,7 +67,8 @@ class PagesController extends Controller
     public function getDetailhotel($id) {
         $hotel      = Hotel::findOrFail($id);
         $imageslist = Listimageshotel::where('hotel_id', $id)->get();
-        $typeroom   = Typeroom::where('hotel_id', $id)->get();
+
+        $typeroom   = DetailHotelTyperoom::where('hotel_id', $id)->get();
         // var_dump($imageslist); exit();
         return view("pages.detailhotel", compact('hotel','imageslist','typeroom'));
     }

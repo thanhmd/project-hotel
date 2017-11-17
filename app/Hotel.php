@@ -21,6 +21,10 @@ class Hotel extends Model
     public function user() {
         return $this->belongsTo('App\User', 'id_owner', 'id');
     }
+    public function typeroom() {
+        return $this->belongsToMany('App\Typeroom', 'detail_hotel_typeroom', 'hotel_id', 'typeroom_id');
+    }
+
     // public function list_image(){
     //     return $this->hasMany('App\Listimageshotel', 'hotel_id', 'id');
     // }

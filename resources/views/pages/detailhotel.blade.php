@@ -32,18 +32,41 @@
 			</thead>
 			<tbody>
 				{{-- Duyệt danh sách các loại phòng --}}
-				@foreach($typeroom as $tp)
+				{{-- @foreach($typeroom as $tp) --}}
 				<tr>
 					<td>
-						<div class="nametyperoom">{{ $tp->name }} <br>
-						<img src="upload/hinhloaiphong/{{ $tp->image }}" alt=""></div>
+						LOẠI 1
+						<div class="nametyperoom"> <br>
+						<img src="upload/hinhloaiphong/" alt=""></div>
 					</td>
-					<td>{{ $tp->maxpeople }}</td>
+					<td></td>
 					<td>120d</td>
 					<td>4</td>
 					<td><a href="booking-room" type="button" class="btn btn-success">Đặt Phòng</a></td>
 				</tr>
-				@endforeach
+				<tr>
+					<td>
+						LOẠI 2
+						<div class="nametyperoom"> <br>
+						<img src="upload/hinhloaiphong/" alt=""></div>
+					</td>
+					<td></td>
+					<td>120d</td>
+					<td>4</td>
+					<td><a href="booking-room" type="button" class="btn btn-success">Đặt Phòng</a></td>
+				</tr>
+				<tr>
+					<td>
+						LOẠI 3
+						<div class="nametyperoom"><br>
+						<img src="upload/hinhloaiphong/" alt=""></div>
+					</td>
+					<td></td>
+					<td>120d</td>
+					<td>4</td>
+					<td><a href="booking-room" type="button" class="btn btn-success">Đặt Phòng</a></td>
+				</tr>
+				{{-- @endforeach --}}
 			</tbody>
 		</table>
 	</div>
