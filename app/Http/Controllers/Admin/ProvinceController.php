@@ -55,4 +55,8 @@ class ProvinceController extends Controller
         $province->delete();
         return redirect('admin/province/list')->with('thongbao', 'xóa thành công');
     }
+    public function getDistricts($id){
+        $province = Province::find($id);
+        return $province->district()->select('id', 'name')->get();
+    }
 }

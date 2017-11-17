@@ -9,6 +9,8 @@ use Hash;
 use App\District;
 use App\Province;
 use App\Hotel;
+use App\Customer;
+use App\Room;
 class UnithotelController extends Controller
 {
     public function getAddinfo() {
@@ -212,10 +214,27 @@ class UnithotelController extends Controller
     public function getAddhotel() {
         $district = District::all();
         $province = Province::all();
-        return view("unithotel.hotel.addhotel", ['district' => $district, 'province' => $province]);
+        $room = Room::all();
+        return view("unithotel.hotel.addhotel", ['district' => $district, 'province' => $province, 'room' => $room]);
+    }
+    public function postAddhotel() {
+        echo "Test";
     }
     public function getEdithotel($id) {
         $hotel = Hotel::find($id);
-        return view("unithotel.hotel.edithotel", ["hotel" => $hotel]);
+        $province = Province::all();
+        return view("unithotel.hotel.edithotel", ['province' => $province, 'hotel' => $hotel]);
+    }
+    public function getDeleteHotel($id){
+        $hotel = Hotel::find($id);
+        $hotel -> delete();
+        return redirect('unithotel/hotel/list')->with('thongbao', 'xóa thành công');
+    }
+    public function getDeleteAccount(){
+    $user = User::find(Auth::user()->id);
+    Auth::logout();
+    if ($user->delete())
+         return Redirect('unithotel/login')->with('thongbao', 'Tài khoản của bạn đã xóa!');
+
     }
 }

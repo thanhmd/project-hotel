@@ -66,7 +66,6 @@
     </script>
     {{-- chen script --}}
     @yield('script')
-
 </body>
 
 </html>

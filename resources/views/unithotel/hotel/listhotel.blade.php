@@ -28,9 +28,15 @@
                     <tr align="center">
                         <th>ID</th>
                         <th>Tên Khách Sạn</th>
-                        <th>Địa Chỉ Cụ Thể</th>
-                        <th>Huyện</th>
-                        <th>Tỉnh</th>
+                        <th>Số Sao</th>
+                        <th>Mô tả</th>
+                        <th>Địa Chỉ</th>
+                        <th>Mã Dịch Vụ</th>
+                        <th>Mã Loại Phòng</th>
+                        <!-- <th>Huyện</th>
+                        <th>Tỉnh</th> -->
+                        <th>Hình Đại Diện</th>
+                        <th>Slide ảnh</th>
                         <th>Xóa</th>
                         <th>Sửa</th>
                     </tr>
@@ -40,10 +46,16 @@
                     <tr class="odd gradeX" align="center">
                         <td>{{ $h->id }}</td>
                         <td>{{ $h->name }}</td>
+                        <td>{{ $h->star}}</td>
+                        <td>{{ $h->description}}</td>
                         <td>{{ $h->address_detail }}</td>
-                        <td>{{ $h->province->name }}</td>
-                        <td>{{ $h->district->name }}</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/room/delete/"> Xóa </a></td>
+                        <td>{{ $h->listservice }}</td>
+                        <td>{{ $h->listtyperoom }}</td>
+                        <!-- <td>{{ $h->province->name }}</td>
+                        <td>{{ $h->district->name }}</td> -->
+                        <td>{{ $h->image }}</td>
+                        <td>{{ $h->listimage }}</td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="unithotel/hotel/delete/{{ $h->id }}"> Xóa </a></td>
                         <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="unithotel/hotel/edit/{{ $h->id }}"> Sửa </a></td>
                     </tr>
                     @endforeach

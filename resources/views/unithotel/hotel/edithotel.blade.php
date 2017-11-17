@@ -19,8 +19,12 @@
                 		</div>
                 		<div class="form-group">
                 			<label for="">Số sao</label>
-                			<input type="text" class="form-control" id="" value="{{ $hotel->start }}">
+                			<input type="text" class="form-control" id="" value="{{ $hotel->star }}">
                 		</div>
+                        <div class="form-group">
+                            <label for="">Mô tả</label>
+                            <textarea name="" id="" class="form-control" rows="5" required="required" value="{{ $hotel->description }}"></textarea>
+                        </div>
                 		{{-- <div class="form-group">
                 			<label for="">Loại Phòng</label>
                 			<select class="form-control" name="province">
@@ -37,22 +41,20 @@
                 		<legend>Địa chỉ Khách Sạn</legend>
                 		<div class="form-group">
                 			<label for="">Tỉnh/Thành Phố</label>
-                			{{-- <select class="form-control" name="province">
+                			<select class="form-control" name="province" id="provinceopt">
                                 @foreach($province as $pr )
                                 <option value="{{ $pr->id }}">{{ $pr->name }}</option>
                                 @endforeach
-                            </select> --}}
-                		</div>
-                		<div class="form-group">
-                			<label for="">Quận/Huyện</label>
-                			<select id="type" class="form-control" name="option">
-                                <option value="">Quận 1</option>
-                                <option value="value1">Quận 2</option>
-                                <option value="value2">Gò Vấp</option>
                             </select>
                 		</div>
                 		<div class="form-group">
-                			<label for="">Địa chỉ cho tiết</label>
+                			<label for="">Quận/Huyện</label>
+                			<select class="form-control" name="option" id="districtopt">
+
+                            </select>
+                		</div>
+                		<div class="form-group">
+                			<label for="">Địa chỉ chi tiết</label>
                 			<input type="text" class="form-control" id="" value="{{ $hotel->address_detail }}">
                 		</div>
 						{{-- <div class="form-group">
@@ -71,4 +73,23 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
+@endsection
+@section('script')
+<script>
+    $(function() {
+        $('#provinceopt').change(function() {
+            var url = 'admin/province/' + $(this).val() + '/districts/';
+            $.get(url, function(data) {
+                var select = $('#districtopt');
+                select.empty();
+                $.each(data,function(key, value) {
+                    // console.log(key);
+                    // console.log(value.id);
+                    // console.log(value.name);
+                    select.append('<option value=' + value.id + '>' + value.name + '</option>');
+                });
+            });
+        });
+    });
+</script>
 @endsection

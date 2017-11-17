@@ -58,7 +58,7 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('edit/{id}', 'Admin\ProvinceController@getEdit');
 		Route::post('edit/{id}', 'Admin\ProvinceController@postEdit');
 		Route::get('delete/{id}', 'Admin\ProvinceController@getDelete');
-
+		Route::get('{id}/districts', 'Admin\ProvinceController@getDistricts');
 	});
 	Route::group(['prefix' => 'district'], function(){
 		Route::get('list', 'Admin\DistrictController@getList');
@@ -116,6 +116,7 @@ Route::group(['prefix' => 'admin'], function(){
 	});
 });
 Route::group(['prefix' => 'unithotel'], function(){
+
 	Route::group(['prefix' => 'info'], function(){
 		Route::get('home', 'UnithotelController@getindex');
 		Route::get('profile', 'UnithotelController@getProfile');
@@ -123,6 +124,7 @@ Route::group(['prefix' => 'unithotel'], function(){
 		Route::post('edit-profile', 'UnithotelController@postEditProfile');
 		Route::get('changepassword', 'UnithotelController@getChangepassword');
 		Route::post('changepassword', 'UnithotelController@postChangepassword');
+		Route::get('deleteAccount', 'UnithotelController@getDeleteAccount');
 		// Route::get('add', 'UnithotelController@getAddinfo');
 		// Route::get('edit', 'UnithotelController@getEditinfo');
 		// Route::post('edit/{id}', 'Admin\RoomController@postEdit');
@@ -133,6 +135,7 @@ Route::group(['prefix' => 'unithotel'], function(){
 		Route::post('add', 'UnithotelController@postAddhotel');
 		Route::get('edit/{id}', 'UnithotelController@getEdithotel');
 		Route::post('edit/{id}', 'UnithotelController@postEdithotel');
+		Route::get('delete/{id}', 'UnithotelController@getDeleteHotel');
 	});
 	// Route::group(['prefix' => 'placeofthought'], function(){
 	// 	Route::get('add', 'UnithotelController@getPlaceofthought');

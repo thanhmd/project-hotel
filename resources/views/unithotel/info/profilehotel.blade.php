@@ -47,7 +47,7 @@
 
 						<a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/info/edit-profile" role="button">Cập Nhật Lại Thông Tin</a>
 						<a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/info/changepassword" role="button"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>Thay đổi password</a>
-						<a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/info/edit-profile" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Xóa tài khoản</a>
+						<a class="btn btn-lg btn-info btnaccedelete" role="button"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Xóa tài khoản</a>
 						<!-- end slide -->
 					</div>
 				</div>
@@ -64,6 +64,17 @@
 						}
 
 					});
+				});
+			</script>
+			<script>
+				$('.btnaccedelete').on('click',function(e){
+			    	var answer=confirm('Bạn có muốn xóa tài khoản?');
+			    	if(answer){
+			    		window.location.href='unithotel/info/deleteAccount';
+			    	}
+			    	else{
+			    		e.preventDefault();
+			    	}
 				});
 			</script>
 			@endsection
