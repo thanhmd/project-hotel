@@ -187,6 +187,7 @@ class UnithotelController extends Controller
             "renew_password"          => "required|same:new_password",
 
         ],
+        
         [
             "new_password.min"         => "Mật khẩu mới phải có it nhất 3 kí tự",
             "new_password.max"         => "Mật khẩu mới phải có tối đa 32 kí tự",

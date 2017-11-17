@@ -27,7 +27,7 @@
                         <th>Địa chỉ</th>
                         <th>Mã các dịch vụ</th>
                         <th>Mã các loại phòng</th>
-                        <th>Hình ảnh chi tiết khách sạn</th>
+                        {{-- <th>Hình ảnh chi tiết khách sạn</th> --}}
                         <th>Duyệt khách sạn</th>
                     </tr>
                 </thead>
@@ -38,9 +38,7 @@
                         <td>
                             {{ $h->name }} <br>
                             <img src="upload/hinhkhachsan/{{ $h->image }}" alt="" style="width: 100px; height: 100px;">
-                            
                         </td>
-
                         <td>
                             <p>Người đại diện : {{ $h->user->name }}</p> 
                             <p>Số đt: {{ $h->user->sdt }}</p> 
@@ -64,12 +62,12 @@
                     <td>
                         {{ $h->listtyperoom }}
                     </td>
-                    <td>
+                    {{-- <td>
                           @foreach($hotelimgs as $l)
                           <img src="upload/hinhkschitiet/{{ $l->image }}" style="width: 50px;height: 50px;"><br>
                           @endforeach
 
-                    </td>
+                    </td> --}}
                   {{-- <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/admin/delete/{{ $a->id }}"> Delete</a></td> --}}
                     <td class="center">
                         @if($h->status == 0) <i class="fa fa-pencil fa-fw"></i> <a href="admin/hotel_contract/checkshowhotel/{{ $h->id }}">Duyệt khách sạn</a> 
