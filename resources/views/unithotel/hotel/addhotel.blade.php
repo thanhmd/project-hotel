@@ -42,6 +42,10 @@
                             <label>Ảnh đại diện</label>
                             <input type="file" class="form-control" name="image">
                         </div> <br>
+                        <div class="form-group">
+                            <label>Ảnh chi tiết</label>
+                            <input type="file" class="form-control" name="image_detail[]" multiple="">
+                        </div> <br>
                 	</div>
                 	<div class="addresshotel">
                 		<legend>Địa chỉ Khách Sạn</legend>
