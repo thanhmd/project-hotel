@@ -26,6 +26,10 @@
     <link href="css/my.css" rel="stylesheet">
     <!-- DataTables Responsive CSS -->
     <link href="admin_assets/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Merriweather|Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Rozha+One" rel="stylesheet">
 </head>
 
 <body>

@@ -58,7 +58,7 @@
     <script src="admin_assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
+    <script type="text/javascript">
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
                 responsive: true
@@ -66,8 +66,9 @@
     });
     </script>
     {{-- chen script --}}
+    @yield("css")
     @yield('script')
-
+    
 </body>
 
 </html>

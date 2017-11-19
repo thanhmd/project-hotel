@@ -1,0 +1,91 @@
+.titelhotel{
+	font-size: 22px;
+    font-family: Arial;
+    color: #86b817;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+.titleprovince{
+	color: #4790cd;
+	font-family: inherit;
+	font-size: 25px;
+	font-weight: 600;
+}
+.imghotelprovince {
+	width: 300px; height: 300px;background-color: pink;
+}
+.infohotel{
+	border: 1px solid #29ED37;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.imgstart{
+	width: 40px; 
+	height: 40px;
+}
+.sale {
+	position: relative;
+	display: inline-block;
+	background: orange;
+	color: white;
+	height: 50px;
+	width: 50px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 2.5rem;
+	/*margin: 45vh 45vw;*/
+	transform: rotate(-20deg);
+	animation: beat 1s ease infinite alternate;
+	&:before,
+	&:after {
+		content:"";
+		position: absolute;
+		background: inherit;
+		height: inherit;
+		width: inherit;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		transform: rotate(30deg);
+	}
+	&:after {
+		transform: rotate(60deg);
+	}
+}
+
+@keyframes beat {
+	from {	transform: rotate(-20deg) scale(1); }
+	to {	transform: rotate(-20deg) scale(1.1); }
+}
+.pricehotel{
+	text-align: center;
+}
+.price-old{
+	font-weight: 300;
+    text-decoration: line-through;
+    color: #000;
+}
+.price{
+	font-size: 30px;
+	color: #4caf50;
+	font-weight: 700;
+	box-sizing: border-box;
+
+}
+/*slide detail hotel*/
+#wowslider-container1{
+	margin-top: 100px;
+}
+/*end slide detail hotel*/
+.descriptionhotel{
+	margin-top: 50px;
+	text-align: justify;
+    color: #000;
+    font-size: 14px;
+}
+.dsloaiphong{
+	margin-top: 100px;
+}
+.nametyperoom{
+	text-align: center;
+}

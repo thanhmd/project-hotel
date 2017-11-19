@@ -6,66 +6,84 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Xin chào {{  Auth::user()->name }} <br>
-					<small>CẬP NHẬT LẠI THÔNG TIN KHÁCH SẠN CỦA QUÝ VỊ.</small>
+					<small>CẬP NHẬT LẠI THÔNG TIN CƠ BẢN KHÁCH SẠN CỦA QUÝ VỊ.</small>
 				</h1>
 			</div>
-                <form action="unithotel/hotel/post" method="POST" role="form">
+            @if(count($errors) >0 )
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $err)
+                {{ $err }} <br>
+                @endforeach
+            </div>
+            @endif
+            @if(session('thongbao'))
+            <div class="alert alert-success">
+                {{ session('thongbao') }}
+            </div>
+            @endif
+            <form action="unithotel/hotel/edit/{{$hotel->id}}" method="POST" role="form" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                	<div style="" class="infohotel">
-                		<legend>Thông Tin Cơ Bản</legend>
-                		<div class="form-group">
-                			<label for="">Tên chỗ nghĩ</label>
-                			<input type="text" class="form-control" id="" value="{{ $hotel->name }}">
-                		</div>
-                		<div class="form-group">
-                			<label for="">Số sao</label>
-                			<input type="text" class="form-control" id="" value="{{ $hotel->star }}">
-                		</div>
+                    <div style="" class="infohotel">
+                        <legend>Thông Tin Cơ Bản</legend>
                         <div class="form-group">
-                            <label for="">Mô tả</label>
-                            <textarea name="" id="" class="form-control" rows="5" required="required" value="{{ $hotel->description }}"></textarea>
+                            <label for="">Tên chỗ nghĩ</label>
+                            <input name="name" type="text" class="form-control" id="" value="{{$hotel->name}}" required="required">
                         </div>
-                		{{-- <div class="form-group">
-                			<label for="">Loại Phòng</label>
-                			<select class="form-control" name="province">
-                            <option value="">Phòng Thường</option>
-                            <option value="">Phòng Vip</option>
-                        </select>
-                		</div>
-                		<div class="form-group">
-                			<label for="">Tổng số phòng</label>
-                			<input type="text" class="form-control" id="" placeholder="10">
-                		</div> --}}
-                	</div>
-                	<div class="addresshotel">
-                		<legend>Địa chỉ Khách Sạn</legend>
-                		<div class="form-group">
-                			<label for="">Tỉnh/Thành Phố</label>
-                			<select class="form-control" name="province" id="provinceopt">
+                        <div class="form-group">
+                            <label for="">Số sao</label>
+                            <input name="star" type="number" class="form-control" id="" min="1" max="5" required="required" value="{{$hotel->star}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="textarea">Mô tả khách sạn</label>
+                            <textarea name="description" id="textarea" class="form-control" rows="5" required="required" >{{$hotel->description}}
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Ảnh đại diện</label>
+                            <input type="file" class="form-control" name="image">
+                        </div> <br>
+                    </div>
+                    <div class="addresshotel">
+                        <legend>Địa chỉ Khách Sạn</legend>
+                        <div class="form-group">
+                            <label for="">Tỉnh/Thành Phố</label>
+                            <select class="form-control" name="province" id="provinceopt">
                                 @foreach($province as $pr )
-                                <option value="{{ $pr->id }}">{{ $pr->name }}</option>
+                                <option
+                                @if($pr->id == $hotel->province_id)
+                                {{ 'selected' }}
+                                @endif
+                                value="{{ $pr->id }}" >
+                                    {{ $pr->name }}
+                                </option>
                                 @endforeach
                             </select>
-                		</div>
-                		<div class="form-group">
-                			<label for="">Quận/Huyện</label>
-                			<select class="form-control" name="option" id="districtopt">
-
+                        </div>
+                        <div class="form-group">
+                            <label for="">Quận/Huyện</label>
+                            <select class="form-control" name="district" id="districtopt">
+                                @foreach($district as $dt )
+                                <option
+                                @if($dt->id == $hotel->district_id)
+                                {{ 'selected' }}
+                                @endif
+                                value="{{ $dt->id }}" >
+                                    {{ $dt->name }}
+                                </option>
+                                @endforeach
                             </select>
-                		</div>
-                		<div class="form-group">
-                			<label for="">Địa chỉ chi tiết</label>
-                			<input type="text" class="form-control" id="" value="{{ $hotel->address_detail }}">
-                		</div>
-						{{-- <div class="form-group">
-                			<label for="">Dòng địa chỉ</label>
-                			<input type="text" class="form-control" id="" placeholder="Số Nhà, Tầng, Tòa nhà,vv...">
-                		</div> --}}
-                	</div>
-
-
-                	<center class="mycenter"><button type="submit" class="btn btn-primary tieptuc">Thêm </button></center>
-                	<div style="margin-top: 50px;"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Địa chỉ cho tiết</label>
+                            <input name="address_detail" type="text" class="form-control" id="" value="{{$hotel->address_detail}}" required="required">
+                        </div>
+                         <!-- <div class="form-group">
+                            <label for="">Dòng địa chỉ</label>
+                            <input type="text" class="form-control" id="" placeholder="Số Nhà, Tầng, Tòa nhà,vv...">
+                        </div>  -->
+                    </div>
+                    <center class="mycenter"><button type="submit" class="btn btn-primary tieptuc">Cập nhật </button></center>
+                    <div style="margin-top: 50px;"></div>
                 </form>
             </div>
             <!-- /.row -->
@@ -83,9 +101,6 @@
                 var select = $('#districtopt');
                 select.empty();
                 $.each(data,function(key, value) {
-                    // console.log(key);
-                    // console.log(value.id);
-                    // console.log(value.name);
                     select.append('<option value=' + value.id + '>' + value.name + '</option>');
                 });
             });

@@ -28,6 +28,11 @@
     padding: 50px 100px;
     border: 2px solid #003580;
 }
+.roomtype{
+    margin-top: 24px;
+    padding: 50px 100px;
+    border: 1px solid #003580;
+}
 .mycenter {
    	margin-top: 20px;
     display: grid;
@@ -52,4 +57,16 @@
     margin-top: 20px;
     margin-left: 50px;
     border: 3px solid #1DE14F;
+}
+.page-header{
+    font-family: 'Pacifico', cursive;
+}
+.noidungchuy{
+    font-family: 'Lobster', cursive;
+    color: red;
+}
+legend {
+    font-family: 'Oswald', sans-serif;
+    color: #3B2AC6;
+    font-weight: bold;
 }

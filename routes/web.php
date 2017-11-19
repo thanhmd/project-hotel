@@ -20,9 +20,9 @@
 //     });
 // });
 
-Route::get('home', function () {
-	return view('pages.home');
-});
+// Route::get('home', function () {
+// 	return view('pages.home');
+// });
 Route::get('register', function () {
 	return view('pages.register');
 });
@@ -112,7 +112,18 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('edit/{id}', 'Admin\RoomController@getEdit');
 		Route::post('edit/{id}', 'Admin\RoomController@postEdit');
 		Route::get('delete/{id}', 'Admin\RoomController@getDelete');
+	});
+	Route::group(['prefix' => 'hotel_contract'], function(){
+		Route::get('list', 'Admin\HotelController@getList');
+		Route::get('checkshowhotel/{id}', 'Admin\HotelController@getCheckhotel');
+		Route::post('checkshowhotel/{id}', 'Admin\HotelController@postCheckhotel');
 
+
+		Route::get('add', 'Admin\HotelController@getAdd');
+		Route::post('add', 'Admin\HotelController@postAdd');
+		Route::get('edit/{id}', 'Admin\HotelController@getEdit');
+		Route::post('edit/{id}', 'Admin\HotelController@postEdit');
+		Route::get('delete/{id}', 'Admin\HotelController@getDelete');
 	});
 });
 Route::group(['prefix' => 'unithotel'], function(){
@@ -128,6 +139,7 @@ Route::group(['prefix' => 'unithotel'], function(){
 		// Route::get('add', 'UnithotelController@getAddinfo');
 		// Route::get('edit', 'UnithotelController@getEditinfo');
 		// Route::post('edit/{id}', 'Admin\RoomController@postEdit');
+		//Route::get('delete'        ,   'UnithotelController@getDeleteAcount');
 	});
 	Route::group(['prefix' => 'hotel'], function(){
 		Route::get('list', 'UnithotelController@getListhotel');
@@ -136,23 +148,38 @@ Route::group(['prefix' => 'unithotel'], function(){
 		Route::get('edit/{id}', 'UnithotelController@getEdithotel');
 		Route::post('edit/{id}', 'UnithotelController@postEdithotel');
 		Route::get('delete/{id}', 'UnithotelController@getDeleteHotel');
+		Route::group(['prefix' => '{idhotel}/room'], function(){
+			Route::get('list', 'HotelRoomController@getList');
+			Route::get('add', 'HotelRoomController@getAdd');
+			Route::post('add', 'HotelRoomController@postAdd');
+			Route::get('edit/{idroom}', 'HotelRoomController@getEdit');
+			Route::post('edit/{idroom}', 'HotelRoomController@postEdit');
+			Route::get('delete/{idroom}', 'HotelRoomController@getDelete');
 	});
-	// Route::group(['prefix' => 'placeofthought'], function(){
-	// 	Route::get('add', 'UnithotelController@getPlaceofthought');
-	// 	Route::get('edit', 'UnithotelController@getPlaceofthought');
-	// });
-	// Route::group(['prefix' => 'room'], function(){
-	// 	Route::get('add', 'UnithotelController@getAddroom');
-	// 	Route::get('edit', 'UnithotelController@getAddinfo');
-	// });
+		Route::group(['prefix' => '{idhotel}/service'], function(){
+			Route::get('list', 'HotelServiceController@getList');
+			Route::get('add', 'HotelServiceController@getAdd');
+			Route::post('add', 'HotelServiceController@postAdd');
+			Route::get('edit/{idroom}', 'HotelServiceController@getEdit');
+			Route::post('edit/{idroom}', 'HotelServiceController@postEdit');
+			Route::get('delete/{idroom}', 'HotelServiceController@getDelete');
+	});
+	});
+	Route::group(['prefix' => 'ajax'], function(){
+		Route::get('district/{province_id}', 'AjaxController@getDistrict');
+	
+	});
 });
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => '/'], function(){
+		Route::get('', 'PagesController@getHome');
+		Route::get('listhotel/{province_id}', 'PagesController@getListhotelByprovince');
+		Route::get('detailhotel/{id}', 'PagesController@getDetailhotel');
+		Route::get('booking-room', 'PagesController@getBookingroom');
+		Route::post('booking-room', 'PagesController@postBookingroom');
+	});
 
 Route::get('unithotel/login', 'UnithotelController@getLogin');
 Route::post('unithotel/login', 'UnithotelController@postLogin');
-	// return view('unithotel.login_and_register_tabbed_form');
 Route::get('unithotel/register', 'UnithotelController@getRegister');
 Route::post('unithotel/register', 'UnithotelController@postRegister');
 Route::post('unithotel/logout', 'UnithotelController@getLogout');

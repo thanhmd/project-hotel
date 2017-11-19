@@ -20,6 +20,7 @@
                     <tr align="center">
                         <th>ID</th>
                         <th>Tỉnh/Thành phố</th>
+                        <th>Hình Ảnh</th>
                         <th>Xóa</th>
                         <th>Sửa</th>
                     </tr>
@@ -29,6 +30,7 @@
                         <tr class="odd gradeX" align="center">
                             <td>{{ $p->id }}</td>
                             <td>{{ $p->name }}</td>
+                            <td><img src="upload/hinhtinh/{{ $p->image }}" alt="" style="height: 100px; width: 100px"></td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/province/delete/{{ $p->id }}"> Delete</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/province/edit/{{ $p->id }}">Edit</a></td>
                         </tr>

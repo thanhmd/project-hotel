@@ -30,7 +30,10 @@
                         <label>Tỉnh/Thành Phố</label>
                         <input class="form-control" name="name" value="{{ $province->name }}"  />
                     </div>
-                    
+                    <div>
+                        <label>Ảnh đại diện</label>
+                        <input type="file" class="form-control" name="image">
+                    </div> <br>
                     <button type="submit" class="btn btn-default">Sửa Tỉnh/Thành Phố</button>
                     <button type="reset" class="btn btn-default">Reset</button>
                     <form>

@@ -20,6 +20,7 @@
                     <tr align="center">
                         <th>Mã Loại Phòng</th>
                         <th>Loại Phòng</th>
+                        {{-- <th>Đơn giá/đêm</th> --}}
                         <th>Xóa</th>
                         <th>Sửa</th>
                     </tr>
@@ -28,7 +29,12 @@
                     @foreach($typeroom as $tp )
                         <tr class="odd gradeX" align="center">
                             <td>{{ $tp->id }}</td>
-                            <td>{{ $tp->name }}</td>
+                            <td >
+                                {{ $tp->name }} <br>
+                                <img src="upload/hinhloaiphong/{{ $tp->image }}" alt="" style="width: 50px; height: 50px;">
+
+                            </td>
+                            {{-- <td>{{ $tp->price }}</td> --}}
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/typeroom/delete/{{ $tp->id }}"> Delete</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/typeroom/edit/{{ $tp->id }}">Edit</a></td>
                         </tr>

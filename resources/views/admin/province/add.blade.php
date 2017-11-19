@@ -11,7 +11,7 @@
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
-                
+
                 @if(count($errors) >0 )
                 <div class="alert alert-danger">
                     @foreach($errors->all() as $err)
@@ -31,14 +31,19 @@
                         <label>Tên Tỉnh/Thành Phố</label>
                         <input class="form-control" name="name" placeholder="Thêm Tỉnh/Thành phố" />
                     </div>
+                    <div>
+                        <label>Ảnh đại diện</label>
+                        <input type="file" class="form-control" name="image">
+                    </div> <br>
+                    
                     <button type="submit" class="btn btn-default">Thêm Tỉnh/Thành Phố</button>
                     <button type="reset" class="btn btn-default">Reset</button>
-                <form>
+                    <form>
+                    </div>
+                </div>
+                <!-- /.row -->
             </div>
-        </div>
-        <!-- /.row -->
-    </div>
             <!-- /.container-fluid -->
-</div>
-<!-- /#page-wrapper -->
-@endsection
+        </div>
+        <!-- /#page-wrapper -->
+        @endsection

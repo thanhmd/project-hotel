@@ -26,10 +26,17 @@
                     </li>
                 </ul>
             </li> --}}
-            <li>
+            {{-- <li>
                 <li>
                     <a href="admin/customer/list">
                         <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ ĐƠN VỊ KHÁCH SẠN
+                    </a>
+                </li>
+            </li> --}}
+            <li>
+                <li>
+                    <a href="admin/hotel_contract/list">
+                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ CÁC KHÁCH SẠN VÀ HỢP ĐỒNG
                     </a>
                 </li>
             </li>
@@ -37,13 +44,6 @@
                 <li>
                     <a href="admin/admin/list">
                         <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ NHÂN VIÊN
-                    </a>
-                </li>
-            </li>
-            <li>
-                <li>
-                    <a href="admin/admin/list">
-                        <span class="glyphicon glyphicon-indent-left" aria-hidden="true"></span>QUẢN LÍ HỢP ĐỒNG
                     </a>
                 </li>
             </li>

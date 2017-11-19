@@ -9,8 +9,11 @@ use Hash;
 use App\District;
 use App\Province;
 use App\Hotel;
-use App\Customer;
 use App\Room;
+use App\Service;
+use App\DetailHotelService;
+use App\DetailHotelRoom;
+
 class UnithotelController extends Controller
 {
     public function getAddinfo() {
@@ -85,12 +88,14 @@ class UnithotelController extends Controller
         $user->sdt      = $req->sdt;
         $user->cmnd_passport = $req->cmnd_passport;
         $user->address       = $req->address;
+
         $user->password      = Hash::make($req->password);
         // var_dump(Hash::make($req->password)); echo "<br/>";
         // var_dump($user->password); exit();
 
         //$user->password      = Hash::make($req->password);
         $user->level         = 1;
+        $user->status        = 1;
 
         $user->save();
         return redirect("unithotel/login")->with("thongbao1", " Đăng ký thành công ! ");
@@ -206,35 +211,149 @@ class UnithotelController extends Controller
 
     }
     public function getListhotel(){
-        $district = District::all();
-        $province = Province::all();
-        $hotel    = Hotel::all();
-        return view("unithotel.hotel.listhotel", ['district' => $district, 'province' => $province, 'hotel'=>$hotel]);
+        $hotels    = Hotel::all();
+        return view("unithotel.hotel.listhotel", ['hotels'=>$hotels]);
     }
     public function getAddhotel() {
-        $district = District::all();
         $province = Province::all();
-        $room = Room::all();
-        return view("unithotel.hotel.addhotel", ['district' => $district, 'province' => $province, 'room' => $room]);
+        $service  = Service::all();
+        $rooms = Room::all();
+        return view("unithotel.hotel.addhotel", ['province' => $province, 'rooms' => $rooms, 'service' => $service]);
     }
-    public function postAddhotel() {
-        echo "Test";
+    public function postAddhotel(Request $req) {
+        $this->validate($req, 
+        [
+            "address_detail" => "required",
+            "name"              => "required",
+            "province"          => "required",
+            "district"          => "required",
+        ],
+        [
+            "address_detail.required" => "Bạn chưa nhập địa chỉ chi tiết",
+            "name.required"     => "Bạn chưa nhập tên khách sạn",
+            "province.required"         => "Bạn chưa chọn tỉnh/thành phố",
+            "district.required"         =>  "Bạn chưa chọn quận/huyện",
+        ]);
+        // dd($req->cat); 
+        // echo $req->cat["values"];exit();
+
+        if($req->hasFile('image')){
+            $file = $req->file('image');
+           
+        $hotel                 = new Hotel();
+        
+        //dd($hotel->listservice); exit();
+        $hotel->name           = $req->name;
+        $hotel->star           = $req->star;
+        $hotel->description    = $req->description;
+        $hotel->address_detail = $req->address_detail;
+        $hotel->province_id    = $req->province;
+        $hotel->district_id    = $req->district;
+        $hotel->id_owner       = Auth::user()->id; 
+         $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
+                return redirect('unithotel/hotel/add')->with('thongbao', 'bạn chỉ được chọn file vơi đuôi png, jpg, jpeg');
+            }
+            $duoi  = $file->getClientOriginalName();
+            $image = str_random(4)."-".$duoi;
+            while(file_exists("upload/hinhkhachsan/".$image)){
+                $image = str_random(4)."-".$duoi;
+            }
+            $file->move("upload/hinhkhachsan", $image);
+            $hotel->image =$image;
+            
+        }else {
+            $hotel->image = "ko co hinh";
+        }
+        $hotel->save();
+
+
+        // Moi checkbox duoc chon tren giao dien se tao ra 1 chi tiet dich vu
+        foreach ($req->cat as $value) {
+            $detail_service = new DetailHotelService();
+            $detail_service -> hotel_id = $hotel->id;
+            $detail_service -> service_id = $value;
+            $detail_service -> price = 100000;
+            $detail_service -> save();
+        }
+
+        //Moi loai phong se tao ra nhieu phong
+        for ($i = 0; $i < count($req->typeroomid); $i++) {
+            /*Khoi tao doi tuong chi tiet phong*/
+            if($req->numbertyperoom[$i] != 0){ // chi tao ra cac phong khi so phong != 0
+                $numberObj = $req->numbertyperoom[$i]; //$numberObj : luu so phong cua moi loai
+                for($j = 0; $j < $numberObj; $j++){
+                    $detail_room = new DetailHotelRoom();
+                    $detail_room -> hotel_id = $hotel->id;
+                    $detail_room -> room_id = $req->typeroomid[$i];
+                    $detail_room -> name = $req->typeroomname[$i]; 
+                    $detail_room -> price = $req->pricetyperoom[$i];
+                    $detail_room -> save();
+                }
+            }
+        }
+        return redirect("unithotel/hotel/add")->with("thongbao", "Thêm khách sạn thành công !Tiếp tục thêm khách sạn hoặc chọn menu để chuyển tác vụ");
+        
     }
     public function getEdithotel($id) {
         $hotel = Hotel::find($id);
         $province = Province::all();
-        return view("unithotel.hotel.edithotel", ['province' => $province, 'hotel' => $hotel]);
+        $district = District::all();
+        return view("unithotel.hotel.edithotel", ['province' => $province, 'hotel' => $hotel, 'district' => $district]);
+    }
+    public function postEdithotel(Request $req, $id) {
+        $this->validate($req, 
+        [
+            "province"          => "required",
+            "district"          => "required",
+        ],
+        [
+            "province.required"         => "Bạn chưa chọn tỉnh/thành phố",
+            "district.required"         =>  "Bạn chưa chọn quận/huyện",
+        ]);
+
+        if($req->hasFile('image')){
+            $file = $req->file('image');
+
+            $hotel                 = Hotel::find($id);
+            $hotel->name           = $req->name;
+            $hotel->star           = $req->star;
+            $hotel->description    = $req->description;
+            $hotel->address_detail = $req->address_detail;
+            $hotel->province_id    = $req->province;
+            $hotel->district_id    = $req->district;
+
+            $duoi = $file->getClientOriginalExtension();
+            if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
+                return redirect('unithotel/hotel/add')->with('thongbao', 'bạn chỉ được chọn file vơi đuôi png, jpg, jpeg');
+            }
+            $duoi  = $file->getClientOriginalName();
+            $image = str_random(4)."-".$duoi;
+            while(file_exists("upload/hinhkhachsan/".$image)){
+                $image = str_random(4)."-".$duoi;
+            }
+            $file->move("upload/hinhkhachsan", $image);
+            $hotel->image =$image;
+            
+        }else {
+            $hotel->image = "ko co hinh";
+        }
+        $hotel->save();
+        return redirect('unithotel/hotel/edit/' . $id)->with('thongbao', 'Sửa thành công');
     }
     public function getDeleteHotel($id){
+        // Khi xoa khach san thi phai xoaa hinh, chi tiet dich vu va phong
         $hotel = Hotel::find($id);
+        $hotel -> images() -> delete();
+        $hotel -> service_detail() -> delete();
+        $hotel -> room_detail() -> delete();
         $hotel -> delete();
-        return redirect('unithotel/hotel/list')->with('thongbao', 'xóa thành công');
+        return redirect('unithotel/hotel/list')->with('thongbao', 'Xóa khách sạn thành công');
     }
     public function getDeleteAccount(){
-    $user = User::find(Auth::user()->id);
-    Auth::logout();
-    if ($user->delete())
-         return Redirect('unithotel/login')->with('thongbao', 'Tài khoản của bạn đã xóa!');
-
+        $user = User::find(Auth::user()->id);
+        Auth::logout();
+        if ($user->delete())
+             return Redirect('unithotel/login')->with('thongbao', 'Tài khoản của bạn đã xóa!');
     }
 }
