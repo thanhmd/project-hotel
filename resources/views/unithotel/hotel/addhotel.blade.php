@@ -44,7 +44,7 @@
                         </div> <br>
                         <div class="form-group">
                             <label>Ảnh chi tiết</label>
-                            <input type="file" class="form-control" name="image_detail[]" multiple="">
+                            <input type="file" class="form-control"  multiple="">
                         </div> <br>
                 	</div>
                 	<div class="addresshotel">

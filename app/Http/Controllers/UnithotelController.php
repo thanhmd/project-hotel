@@ -272,9 +272,10 @@ class UnithotelController extends Controller
         // Moi checkbox duoc chon tren giao dien se tao ra 1 chi tiet dich vu
         foreach ($req->cat as $value) {
             $detail_service = new DetailHotelService();
+            $detail_service -> name = Service::find($value)->name; // mac dinh ten dich vu rieng bang ten dich vu cua admin
             $detail_service -> hotel_id = $hotel->id;
             $detail_service -> service_id = $value;
-            $detail_service -> price = 100000;
+            $detail_service -> price = 100000; // gan cung tam thoi, hoac co the bo sung them o giao dien
             $detail_service -> save();
         }
 
