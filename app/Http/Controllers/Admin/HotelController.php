@@ -11,8 +11,8 @@ use App\Listimageshotel;
 class HotelController extends Controller
 {
     public function getList() {
-    		$hotel     = Hotel::all();
-    		$hotelimgs = Listimageshotel::all();
+    		$hotel        = Hotel::all();
+    		//$hotelimgs = Listimageshotel::all();
     		//dd($hotelimg); exit();
     		//$list_hotel_image = Listimageshotel::where('hotel_id', $hotel->id)->get();
     		return view("admin.hotel_contract.list", compact('hotel', 'hotelimgs'));
@@ -26,7 +26,7 @@ class HotelController extends Controller
     	$hotel = Hotel::find($id);
     	$this->validate($req,
             [
-                'canRes' =>'required',
+                'canRes'                 =>'required',
             ],
             [
                 "canRes.required"        => "Bạn chưa check ",

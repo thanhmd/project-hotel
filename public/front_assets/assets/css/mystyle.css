@@ -20,7 +20,7 @@
 	padding-bottom: 15px;
 }
 .imgstart{
-	width: 40px; 
+	width: 30px; 
 	height: 40px;
 }
 .sale {
@@ -88,4 +88,54 @@
 }
 .nametyperoom{
 	text-align: center;
+}
+.topkhuyenmai{
+	text-align: center;
+	/*background-color: #efefef;*/
+	font-family: 'Alfa Slab One', cursive;
+	font-size: 40px;
+	color: #F8BE0E;
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+aside.sticker {
+  margin: 20px;
+  font-size: 20px;
+  text-shadow: 0px 0px 3px rgba(0,0,0,0.4);
+  color: black;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  border-radius: 100%;
+  background: -webkit-linear-gradient(135deg, transparent 32px, #aaa 20px, #eee);
+  text-align: center;
+  padding-top: 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+aside.sticker:after {
+  content: " ";
+  display: block;
+  border-radius: 100%;
+  background: -webkit-linear-gradient(135deg, transparent 110px, #000 100px,#666 100px, #fff 85%);
+  box-shadow: -3px -3px 15px 1px rgba(0, 0, 0, 0.2);
+  width: 100px;
+  height: 100px;
+  margin-left: 56px;
+  margin-top: -4px;
+}
+
+aside.sticker.green {
+  color: white;
+  background: -webkit-linear-gradient(135deg, transparent 32px, #46a82d 20px, #70c757);
+}
+.salett{
+	color: red;
+	text-align: center;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 20px;
+}
+.saledate span{
+	color: #228754;
 }

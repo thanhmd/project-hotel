@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="front_assets/assets/theme/css/style.css">
   <link rel="stylesheet" href="front_assets/assets/mobirise-gallery/style.css">
   <link rel="stylesheet" href="front_assets/assets/mobirise/css/mbr-additional.css" type="text/css">
-  
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
   @yield('css')
   
 </head>
@@ -49,7 +49,6 @@
     <script src="front_assets/assets/mobirise-gallery/script.js"></script>
     <script src="front_assets/assets/formoid/formoid.min.js"></script>
   
-    
-  
+
 </body>
 </html>

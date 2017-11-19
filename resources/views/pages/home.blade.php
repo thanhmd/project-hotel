@@ -27,7 +27,8 @@
         </div>
     </div>
 </section>
- --}}
+--}}
+<div class="container topkhuyenmai">TÌM KHÁCH SẠN THEO ĐỊA ĐIỂM</div>
 <section class="mbr-gallery mbr-slider-carousel cid-qAywq4XQca" id="gallery1-c" data-rv-view="831">
     <div class="container">
         <div>
@@ -36,17 +37,17 @@
         			<div>
         				<div>
         					@foreach($province as $pr)
-	        					<div class="mbr-gallery-item mbr-gallery-item--p1" data-video-url="false" data-tags="Awesome">
-	        						<div href="#lb-gallery1-c" data-slide-to="0" data-toggle="modal">
-	        							<img src="upload/hinhtinh/{{ $pr->image }}" alt=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7"><a href="listhotel/{{ $pr->id }}">{{ $pr->name }}</a></span>
-	        						</div>
-	        					</div>
-        					@endforeach
-        				</div>
-        			</div>
-        			<div class="clearfix"></div>
-        		</div>
-        	</div><!-- Lightbox -->
+                          <div class="mbr-gallery-item mbr-gallery-item--p1" data-video-url="false" data-tags="Awesome">
+                           <div href="#lb-gallery1-c" data-slide-to="0" data-toggle="modal">
+                            <img src="upload/hinhtinh/{{ $pr->image }}" alt=""><span class="icon-focus"></span><span class="mbr-gallery-title mbr-fonts-style display-7"><a href="listhotel/{{ $pr->id }}">{{ $pr->name }}</a></span>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div><!-- Lightbox -->
         	{{-- <div data-app-prevent-settings="" class="mbr-slider modal fade carousel slide" tabindex="-1" data-keyboard="true" data-interval="false" id="lb-gallery1-c">
         		<div class="modal-dialog">
         			<div class="modal-content">
@@ -94,7 +95,7 @@
 
 
 <section class="mbr-section article content11 cid-qAywAvQ1hz" id="content11-e" data-rv-view="878">
-     
+
 
     <div class="container">
         <div class="media-container-row">
@@ -110,9 +111,6 @@
 </section>
 
 <section class="mbr-section content8 cid-qAywCyYbRR" id="content8-f" data-rv-view="879">
-
-    
-
     <div class="container">
         <div class="media-container-row title">
             <div class="col-12 col-md-8">
@@ -124,185 +122,89 @@
         </div>
     </div>
 </section>
-
+<div class="container topkhuyenmai">TOP KHÁCH SẠN KHUYẾN MÃI</div>
 <section class="features3 cid-qAywEk54Xf" id="features3-g" data-rv-view="880">
-
-    
-
-    
     <div class="container">
         <div class="media-container-row">
+            @foreach($hotel as $h)
+            @if($h->sale >0 )
             <div class="card p-3 col-12 col-md-6 col-lg-4">
                 <div class="card-wrapper">
                     <div class="card-img">
-                        <img src="front_assets/assets/images/01.jpg" alt="Mobirise" media-simple="true">
+                        <img src="upload/hinhkhachsan/{{ $h->image }}" alt="Mobirise" media-simple="true">
                     </div>
                     <div class="card-box">
                         <h4 class="card-title mbr-fonts-style display-7">
-                            No Coding
+                            {{ $h->name }}
                         </h4>
+                        @for ($i = 0; $i < $h->start ; $i++)
+                        <img src="front_assets/image/christmas_star.png" alt="" class="imgstart">
+                        @endfor
+                        <h4 class="salett">{{ $h->sale }}%</h4>
+                        <h5 class="saledate">Từ <span>{{ $h->date_begin_sale    }}</span>đến <span>{{ $h->date_finish_sale }}</span></h5>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            Mobirise is an easy website builder - just drop site elements to your page, add content and style it to look the way you like.
+                            {{  mb_substr($h->description,0,80,'UTF-8')
+                            }}...
                         </p>
                     </div>
                     <div class="mbr-section-btn text-center">
-                        <a href="https://mobirise.com" class="btn btn-primary display-4">
-                            Learn More
+                        <a href="detailhotel/{{ $h->id }}" class="btn btn-primary display-4">
+                            XEM THÊM
                         </a>
                     </div>
                 </div>
             </div>
+            @endif
+            @endforeach
 
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="front_assets/assets/images/02.jpg" alt="Mobirise" media-simple="true">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style display-7">
-                            Mobile Friendly
-                        </h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            All sites you make with Mobirise are mobile-friendly. You don't have to create a special mobile version of your site.
-                        </p>
-                    </div>
-                    <div class="mbr-section-btn text-center">
-                        <a href="https://mobirise.com" class="btn btn-primary display-4">
-                            Learn More
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card p-3 col-12 col-md-6 col-lg-4">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="front_assets/assets/images/03.jpg" alt="Mobirise" media-simple="true">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style display-7">
-                            Unique Styles
-                        </h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            Mobirise offers many site blocks in several themes, and though these blocks are pre-made, they are flexible.
-                        </p>
-                    </div>
-                    <div class="mbr-section-btn text-center">
-                        <a href="https://mobirise.com" class="btn btn-primary display-4">
-                            Learn More
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            
         </div>
+    </div>
+    <div class="container">
+        <div class="row" style="text-align: center;">{{$hotel->links()}}</div>
     </div>
 </section>
 
-<section class="features3 cid-qAywFfIpdd" id="features17-h" data-rv-view="883">
-    
-    
-
-    
+{{-- <section class="features3 cid-qAywFfIpdd" id="features17-h" data-rv-view="883">
     <div class="container-fluid">
         <div class="media-container-row">
+            @foreach($hotel as $h)
+            @if($h->sale >0 )
             <div class="card p-3 col-12 col-md-6 col-lg-2">
                 <div class="card-wrapper">
                     <div class="card-img">
-                        <img src="front_assets/assets/images/01.jpg" alt="Mobirise" media-simple="true">
+                        <img src="upload/hinhkhachsan/{{ $h->image }}" alt="Mobirise" media-simple="true">
                     </div>
                     <div class="card-box">
                         <h4 class="card-title pb-3 mbr-fonts-style display-7">
-                            No Coding
+                            {{ $h->name }} <br>
                         </h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            Mobirise is an easy website builder - just drop site elements to your page, add content and style it to look the way you like.
-                        </p>
-                    </div>
-                </div>
-            </div>
+                        @for ($i = 0; $i < $h->start ; $i++)
 
-            <div class="card p-3 col-12 col-md-6 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="front_assets/assets/images/02.jpg" alt="Mobirise" media-simple="true">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title pb-3 mbr-fonts-style display-7">
-                            Mobile Friendly
-                        </h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            All sites you make with Mobirise are mobile-friendly. You don't have to create a special mobile version of your site.
-                        </p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="card p-3 col-12 col-md-6 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="front_assets/assets/images/03.jpg" alt="Mobirise" media-simple="true">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title pb-3 mbr-fonts-style display-7">
-                            Unique Styles
-                        </h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            Mobirise offers many site blocks in several themes, and though these blocks are pre-made, they are flexible.
-                        </p>
-                    </div>
-                </div>
-            </div>
+                        <img src="front_assets/image/christmas_star.png" alt="" class="imgstart">
 
-            <div class="card p-3 col-12 col-md-6 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="front_assets/assets/images/04.jpg" alt="Mobirise" media-simple="true">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title pb-3 mbr-fonts-style display-7">
-                            Unlimited Sites
-                        </h4>
+                        @endfor
+                        <h4 class="salett">{{ $h->sale }}%</h4>
+                        <h5 class="saledate">Từ <span>{{ $h->date_begin_sale    }}</span>đến <span>{{ $h->date_finish_sale }}</span></h5>
                         <p class="mbr-text mbr-fonts-style display-7">
-                           Mobirise gives you the freedom to develop as many websites as you like given the fact that it is a desktop app.
-                        </p>
-                    </div>
+                            {{  mb_substr($h->description,0,80,'UTF-8')
+                        }}...
+                    </p>
+                    <button type="button" class="btn btn-info">XEM</button>
                 </div>
-            </div>
-            <div class="card p-3 col-12 col-md-6 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="front_assets/assets/images/01.jpg" alt="Mobirise" media-simple="true">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title pb-3 mbr-fonts-style display-7">
-                            No Coding
-                        </h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            Mobirise is an easy website builder - just drop site elements to your page, add content and style it to look the way you like.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="card p-3 col-12 col-md-6 col-lg-2">
-                <div class="card-wrapper">
-                    <div class="card-img">
-                        <img src="front_assets/assets/images/02.jpg" alt="Mobirise" media-simple="true">
-                    </div>
-                    <div class="card-box">
-                        <h4 class="card-title pb-3 mbr-fonts-style display-7">
-                            Mobile Friendly
-                        </h4>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            All sites you make with Mobirise are mobile-friendly. You don't have to create a special mobile version of your site.
-                        </p>
-                    </div>
-                </div>
+                
             </div>
         </div>
+        @endif
+        @endforeach
     </div>
-</section>
+    <div class="container">
+        <div class="row" style="background-color: #51E8DC">{{$hotel->links()}}</div>
+    </div>
+</div>
+</section> --}}
 
-
+@section("css")
+<link rel="stylesheet" href="front_assets/assets/css/mystyle.css">
+@stop
 @endsection
