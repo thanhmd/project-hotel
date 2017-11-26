@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label class="checkbox-inline" for="checkboxes-0">
                             <input type="checkbox" name="canRes" id="checkboxes-0" value="1">
-                            Đồng ý duyệt
+                            Đồng ý duyệt khách sạn này
                         </label>
                     </div>
                     <button type="submit" class="btn btn-default">Duyệt</button>

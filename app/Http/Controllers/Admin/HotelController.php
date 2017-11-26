@@ -5,19 +5,31 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Hotel;
-use App\Contract;
 use App\Listimageshotel;
+use App\DetailHotelService;
+use App\DetailHotelTyperoom;
+use App\Contract;
 //use Illuminate\Support\Facades\Auth; // thư viện login
 class HotelController extends Controller
 {
     public function getList() {
     		$hotel        = Hotel::all();
     		//$hotelimgs = Listimageshotel::all();
-    		//dd($hotelimg); exit();
     		//$list_hotel_image = Listimageshotel::where('hotel_id', $hotel->id)->get();
-    		return view("admin.hotel_contract.list", compact('hotel', 'hotelimgs'));
+            $service      = DetailHotelService::all();
+            $contract     = Contract::all();
+            $typeroom     = DetailHotelTyperoom::all();
+    		return view("admin.hotel_contract.list", compact('hotel', 'hotelimgs','service', 'typeroom', 'contract'));
     }
-    
+    public function getListnotcheck() {
+            $hotel        = Hotel::all();
+            //$hotelimgs = Listimageshotel::all();
+            //dd($hotelimg); exit();
+            //$list_hotel_image = Listimageshotel::where('hotel_id', $hotel->id)->get();
+            $service      = DetailHotelService::all();
+            $typeroom     = DetailHotelTyperoom::all();
+            return view("admin.hotel_contract.list-hotel-check-yet", compact('hotel', 'hotelimgs','service', 'typeroom'));
+    }
     public function getCheckhotel($id){
     	$hotel = Hotel::find($id);
     	return view("admin.hotel_contract.check_hotel", compact('hotel'));
