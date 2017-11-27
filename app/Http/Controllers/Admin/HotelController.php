@@ -19,16 +19,18 @@ class HotelController extends Controller
             $service      = DetailHotelService::all();
             $contract     = Contract::all();
             $typeroom     = DetailHotelTyperoom::all();
+
     		return view("admin.hotel_contract.list", compact('hotel', 'hotelimgs','service', 'typeroom', 'contract'));
     }
     public function getListnotcheck() {
-            $hotel        = Hotel::all();
+            $hotel         = Hotel::all();
+            $hotel1        = Hotel::where('status', 0)->count();
             //$hotelimgs = Listimageshotel::all();
-            //dd($hotelimg); exit();
+            //dd($hotel1); 
             //$list_hotel_image = Listimageshotel::where('hotel_id', $hotel->id)->get();
             $service      = DetailHotelService::all();
             $typeroom     = DetailHotelTyperoom::all();
-            return view("admin.hotel_contract.list-hotel-check-yet", compact('hotel', 'hotelimgs','service', 'typeroom'));
+            return view("admin.hotel_contract.list-hotel-check-yet", compact('hotel', 'hotelimgs','service', 'typeroom', 'hotel1'));
     }
     public function getCheckhotel($id){
     	$hotel = Hotel::find($id);

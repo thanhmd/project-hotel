@@ -91,13 +91,9 @@
         </li>
         <li>
             {{-- Quản lí tỉnh/ thành phố --}}
-            <a href="admin/service/list">
+            {{-- <a href="admin/service/list">
                 <i class="fa fa-calendar"></i> <span>Quản lí Khách Sạn</span>
-                {{-- <span class="pull-right-container">
-                  <small class="label pull-right bg-red">3</small>
-                  <small class="label pull-right bg-blue">17</small>
-                </span> --}}
-            </a>
+            </a> --}}
         </li>
         <li class="treeview">
           <a href="#">
@@ -110,7 +106,11 @@
             <li><a href="admin/hotel_contract/list"><i class="fa fa-circle-o"></i> Khách Sạn Đã Duyệt</a></li>
             <li><a href="admin/hotel_contract/list-not-ckect"><i class="fa fa-circle-o"></i> Khách Sạn Chưa Duyệt
                 <span class="pull-right-container">
-                    <small class="label pull-right bg-yellow">12</small>
+                    <small class="label pull-right bg-yellow">
+                        @if(isset($hotel1))
+                            {{$hotel1}}
+                        @endif
+                    </small>
                 </span>
             </a>
                 

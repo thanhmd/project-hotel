@@ -116,12 +116,7 @@ Route::group(['prefix' 	   => 'admin'], function(){
 		Route::get('delete/{id}', 'Admin\HotelController@getDelete');
 	});
 	Route::group(['prefix' => 'contract'], function(){
-		
 		Route::get('list', 'Admin\ContractController@getList');
-		Route::get('list-not-ckect', 'Admin\ContractController@getListnotcheck');
-		Route::get('checkshowhotel/{id}', 'Admin\ContractController@getCheckhotel');
-		Route::post('checkshowhotel/{id}', 'Admin\ContractController@postCheckhotel');
-
 		Route::get('add', 'Admin\ContractController@getAdd');
 		Route::post('add', 'Admin\ContractController@postAdd');
 		Route::get('edit/{id}', 'Admin\ContractController@getEdit');

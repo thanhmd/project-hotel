@@ -58,7 +58,7 @@
                 </tbody>
               </table>
             </div>
-            <a class="btn btn-lg btn-info btnprovinceadd" href="" role="button">Thêm HỢP ĐỒNG</a>
+            <a class="btn btn-lg btn-info btnprovinceadd" href="admin/contract/add" role="button">Thêm HỢP ĐỒNG</a>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
