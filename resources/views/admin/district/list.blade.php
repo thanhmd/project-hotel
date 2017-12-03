@@ -45,7 +45,6 @@
                 </tbody>
             </table>
             <a class="btn btn-lg btn-info btnprovinceadd" href="admin/district/add" role="button">Thêm Quận/Huyện</a>
-            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Quận/Huyện</a>
         </div>
         <!-- /.row -->
     </div>
