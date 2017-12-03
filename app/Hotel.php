@@ -25,13 +25,11 @@ class Hotel extends Model
     public function service_detail() {
         return $this->hasMany('App\DetailHotelService', 'hotel_id', 'id');
     }
-    public function room_detail() {
-        return $this->hasMany('App\DetailHotelRoom', 'hotel_id', 'id');
+    public function typeroom_detail() {
+        return $this->hasMany('App\DetailHotelTyperoom', 'hotel_id', 'id');
     }
-
-
-    public function typeroom() {
-        return $this->belongsToMany('App\Typeroom', 'detail_hotel_typeroom', 'hotel_id', 'typeroom_id');
+    public function contract() {
+        return $this->hasMany('App\Contract', 'hotel_id', 'id');
     }
 
     // public function list_image(){

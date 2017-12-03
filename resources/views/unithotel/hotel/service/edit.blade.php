@@ -23,12 +23,12 @@
             @endif
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
-                <form action="unithotel/hotel/{{$hotel_service->hotel_id}}/service/edit/{{$hotel_service->id}}" method="POST">
+                <form action="unithotel/hotel/{{$hotel_service->hotel_id}}/detail/service/edit/{{$hotel_service->id}}" method="POST">
                     <label>Loại dịch vụ</label>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <select class="form-control" name="service">
                         @foreach($services as $service)
-                        <option 
+                        <option
                         @if($hotel_service->service_id == $service->id)
                         {{ 'selected' }}
                         @endif

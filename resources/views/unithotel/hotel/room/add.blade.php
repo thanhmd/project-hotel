@@ -23,14 +23,14 @@
             </div>
             @endif
             <div class="col-lg-7" style="padding-bottom:120px">
-                
-                <form action="unithotel/hotel/{{$hotel->id}}/room/add" method="POST">
+
+                <form action="unithotel/hotel/{{$hotel->id}}/detail/room/add" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label>Loại Phòng</label>
-                        <select class="form-control" name="room">
-                            @foreach($rooms as $room )
-                            <option value="{{ $room->id }}">{{ $room->name }}</option>
+                        <select class="form-control" name="typeroom">
+                            @foreach($typerooms as $tr )
+                            <option value="{{ $tr->id }}">{{ $tr->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -51,6 +51,10 @@
                         <label class="radio-inline">
                             <input name="status" value="1" type="radio">Có Khách
                         </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Sức chứa</label>
+                        <input class="form-control" type="number" min="0" name="capacity" placeholder="Nhập số người" />
                     </div>
 
                     <button type="submit" class="btn btn-default">Thêm Phòng</button>

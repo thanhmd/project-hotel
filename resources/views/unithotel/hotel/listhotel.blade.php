@@ -1,6 +1,6 @@
 @extends("unithotel.layout.index")
 @section("content")
-	
+
 <!-- Page Content -->
 <div id="page-wrapper">
     <div class="container-fluid">
@@ -30,15 +30,17 @@
                         <th>Tên Khách Sạn</th>
                         <th>Số Sao</th>
                         <th>Giới Thiệu</th>
-                        <th>Địa Chỉ</th>
                         <th>TP/Tỉnh</th>
                         <th>Quận/Huyện</th>
+                        <th>Địa Chỉ</th>
                         <th>Hình Đại Diện</th>
-                        <th>Slide Ảnh</th>
+                        <!-- <th>Slide Ảnh</th>
                         <th>Danh mục phòng</th>
-                        <th>Danh mục dịch vụ</th>
-                        <th>Xóa khách sạn</th>
-                        <th>Sửa khách sạn</th>
+                        <th>Danh mục dịch vụ</th> -->
+                        <th>Tình trạng hợp đồng</th>
+                        <th>Chi tiết</th>
+                        <th>Xóa</th>
+                        <th>Sửa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,16 +48,49 @@
                     <tr class="odd gradeX" align="center">
                         <td>{{ $h->id }}</td>
                         <td>{{ $h->name }}</td>
-                        <td>{{ $h->star}}</td>
-                        <td>{{ $h->description}}</td>
-                        <td>{{ $h->address_detail }}</td>
+                        <td>{{ $h->star }}</td>
+                        <td>{{ UnitHotel::readMoreHelper( $h->description) }}
+                            <a href="#" data-toggle="modal" data-target="#descriptionModal">
+                              ... Xem tiếp
+                            </a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Giới thiệu</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    {{$h->description}}
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </td>
                         <td>{{ $h->province->name }}</td>
                         <td>{{ $h->district->name }}</td>
+                        <td>{{ $h->address_detail }}</td>
                         <td> <img style="width: 186px" src="upload/hinhkhachsan/{{ $h->image }}" class="img-responsive" alt="Image"></td>
-                        <td class="center btnListImage"><i class="glyphicon glyphicon-list-alt"></i><a href="#"> Xem</a></td>
-                        <td class="center btnListRoom"><i class="glyphicon glyphicon-list-alt"></i><a href="unithotel/hotel/{{ $h->id }}/room/list"> Xem</a></td>
-                        <td class="center btnListService"><i class="glyphicon glyphicon-list-alt"></i><a href="unithotel/hotel/{{ $h->id }}/service/list"> Xem</a></td>
+
+                        <!-- <td class="center btnListImage"><i class="glyphicon glyphicon-list-alt"></i><a href="#"> Xem</a></td>
+
+                        <td class="center btnListRoom"><i class="glyphicon glyphicon-list-alt"></i><a href="unithotel/hotel/{{ $h->id }}/detail/room/list"> Xem</a></td>
+
+                        <td class="center btnListService"><i class="glyphicon glyphicon-list-alt"></i><a href="unithotel/hotel/{{ $h->id }}/detail/service/list"> Xem</a></td> -->
+
+                        <td>{{"Đã duyệt"}}</td>
+
+                        <td class="center btnDetail"><i class="glyphicon glyphicon-list-alt"></i><a href="unithotel/hotel/{{$h->id}}/detail"> Xem chi tiết</a></td>
+
                         <td class="center btnDeleteKs"><i class="glyphicon glyphicon-remove"></i><a href="unithotel/hotel/delete/{{ $h->id }}"> Xóa</a></td>
+
                         <td class="center"><i class="glyphicon glyphicon-edit"></i><a href="unithotel/hotel/edit/{{ $h->id }}"> Sửa</a></td>
 
                     </tr>

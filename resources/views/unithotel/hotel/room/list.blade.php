@@ -30,29 +30,31 @@
                         <th>Tình Trạng</th>
                         <th>Đơn Gía</th>
                         <th>Loại Phòng</th>
+                        <th>Sức chứa (người)</th>
                         <th>Sửa</th>
                         <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($rooms as $r)
+                    @foreach($detail_typerooms as $detail_tr)
                     <tr class="odd gradeX" align="center">
-                        <td>{{ $r->id }}</td>
-                        <td>{{ $r->name }}</td>
+                        <td>{{ $detail_tr->id }}</td>
+                        <td>{{ $detail_tr->name }}</td>
                             <td>
-                                @if($r->status==1) {{ "Có khách" }}
+                                @if($detail_tr->status==1) {{ "Có khách" }}
                                 @else {{ "Trống" }}
                                 @endif
                             </td>
-                        <td>{{ $r->price }} VNĐ</td>
-                        <td>{{ $r->room->name }}</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="unithotel/hotel/{{$r->hotel_id}}/room/edit/{{$r->id}}"> Edit</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="unithotel/hotel/{{$r->hotel_id}}/room/delete/{{$r->id}}">Delete</a></td>
+                        <td>{{ $detail_tr->price }} VNĐ</td>
+                        <td>{{ $detail_tr->type_room->name }}</td>
+                        <td>{{ $detail_tr->maxpeople }}</td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="unithotel/hotel/{{$detail_tr->hotel_id}}/detail/room/edit/{{$detail_tr->id}}"> Edit</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="unithotel/hotel/{{$detail_tr->hotel_id}}/detail/room/delete/{{$detail_tr->id}}">Delete</a></td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/hotel/{{$hotel->id}}/room/add" role="button">Thêm Phòng</a>
+            <a class="btn btn-lg btn-info" href="unithotel/hotel/{{$hotel->id}}/detail/room/add" role="button">Thêm Phòng</a>
             <a class="btn btn-lg btn-info" href="#" role="button">Download Danh Sách Phòng</a>
         </div>
         <!-- /.row -->

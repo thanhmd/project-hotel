@@ -64,7 +64,7 @@ Route::group(['prefix' 	   => 'admin'], function(){
 		Route::get('edit/{id}', 'Admin\TypeserviceController@getEdit');
 		Route::post('edit/{id}', 'Admin\TypeserviceController@postEdit');
 		Route::get('delete/{id}', 'Admin\TypeserviceController@getDelete');
-		
+
 	});
 	Route::group(['prefix' => 'service'], function(){
 		Route::get('list', 'Admin\ServiceController@getList');
@@ -136,7 +136,16 @@ Route::group(['prefix' => 'unithotel'], function(){
 		Route::get('edit/{id}', 'UnithotelController@getEdithotel');
 		Route::post('edit/{id}', 'UnithotelController@postEdithotel');
 		Route::get('delete/{id}', 'UnithotelController@getDeleteHotel');
-		Route::group(['prefix' => '{idhotel}/room'], function(){
+		Route::group(['prefix' => '{idhotel}/detail'], function(){
+			// Route::get('list', 'HotelRoomController@getList');
+			// Route::get('add', 'HotelRoomController@getAdd');
+			// Route::post('add', 'HotelRoomController@postAdd');
+			// Route::get('edit/{idroom}', 'HotelRoomController@getEdit');
+			// Route::post('edit/{idroom}', 'HotelRoomController@postEdit');
+			// Route::get('delete/{idroom}', 'HotelRoomController@getDelete');
+			Route::get('', 'HotelDetailController@getDetail');
+
+			Route::group(['prefix' => 'room'], function(){
 			Route::get('list', 'HotelRoomController@getList');
 			Route::get('add', 'HotelRoomController@getAdd');
 			Route::post('add', 'HotelRoomController@postAdd');
@@ -144,7 +153,7 @@ Route::group(['prefix' => 'unithotel'], function(){
 			Route::post('edit/{idroom}', 'HotelRoomController@postEdit');
 			Route::get('delete/{idroom}', 'HotelRoomController@getDelete');
 	});
-		Route::group(['prefix' => '{idhotel}/service'], function(){
+		Route::group(['prefix' => 'service'], function(){
 			Route::get('list', 'HotelServiceController@getList');
 			Route::get('add', 'HotelServiceController@getAdd');
 			Route::post('add', 'HotelServiceController@postAdd');
@@ -152,6 +161,8 @@ Route::group(['prefix' => 'unithotel'], function(){
 			Route::post('edit/{idroom}', 'HotelServiceController@postEdit');
 			Route::get('delete/{idroom}', 'HotelServiceController@getDelete');
 	});
+	});
+
 	});
 	Route::group(['prefix' => 'ajax'], function(){
 		Route::get('district/{province_id}', 'AjaxController@getDistrict');
@@ -165,7 +176,7 @@ Route::group(['prefix' => '/'], function(){
 	Route::get('booking-room',            'PagesController@getBookingroom');
 	Route::post('booking-room',           'PagesController@postBookingroom');
 	Route::post('mail/xuli', 'PagesController@xuli');
-	
+
 });
 
 Route::get('unithotel/login', 'UnithotelController@getLogin');

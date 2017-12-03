@@ -40,13 +40,13 @@
                         <td>{{ $hotel_service->name }}</td>
                         <td>{{ $hotel_service->price }} VNĐ</td>
                         <td>{{ $hotel_service->service->name }}</td>
-                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="unithotel/hotel/{{$hotel_service->hotel_id}}/service/edit/{{$hotel_service->id}}"> Edit</a></td>
-                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="unithotel/hotel/{{$hotel_service->hotel_id}}/service/delete/{{$hotel_service->id}}">Delete</a></td>
+                        <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="unithotel/hotel/{{$hotel_service->hotel_id}}/detail/service/edit/{{$hotel_service->id}}"> Edit</a></td>
+                        <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="unithotel/hotel/{{$hotel_service->hotel_id}}/detail/service/delete/{{$hotel_service->id}}">Delete</a></td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/hotel/{{$hotel->id}}/service/add" role="button">Thêm Dịch Vụ</a>
+            <a class="btn btn-lg btn-info btnprovinceadd" href="unithotel/hotel/{{$hotel->id}}/detail/service/add" role="button">Thêm Dịch Vụ</a>
             <a class="btn btn-lg btn-info" href="#" role="button">Download Danh Sách Dịch Vụ</a>
         </div>
         <!-- /.row -->

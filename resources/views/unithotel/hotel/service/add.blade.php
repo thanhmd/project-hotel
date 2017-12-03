@@ -23,8 +23,8 @@
             </div>
             @endif
             <div class="col-lg-7" style="padding-bottom:120px">
-                
-                <form action="unithotel/hotel/{{$hotel->id}}/service/add" method="POST">
+
+                <form action="unithotel/hotel/{{$hotel->id}}/detail/service/add" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label>Loại Dịch Vụ</label>
@@ -43,7 +43,7 @@
                         <label>Giá</label>
                         <input class="form-control" type="number" min="0" name="price" placeholder="Nhập giá dịch vụ" />
                     </div>
-                    
+
 
                     <button type="submit" class="btn btn-default">Thêm Dịch Vụ</button>
                     <button type="reset" class="btn btn-default">Reset</button>

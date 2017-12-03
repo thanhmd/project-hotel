@@ -14,11 +14,11 @@ class HotelServiceController extends Controller
         $hotel_services = $hotel->service_detail()->get();
         return view("unithotel.hotel.service.list", ['hotel' => $hotel, 'hotel_services' => $hotel_services]);
     }
-    
+
     public function getDelete($idhotel, $idservice) {
         $hotel_service = DetailHotelService::find($idservice);
         $hotel_service -> delete();
-        return redirect('unithotel/hotel/' .  $idhotel . '/service/list')->with('thongbao', 'xóa thành công');
+        return redirect('unithotel/hotel/' .  $idhotel . '/detail/service/list')->with('thongbao', 'xóa thành công');
     }
 
     public function getAdd($idhotel)
@@ -47,7 +47,7 @@ class HotelServiceController extends Controller
         $hotel_service->price       = $req->price;
         $hotel_service->hotel_id      = $idhotel;
         $hotel_service->save();
-        return redirect('unithotel/hotel/' .  $idhotel . '/service/list')->with("thongbao", "Thêm thành công ! ");
+        return redirect('unithotel/hotel/' .  $idhotel . '/detail/service/list')->with("thongbao", "Thêm thành công ! ");
     }
 
     public function getEdit($idhotel, $idservice)
@@ -74,6 +74,6 @@ class HotelServiceController extends Controller
         $hotel_service->service_id   = $req->service;
         $hotel_service->price = $req->price;
         $hotel_service->save();
-        return redirect('unithotel/hotel/' .  $hotel_service->hotel_id . '/service/list')->with('thongbao', 'Sửa thành công');
+        return redirect('unithotel/hotel/' .  $hotel_service->hotel_id . '/detail/service/list')->with('thongbao', 'Sửa thành công');
     }
 }
