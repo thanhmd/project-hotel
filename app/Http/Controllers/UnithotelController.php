@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // thư viện login
 use App\User;
+use App\Customer;
 use Hash;
 use App\District;
 use App\Province;
@@ -212,7 +213,8 @@ class UnithotelController extends Controller
 
     }
     public function getListhotel(){
-        $hotels    = Hotel::all();
+        $customer = Customer::find(Auth::user()->id);
+        $hotels    = $customer->hotel()->get();
         return view("unithotel.hotel.listhotel", ['hotels'=>$hotels]);
     }
     public function getAddhotel() {
@@ -281,7 +283,7 @@ class UnithotelController extends Controller
 
         for ($i = 0; $i < count($req->serviceid); $i++) {
             /*Khoi tao doi tuong chi tiet phong*/
-            
+
             $detail_service = new DetailHotelService();
              $detail_service -> name = $req->nameservice[$i]; // mac dinh ten dich vu rieng bang ten dich vu cua admin
              $detail_service -> hotel_id = $hotel->id;
