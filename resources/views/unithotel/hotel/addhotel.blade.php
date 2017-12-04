@@ -91,7 +91,7 @@
                             </div> <br>
                             <div class="form-group">
                                 <label>Ảnh chi tiết</label>
-                                <input type="file" class="form-control"  multiple="">
+                                <input type="file" class="form-control"  multiple="" name="detailpics[]">
                             </div> <br>
                     	</div>
                     	<div class="addresshotel">
