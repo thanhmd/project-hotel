@@ -6,12 +6,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Thêm
-                    <small>Nhân Viên</small>
+                    <small>Hợp Đồng</small>
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
-                
+
                 @if(count($errors) >0 )
                 <div class="alert alert-danger">
                     @foreach($errors->all() as $err)
@@ -25,45 +25,62 @@
                 </div>
                 @endif
 
-                <form action="admin/admin/add" method="POST">
+                <form action="admin/province/add" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <label>Họ Và Tên</label>
-                        <input class="form-control" name="name" placeholder="Họ và Tên" />
+                        <label>Tên Hợp Đồng</label>
+                        <input class="form-control" name="name" placeholder="Tên Hợp Đồng" />
                     </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email"  class="form-control" name="email" placeholder="Nhập địa chỉ email" />
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" />
-                    </div>
-                    <div class="form-group">
-                        <label>Nhập lại Password</label>
-                        <input type="password" class="form-control" name="re_password" placeholder="Nhập lại mật khẩu" />
-                    </div>
-                    <div class="form-group">
-                        <label>Số điện thoại</label>
-                        <input type="sdt"  class="form-control" name="sdt" placeholder="Nhập số điện thoại" />
-                    </div>
-                    <!-- <div class="form-group">
-                        <label>Chức Vụ</label>
-                        <label class="radio-inline">
-                            <input name="level" value="0" checked="" type="radio">CEO
-                        </label>
-                        <label class="radio-inline">
-                            <input name="level" value="1" type="radio">Staff
-                        </label>
-                    </div> -->
-                    <button type="submit" class="btn btn-default">Thêm Nhân Viên</button>
+                    <div>
+                        <label>Khách Sạn</label>
+                        <select class="form-control" name="province">
+                            {{-- @foreach($province as $pr ) --}}
+                            <option value="">Khách sạn Sheraton Saigon</option>
+                            <option value="">Khách sạn Sheraton Saigon</option>
+                            <option value="">Khách sạn Caravelle</option>
+                            <option value="">Khu căn hộ cao cấp - Norfolk Mansion</option>
+                           {{--  @endforeach --}}
+                        </select>
+                    </div> <br>
+                    <div>
+                        <label>Người Đại Diện</label>
+                        <select class="form-control" name="province">
+                            {{-- @foreach($province as $pr ) --}}
+                            <option value="">Trần Thị Hồng Huệ</option>
+                            <option value="">Trần Thị Hồng Cẩm</option>
+                            <option value="">Sơn Tùng MTP</option>
+                            <option value="">Hồ Ngọc Hà</option>
+                           {{--  @endforeach --}}
+                        </select>
+                    </div> <br>
+                    <div>
+                        <label>Ngày Có Hiệu Lực</label>
+                        <input type="date" class="form-control" name="image">
+                    </div> <br>
+                    <div>
+                        <label>Ngày Hết Hiệu Lực</label>
+                        <input type="date" class="form-control" name="image">
+                    </div> <br>
+                    <div>
+                        <label>Tình Trạng Thanh Toán</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="" id="input" value="" checked="checked">
+                                Đã Thanh Toán Thành Công <br>
+                                <input type="radio" name="" id="input" value="">
+                                Chưa Thanh Toán Thành Công
+                            </label>
+                        </div>
+                    </div> <br>
+
+                    <button type="submit" class="btn btn-default">Thêm </button>
                     <button type="reset" class="btn btn-default">Reset</button>
-                <form>
-            </div>
-        </div>
+                    <form>
+                    </div>
+                </div>
                 <!-- /.row -->
-    </div>
+            </div>
             <!-- /.container-fluid -->
-</div>
-<!-- /#page-wrapper -->
-@endsection
+        </div>
+        <!-- /#page-wrapper -->
+        @endsection

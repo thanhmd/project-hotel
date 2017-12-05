@@ -1,21 +1,30 @@
 @extends("admin.layout.index")
 @section("content")
-<!-- Page Content -->
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Danh sách
-                    <small>Dịch Vụ</small>
-                </h1>
+
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Data Tables
+        <small>advanced tables</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Hover Data Table</h3>
             </div>
-            <!-- /.col-lg-12 -->
-            @if(session('thongbao'))
-            <div class="alert alert-success">
-                {{ session('thongbao') }}
-            </div>
-            @endif
-            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
                 <thead>
                     <tr align="center">
                         <th>ID</th>
@@ -36,13 +45,29 @@
                     </tr>
                     @endforeach
                 </tbody>
-            </table>
-            <a class="btn btn-lg btn-info btnprovinceadd" href="admin/service/add" role="button">Thêm Dịch Vụ</a>
-            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Dịch Vụ</a>
+                {{-- <tfoot>
+                <tr>
+                  <th>Rendering engine</th>
+                  <th>Browser</th>
+                  <th>Platform(s)</th>
+                  <th>Engine version</th>
+                  <th>CSS grade</th>
+                </tr>
+                </tfoot> --}}
+              </table>
+            </div>
+            <a class="btn btn-lg btn-info btnprovinceadd" href="admin/province/add" role="button">Thêm Dịch Vụ</a>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+         
+          <!-- /.box -->
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-</div>
-<!-- /#page-wrapper -->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
 @endsection

@@ -1,6 +1,6 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
-        
+
         <ul class="nav" id="side-menu">
             {{-- <li class="sidebar-search">
                 <div class="input-group custom-search-form">
@@ -22,9 +22,9 @@
             <li>
                 <a href="unithotel/hotel/list"><i class="fa fa-dashboard fa-fw"></i>QUẢN LÍ KHÁCH SẠN</a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="#"><i class="fa fa-cube fa-fw"></i> HỢP ĐỒNG<span class="fa arrow"></span></a>
-            </li>
+            </li> -->
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

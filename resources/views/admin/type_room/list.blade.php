@@ -42,7 +42,6 @@
                 </tbody>
             </table>
             <a class="btn btn-lg btn-info btnprovinceadd" href="admin/typeroom/add" role="button">Thêm Loại Phòng</a>
-            <a class="btn btn-lg btn-info" href="" role="button">Download Danh Sách Loại Phòng</a>
         </div>
         <!-- /.row -->
     </div>

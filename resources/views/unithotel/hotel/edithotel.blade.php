@@ -1,6 +1,6 @@
 @extends("unithotel.layout.index")
 @section("content")
-	
+
 <div id="page-wrapper">
 	<div class="container-fluid">
 		<div class="row">
@@ -41,7 +41,11 @@
                         <div class="form-group">
                             <label>Ảnh đại diện</label>
                             <input type="file" class="form-control" name="image">
-                        </div> <br>
+                        </div>
+												<div class="form-group">
+														<label>Ảnh chi tiết</label>
+														<input type="file" class="form-control" multiple="" name="detailpics[]">
+												</div> <br>
                     </div>
                     <div class="addresshotel">
                         <legend>Địa chỉ Khách Sạn</legend>

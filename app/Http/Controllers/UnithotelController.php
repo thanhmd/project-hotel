@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // thư viện login
 use App\User;
+use App\Customer;
 use Hash;
 use App\District;
 use App\Province;
 use App\Hotel;
-use App\Room;
+use App\Typeroom;
 use App\Service;
 use App\DetailHotelService;
-use App\DetailHotelRoom;
+use App\DetailHotelTyperoom;
+use App\Listimageshotel;
+use File;
 
 class UnithotelController extends Controller
 {
@@ -48,7 +51,7 @@ class UnithotelController extends Controller
         }
         else {
             return redirect("unithotel/login")->with("thongbao", " Đăng nhập không thành công. Hãy kiểm tra lại! Nếu chưa có tài khoản vui lòng đăng ký");
-        }   
+        }
     }
     public function getRegister(){
     	return view("unithotel.login_and_register_tabbed_form");
@@ -81,7 +84,7 @@ class UnithotelController extends Controller
                 "re_password.required"   => "Bạn chưa nhập lại mật khẩu",
                 "re_password.same"       => "Mật khẩu không khớp",
             ]);
-        
+
         $user           = new User;
         $user->name     = $req->name;
         $user->email    = $req->email;
@@ -152,7 +155,7 @@ class UnithotelController extends Controller
         //     ]);
         //     $user->password = Hash::make($req->password);
         // }
-        // 
+        //
         // var_dump($req->hasFile('image')); exit();
         if($req->hasFile('image')){
             $file = $req->file('image');
@@ -167,7 +170,7 @@ class UnithotelController extends Controller
             }
             $file->move("upload/imageuser", $image);
             $user->image =$image;
-            
+
         }else {
             $user->image = "ko co hinh";
         }
@@ -178,7 +181,7 @@ class UnithotelController extends Controller
     // public function getListhotel(){
     //     return view("unithotel.hotel.listhotel");
     // }
-    
+
     public function getChangepassword(){
         $user = Auth::user();
         return view("unithotel.info.changepassword", ['user'=>$user]);
@@ -191,6 +194,7 @@ class UnithotelController extends Controller
             "renew_password"          => "required|same:new_password",
 
         ],
+
         [
             "new_password.min"         => "Mật khẩu mới phải có it nhất 3 kí tự",
             "new_password.max"         => "Mật khẩu mới phải có tối đa 32 kí tự",
@@ -211,17 +215,18 @@ class UnithotelController extends Controller
 
     }
     public function getListhotel(){
-        $hotels    = Hotel::all();
+        $customer = Customer::find(Auth::user()->id);
+        $hotels    = $customer->hotel()->get();
         return view("unithotel.hotel.listhotel", ['hotels'=>$hotels]);
     }
     public function getAddhotel() {
-        $province = Province::all();
-        $service  = Service::all();
-        $rooms = Room::all();
-        return view("unithotel.hotel.addhotel", ['province' => $province, 'rooms' => $rooms, 'service' => $service]);
+        $provinces = Province::all();
+        $services  = Service::all();
+        $typerooms = Typeroom::all();
+        return view("unithotel.hotel.addhotel", ['provinces' => $provinces, 'typerooms' => $typerooms, 'services' => $services]);
     }
     public function postAddhotel(Request $req) {
-        $this->validate($req, 
+        $this->validate($req,
         [
             "address_detail" => "required",
             "name"              => "required",
@@ -234,22 +239,16 @@ class UnithotelController extends Controller
             "province.required"         => "Bạn chưa chọn tỉnh/thành phố",
             "district.required"         =>  "Bạn chưa chọn quận/huyện",
         ]);
-        // dd($req->cat); 
-        // echo $req->cat["values"];exit();
-
-        if($req->hasFile('image')){
-            $file = $req->file('image');
-           
         $hotel                 = new Hotel();
-        
-        //dd($hotel->listservice); exit();
         $hotel->name           = $req->name;
         $hotel->star           = $req->star;
         $hotel->description    = $req->description;
         $hotel->address_detail = $req->address_detail;
         $hotel->province_id    = $req->province;
         $hotel->district_id    = $req->district;
-        $hotel->id_owner       = Auth::user()->id; 
+        $hotel->id_owner       = Auth::user()->id;
+        if($req->hasFile('image')){
+         $file = $req->file('image');
          $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
                 return redirect('unithotel/hotel/add')->with('thongbao', 'bạn chỉ được chọn file vơi đuôi png, jpg, jpeg');
@@ -261,39 +260,57 @@ class UnithotelController extends Controller
             }
             $file->move("upload/hinhkhachsan", $image);
             $hotel->image =$image;
-            
-        }else {
-            $hotel->image = "ko co hinh";
+
         }
         $hotel->save();
-
-
-        // Moi checkbox duoc chon tren giao dien se tao ra 1 chi tiet dich vu
-        foreach ($req->cat as $value) {
-            $detail_service = new DetailHotelService();
-            $detail_service -> hotel_id = $hotel->id;
-            $detail_service -> service_id = $value;
-            $detail_service -> price = 100000;
-            $detail_service -> save();
+        if($req->hasFile('detailpics')){
+            $detailpics = $req->file('detailpics');
+            if(!empty($detailpics)){
+              foreach ($detailpics as $file) {
+                $duoi = $file->getClientOriginalExtension();
+                if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
+                    return redirect('unithotel/hotel/add')->with('thongbao', 'bạn chỉ được chọn file vơi đuôi png, jpg, jpeg');
+                }
+                $duoi  = $file->getClientOriginalName();
+                $image = str_random(4)."-".$duoi;
+                while(file_exists("upload/hinhkschitiet/".$image)){
+                    $image = str_random(4)."-".$duoi;
+                }
+                $file->move("upload/hinhkschitiet", $image);
+                $detailpic = new Listimageshotel();
+                $detailpic->name=$image;
+                $detailpic->hotel_id=$hotel->id;
+                $detailpic->save();
+              }
+            }
         }
-
+        for ($i = 0; $i < count($req->serviceid); $i++) {
+            /*Khoi tao doi tuong chi tiet phong*/
+            $detail_service = new DetailHotelService();
+             $detail_service -> name = $req->nameservice[$i]; // mac dinh ten dich vu rieng bang ten dich vu cua admin
+             $detail_service -> hotel_id = $hotel->id;
+             $detail_service -> service_id = $req->serviceid[$i];
+             $detail_service -> price = $req->priceservice[$i]; // gan cung tam thoi, hoac co the bo sung them o giao dien
+             $detail_service -> save();
+        }
         //Moi loai phong se tao ra nhieu phong
         for ($i = 0; $i < count($req->typeroomid); $i++) {
             /*Khoi tao doi tuong chi tiet phong*/
             if($req->numbertyperoom[$i] != 0){ // chi tao ra cac phong khi so phong != 0
                 $numberObj = $req->numbertyperoom[$i]; //$numberObj : luu so phong cua moi loai
                 for($j = 0; $j < $numberObj; $j++){
-                    $detail_room = new DetailHotelRoom();
+                    $detail_room = new DetailHotelTyperoom();
                     $detail_room -> hotel_id = $hotel->id;
-                    $detail_room -> room_id = $req->typeroomid[$i];
-                    $detail_room -> name = $req->typeroomname[$i]; 
+                    $detail_room -> typeroom_id = $req->typeroomid[$i];
+                    $detail_room -> name = $req->nametyperoom[$i];
                     $detail_room -> price = $req->pricetyperoom[$i];
+                    $detail_room -> status = 0;
+                    $detail_room -> maxpeople = $req->capacitytyperoom[$i]; // gan tam
                     $detail_room -> save();
                 }
             }
         }
         return redirect("unithotel/hotel/add")->with("thongbao", "Thêm khách sạn thành công !Tiếp tục thêm khách sạn hoặc chọn menu để chuyển tác vụ");
-        
     }
     public function getEdithotel($id) {
         $hotel = Hotel::find($id);
@@ -302,7 +319,7 @@ class UnithotelController extends Controller
         return view("unithotel.hotel.edithotel", ['province' => $province, 'hotel' => $hotel, 'district' => $district]);
     }
     public function postEdithotel(Request $req, $id) {
-        $this->validate($req, 
+        $this->validate($req,
         [
             "province"          => "required",
             "district"          => "required",
@@ -311,18 +328,15 @@ class UnithotelController extends Controller
             "province.required"         => "Bạn chưa chọn tỉnh/thành phố",
             "district.required"         =>  "Bạn chưa chọn quận/huyện",
         ]);
-
+        $hotel                 = Hotel::find($id);
+        $hotel->name           = $req->name;
+        $hotel->star           = $req->star;
+        $hotel->description    = $req->description;
+        $hotel->address_detail = $req->address_detail;
+        $hotel->province_id    = $req->province;
+        $hotel->district_id    = $req->district;
         if($req->hasFile('image')){
             $file = $req->file('image');
-
-            $hotel                 = Hotel::find($id);
-            $hotel->name           = $req->name;
-            $hotel->star           = $req->star;
-            $hotel->description    = $req->description;
-            $hotel->address_detail = $req->address_detail;
-            $hotel->province_id    = $req->province;
-            $hotel->district_id    = $req->district;
-
             $duoi = $file->getClientOriginalExtension();
             if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
                 return redirect('unithotel/hotel/add')->with('thongbao', 'bạn chỉ được chọn file vơi đuôi png, jpg, jpeg');
@@ -333,20 +347,70 @@ class UnithotelController extends Controller
                 $image = str_random(4)."-".$duoi;
             }
             $file->move("upload/hinhkhachsan", $image);
+            /*Xoa hinh khach san cu*/
+            if(File::exists('upload/hinhkhachsan/' . $hotel->image)){
+              File::delete('upload/hinhkhachsan/' . $hotel->image);
+            }
             $hotel->image =$image;
-            
-        }else {
-            $hotel->image = "ko co hinh";
+        }
+        if($req->hasFile('detailpics')){
+            $detailpics = $req->file('detailpics');
+            if(!empty($detailpics)){
+              /*Tim ten anh chi tiet cu*/
+              $deleted_imgs = [];
+              foreach ($hotel->images()->get() as $image) {
+                if(File::exists('upload/hinhkschitiet/' . $image->name)){
+                  //File::delete('public/hinhkschitiet/' . $image->name);
+                  $deleted_imgs[] = 'upload/hinhkschitiet/' . $image->name;
+                }
+              }
+              $detailpic_array = [];
+              foreach ($detailpics as $file) {
+                $duoi = $file->getClientOriginalExtension();
+                if($duoi != 'jpg' && $duoi != 'png' && $duoi != 'jpeg'){
+                    return redirect('unithotel/hotel/add')->with('thongbao', 'bạn chỉ được chọn file vơi đuôi png, jpg, jpeg');
+                }
+                $duoi  = $file->getClientOriginalName();
+                $image = str_random(4)."-".$duoi;
+                while(file_exists("upload/hinhkschitiet/".$image)){
+                    $image = str_random(4)."-".$duoi;
+                }
+                $file->move("upload/hinhkschitiet", $image);
+                $detailpic = new Listimageshotel();
+                $detailpic->name=$image;
+                $detailpic->hotel_id=$id;
+                $detailpic_array[] = $detailpic;
+                //$detailpic->save();
+              }
+              /*Xoa hinh chi tiet cu*/
+              if(count($deleted_imgs) > 0){
+                File::delete($deleted_imgs);//file
+                $hotel->images()->delete(); //DB
+              }
+              foreach ($detailpic_array as $detailpic) {
+                $detailpic->save(); // DB
+              }
+            }
         }
         $hotel->save();
         return redirect('unithotel/hotel/edit/' . $id)->with('thongbao', 'Sửa thành công');
     }
     public function getDeleteHotel($id){
         // Khi xoa khach san thi phai xoaa hinh, chi tiet dich vu va phong
-        $hotel = Hotel::find($id);
-        $hotel -> images() -> delete();
+        $hotel =  Hotel::find($id);
         $hotel -> service_detail() -> delete();
-        $hotel -> room_detail() -> delete();
+        $hotel -> typeroom_detail() -> delete();
+        /*Xoa hinh chi tiet cu*/
+        foreach ($hotel->images()->get() as $image) {
+          if(File::exists('upload/hinhkschitiet/' . $image->name)){
+            File::delete('upload/hinhkschitiet/' . $image->name);
+          }
+        }
+        /*Xoa hinh khach san cu*/
+        if(File::exists('upload/hinhkhachsan/' . $hotel->image)){
+          File::delete('upload/hinhkhachsan/' . $hotel->image);
+        }
+        $hotel -> images() -> delete();
         $hotel -> delete();
         return redirect('unithotel/hotel/list')->with('thongbao', 'Xóa khách sạn thành công');
     }

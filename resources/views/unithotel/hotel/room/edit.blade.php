@@ -23,17 +23,17 @@
             @endif
             <!-- /.col-lg-12 -->
             <div class="col-lg-7" style="padding-bottom:120px">
-                <form action="unithotel/hotel/{{$hotel_room->hotel_id}}/room/edit/{{$hotel_room->id}}" method="POST">
+                <form action="unithotel/hotel/{{$hotel_room->hotel_id}}/detail/room/edit/{{$hotel_room->id}}" method="POST">
                     <label>Loại phòng</label>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <select class="form-control" name="room">
-                        @foreach($rooms as $room)
-                        <option 
-                        @if($hotel_room->room_id == $room->id)
+                    <select class="form-control" name="typeroom">
+                        @foreach($typerooms as $tr)
+                        <option
+                        @if($hotel_room->typeroom_id == $tr->id)
                         {{ 'selected' }}
                         @endif
-                        value="{{ $room->id }}" >
-                        {{ $room->name }}
+                        value="{{ $tr->id }}" >
+                        {{ $tr->name }}
                     </option>
                     @endforeach
                 </select>
@@ -57,6 +57,11 @@
                         <input name="status" value="1" @if($hotel_room->status == 1)
                         {{ 'checked' }} @endif type="radio">Có Khách
                     </label>
+                </div>
+
+                <div class="form-group">
+                        <label>Sức chứa</label>
+                        <input class="form-control" type="number" min="0" name="capacity" placeholder="Nhập số người" value="{{ $hotel_room->maxpeople }}"/>
                 </div>
 
                 <button type="submit" class="btn btn-default">Edit</button>

@@ -7,9 +7,9 @@
             <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="index.html">Chào Bạn <span style="color: red;font-size: 20px; font-style: italic;font-weight: bold;">{{ Auth::user()->name }}</span>
+        <a class="navbar-brand" href="unithotel/info/profile">Chào Bạn <span style="color: red;font-size: 20px; font-style: italic;font-weight: bold;">{{ Auth::user()->name }}</span>
         </a> <br>
-        
+
     </div>
     <!-- /.navbar-header -->
 
