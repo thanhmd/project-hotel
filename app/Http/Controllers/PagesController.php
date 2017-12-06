@@ -6,6 +6,7 @@ use App\Province;
 use App\Hotel;
 use App\Listimageshotel;
 use App\Typeroom;
+use App\DetailHotelService;
 use App\DetailHotelTyperoom;
 class PagesController extends Controller
 {
@@ -60,16 +61,17 @@ class PagesController extends Controller
     	// lấy tất cả các khách sạn theo tỉnh, province_id: cột trong database, $province_id : tham số truyền vào
     	$province 			= Province::findOrFail($province_id);    
     	$hotelByProvince 	= Hotel::where('province_id',$province_id)->where('status',1)->get();
+        $service_hotel      = DetailHotelService::all();
     	//print_r($province['name']); exit();
-    	//dd($province->name); exit();
-    	return view("pages.list-province", compact('hotelByProvince', 'province' ));
+    	//dd($service_hotel); 
+    	return view("pages.list-province", compact('hotelByProvince', 'province', 'service_hotel' ));
     }
     public function getDetailhotel($id) {
         $hotel      = Hotel::findOrFail($id);
         $imageslist = Listimageshotel::where('hotel_id', $id)->get();
 
         $typeroom   = DetailHotelTyperoom::where('hotel_id', $id)->get();
-        // var_dump($imageslist); exit();
+        //dd($typeroom); exit();
         return view("pages.detailhotel", compact('hotel','imageslist','typeroom'));
     }
     // public function getTyperoomByhotel($id){

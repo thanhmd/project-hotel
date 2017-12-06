@@ -12,7 +12,7 @@
 	font-weight: 600;
 }
 .imghotelprovince {
-	width: 300px; height: 300px;background-color: pink;
+	width: 200px; height: 200px;background-color: pink;
 }
 .infohotel{
 	border: 1px solid #29ED37;
@@ -138,4 +138,46 @@ aside.sticker.green {
 }
 .saledate span{
 	color: #228754;
+}
+.khuvuc{
+	color: #fff;
+	text-align: center;
+	background-color: #86b817;
+	font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px;
+}
+.quanhotel{
+
+	text-align: center;
+	font-weight: bold;
+	margin-top: 10px;
+}
+.quanhotel:hover{
+	background-color: #86b817;
+}
+.quanhotel a:hover{
+	color: #fff;
+}
+.quanhotel a{
+	font-weight: bold;
+	/*text-decoration: underline;*/
+	/*padding-top: 15px;
+	padding-bottom: 15px;*/
+	/*padding: 15px;*/
+}
+.slideimg{
+	margin-top: 100px;
+}
+.ttdatphonghinh{
+	width: 150px;
+	height: 150px;
+	background-color: pink;
+}
+.tenksdatphong{
+	font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 7px;
+        color: #4790cd;
 }
