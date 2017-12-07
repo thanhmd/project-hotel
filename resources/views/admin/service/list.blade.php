@@ -56,12 +56,12 @@
                 </tfoot> --}}
               </table>
             </div>
-            <a class="btn btn-lg btn-info btnprovinceadd" href="admin/province/add" role="button">Thêm Dịch Vụ</a>
+            <a class="btn btn-lg btn-info btnserviceadd" href="admin/service/add" role="button">Thêm Dịch Vụ</a>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
 
-         
+
           <!-- /.box -->
         </div>
         <!-- /.col -->

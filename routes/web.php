@@ -102,7 +102,7 @@ Route::group(['prefix' 	   => 'admin'], function(){
 		Route::get('delete/{id}', 'Admin\RoomController@getDelete');
 	});
 	Route::group(['prefix' => 'hotel_contract'], function(){
-		
+
 		Route::get('list', 'Admin\HotelController@getList');
 		Route::get('list-not-ckect', 'Admin\HotelController@getListnotcheck');
 		Route::get('checkshowhotel/{id}', 'Admin\HotelController@getCheckhotel');
@@ -122,7 +122,7 @@ Route::group(['prefix' 	   => 'admin'], function(){
 		Route::get('edit/{id}', 'Admin\ContractController@getEdit');
 		Route::post('edit/{id}', 'Admin\ContractController@postEdit');
 		Route::get('delete/{id}', 'Admin\ContractController@getDelete');
-		
+
 	});
 });
 Route::group(['prefix' => 'unithotel'], function(){

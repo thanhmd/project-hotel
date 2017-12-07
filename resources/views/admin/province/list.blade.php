@@ -21,6 +21,18 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Hover Data Table</h3>
+                @if(count($errors) >0 )
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $err)
+                    {{ $err }} <br>
+                    @endforeach
+                </div>
+                @endif
+                @if(session('thongbao'))
+                <div class="alert alert-success">
+                    {{ session('thongbao') }}
+                </div>
+                @endif
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -29,6 +41,7 @@
                     <tr align="center">
                         <th>ID</th>
                         <th>Tỉnh/Thành phố</th>
+                        <th>Mô tả</th>
                         <th>Hình Ảnh</th>
                         <th>Xóa</th>
                         <th>Sửa</th>
@@ -39,6 +52,7 @@
                         <tr class="odd gradeX" align="center">
                             <td>{{ $p->id }}</td>
                             <td>{{ $p->name }}</td>
+                            <td>{{ $p->description }}</td>
                             <td><img src="upload/hinhtinh/{{ $p->image }}" alt="" style="height: 100px; width: 100px"></td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/province/delete/{{ $p->id }}"> Delete</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/province/edit/{{ $p->id }}">Edit</a></td>
@@ -61,7 +75,7 @@
           </div>
           <!-- /.box -->
 
-         
+
           <!-- /.box -->
         </div>
         <!-- /.col -->

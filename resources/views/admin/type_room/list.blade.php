@@ -21,6 +21,7 @@
                         <th>Mã Loại Phòng</th>
                         <th>Loại Phòng</th>
                         {{-- <th>Đơn giá/đêm</th> --}}
+                        <th>Sức chứa (số người)</th>
                         <th>Xóa</th>
                         <th>Sửa</th>
                     </tr>
@@ -35,6 +36,7 @@
 
                             </td>
                             {{-- <td>{{ $tp->price }}</td> --}}
+                            <td>{{ $tp->maxpeople }}</td>
                             <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/typeroom/delete/{{ $tp->id }}"> Delete</a></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/typeroom/edit/{{ $tp->id }}">Edit</a></td>
                         </tr>

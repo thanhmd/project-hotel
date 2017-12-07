@@ -42,16 +42,18 @@
                             <td>{{$c->hotel->name}}</td>
                             <td>{{$c->hotel->user->name}}</td>
                             <td>
-                                @if($c->pay ==1) 
+                              {{--
+                                @if($c-> ==1)
                                 <p>Đã Thanh Toán</p>
                                 @else
                                 <p>Chưa Thanh Toán</p>
                                 @endif
+                                --}}
                             <td>
                                 {{$c->date_effective}}
                             </td>
                             <td>
-                                {{$c->date_expired}}
+                                {{$c->out_date_effective}}
                             </td>
                         </tr>
                         @endforeach
@@ -63,7 +65,7 @@
           </div>
           <!-- /.box -->
 
-         
+
           <!-- /.box -->
         </div>
         <!-- /.col -->

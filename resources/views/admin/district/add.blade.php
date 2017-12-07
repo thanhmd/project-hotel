@@ -23,7 +23,7 @@
             </div>
             @endif
             <div class="col-lg-7" style="padding-bottom:120px">
-                
+
                 <form action="admin/district/add" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
@@ -38,10 +38,10 @@
                         <label>Quận/Huyện</label>
                         <input class="form-control" name="name" placeholder="Nhập tên Quận/Huyện" />
                     </div>
-                    
+
                     <button type="submit" class="btn btn-default">Thêm Quận/Huyện</button>
                     <button type="reset" class="btn btn-default">Reset</button>
-                    <form>
+                  </form>
                     </div>
                 </div>
                 <!-- /.row -->

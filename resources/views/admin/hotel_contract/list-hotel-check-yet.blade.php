@@ -4,12 +4,12 @@
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        CÁC KHÁCH SẠN ĐÃ DUYỆT
+        CÁC KHÁCH SẠN CHƯA DUYỆT
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Tables</a></li>
-        <li class="active">DS Khách Sạn Đã Duyệt</li>
+        <li class="active">DS Khách Sạn Chưa Duyệt</li>
       </ol>
     </section>
 
@@ -41,15 +41,15 @@
                     <tr class="odd gradeX" align="center">
                         <td>{{ $h->id }}</td>
                         <td>
-                            <p>Người đại diện : {{ $h->user->name }}</p> 
-                            <p>Số đt: {{ $h->user->sdt }}</p> 
+                            <p>Người đại diện : {{ $h->user->name }}</p>
+                            <p>Số đt: {{ $h->user->sdt }}</p>
                             <p>Email: {{ $h->user->email }}</p>
                         </td>
                         <td>
                             {{ $h->name }} <br>
                             <img src="upload/hinhkhachsan/{{ $h->image }}" alt="" style="width: 100px; height: 100px;"> <br>
                             @for ($i = 0; $i < $h->star ; $i++)
-                            <img src="front_assets/image/christmas_star.png" alt="" class="imgstart" style="width: 20px; height: 20px;"> 
+                            <img src="front_assets/image/christmas_star.png" alt="" class="imgstart" style="width: 20px; height: 20px;">
                             @endfor
                             <br>
                             <!-- Button trigger modal -->
@@ -69,35 +69,24 @@
                                     <div class="modal-body">
                                         <div id="carousel-id" class="carousel slide" data-ride="carousel">
                                             <ol class="carousel-indicators">
-                                                {{-- <li data-target="#carousel-id" data-slide-to="0" class=""></li>
-                                                <li data-target="#carousel-id" data-slide-to="1" class=""></li>
-                                                <li data-target="#carousel-id" data-slide-to="2" class="active"></li> --}}
+                                                @if(count($h->images()->get()) > 0)
+                                									<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                									@for($i = 1; $i < count($h->images()->get()); $i++)
+                                										<li data-target="#myCarousel" data-slide-to="{{$i}}"></li>
+                                									@endfor
+                                								@endif
                                             </ol>
                                             <div class="carousel-inner">
-                                                <div class="item">
-                                                    <img  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
-                                                    <div class="container">
-                                                        <div class="carousel-caption">
-                                                           hình 1
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="item">
-                                                    <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNmE2YTZhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+U2Vjb25kIHNsaWRlPC90ZXh0Pjwvc3ZnPg==">
-                                                    <div class="container">
-                                                        <div class="carousel-caption">
-                                                           hình 2
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="item active">
-                                                    <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" alt="Third slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNWE1YTVhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+VGhpcmQgc2xpZGU8L3RleHQ+PC9zdmc+">
-                                                    <div class="container">
-                                                        <div class="carousel-caption">
-                                                            hình 3
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @if(count($h->images()->get()) > 0)
+                                                  <div class="item active">
+                                                    <img src="{{ 'upload/hinhkschitiet/' . $h->images()->get()[0]->name }}" >
+                                                  </div>
+                                                  @for($i = 1; $i < count($h->images()->get()); $i++)
+                                                  <div class="item">
+                                                    <img src="{{ 'upload/hinhkschitiet/' . $h->images()->get()[$i]->name }}" >
+                                                  </div>
+                                                  @endfor
+                                                @endif
                                             </div>
                                             <a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                                             <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -114,7 +103,7 @@
                             <br>
                              {{ $h->address_detail }} - <br>{{ $h->district->name }} - {{ $h->province->name }}
                         </td>
-                       
+
                         <td>
                             <p>
                                 {{  mb_substr($h->description,0,20,'UTF-8')
@@ -151,14 +140,14 @@
                         <td>
                             @foreach($service as $s)
                                 @if($h->id == $s->hotel_id)
-                                    <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>{{ $s->name }}- {{$s->price}}VNĐ</p> 
+                                    <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>{{ $s->name }}- {{$s->price}}VNĐ</p>
                                 @endif
                             @endforeach
                         </td>
                         <td>
                             @foreach($typeroom as $tp)
                                 @if($h->id == $tp->hotel_id)
-                                    <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>{{ $tp->name }}- {{$tp->price}}VNĐ</p> 
+                                    <p><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>{{ $tp->name }}- {{$tp->price}}VNĐ</p>
                                 @endif
                             @endforeach
                         </td>
@@ -175,7 +164,7 @@
           </div>
           <!-- /.box -->
 
-         
+
           <!-- /.box -->
         </div>
         <!-- /.col -->

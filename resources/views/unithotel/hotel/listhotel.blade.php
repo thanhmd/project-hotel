@@ -85,14 +85,14 @@
 
                         <td class="center btnListService"><i class="glyphicon glyphicon-list-alt"></i><a href="unithotel/hotel/{{ $h->id }}/detail/service/list"> Xem</a></td> -->
 
-                        <td>{{"Đã duyệt"}}</td>
-
+                        <td>
+                          @if($h->status == 1) {{"Đã duyệt"}}
+                          @else {{"Chưa duyệt"}}
+                          @endif
+                        </td>
                         <td class="center btnDetail"><i class="glyphicon glyphicon-list-alt"></i><a href="unithotel/hotel/{{$h->id}}/detail"> Xem chi tiết</a></td>
-
                         <td class="center btnDeleteKs"><i class="glyphicon glyphicon-remove"></i><a href="unithotel/hotel/delete/{{ $h->id }}"> Xóa</a></td>
-
                         <td class="center"><i class="glyphicon glyphicon-edit"></i><a href="unithotel/hotel/edit/{{ $h->id }}"> Sửa</a></td>
-
                     </tr>
                     @endforeach
                 </tbody>

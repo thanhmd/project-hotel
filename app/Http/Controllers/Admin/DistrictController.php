@@ -40,20 +40,19 @@ class DistrictController extends Controller
         $district->delete();
         return redirect('admin/district/list')->with('thongbao', 'xóa thành công');
     }
-    public function getEdit($id) { 
-        $province = Province::all(); 
+    public function getEdit($id) {
+        $province = Province::all();
         $district = District::find($id);
         return view('admin.district.edit', ['province'=>$province, 'district'=>$district]);
     }
     public function postEdit(Request $req, $id) {
         $this->validate($req, [
-                'name'          => 'required|unique:district,name',
+                'name'          => 'required',
                 'province'      => 'required',
             ],
             [
                 'name.required' => 'Bạn chưa nhập tên quận, huyện',
-                'name.unique'   => 'Tên quận/ huyện này đã tồn tại',
-                'theloai.required'       => 'Ban chua chon the loai'
+                'theloai.required'       => 'Ban chua chon the loai',
             ]);
         $district = District::find($id);
         $district->name= $req->name;
