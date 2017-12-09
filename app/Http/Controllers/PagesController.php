@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Province;
+use App\District;
 use App\Hotel;
 use App\Listimageshotel;
 use App\Typeroom;
@@ -79,5 +80,20 @@ class PagesController extends Controller
     // }
     public function getBookingroom() {
         return view("pages.booking-hotel") ;
+    }
+    public function postBookingroom(){
+
+        return view("pages.success_booking") ;
+    }
+    public function getFindroomdistrict($district_id) {
+        
+        $province           = Province::all();
+        $hotel              = Hotel::all();
+        $district           = District::findOrFail($district_id);  
+        
+        $hotelByDistrict    = Hotel::where('district_id',$district_id)->where('status',1)->get();
+        $service_hotel      = DetailHotelService::all();
+
+        return view("pages.list-hotel-district", compact('hotelByDistrict', 'service_hotel', 'district', 'province', 'hotel' ));
     }
 }

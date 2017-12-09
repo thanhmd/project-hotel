@@ -4,40 +4,41 @@
 <div class="container" style="margin-top: 100px;">
 	<div class="row">
 		<div class="col-md-6">
-			<form action="" method="POST" role="form">
-				<legend style="color: #fff; background-color: #86b817!important;padding: 10px;">Thông tin liên hệ</legend>
+			<form action="booking-room" method="POST" role="form" style="border: 5px solid #86b817;padding: 10px; border-radius: 3px; ">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<legend style="color: #fff; background-color: #86b817!important;padding: 10px;">Thông Tin Liên Hệ</legend>
 			
 				<div class="form-group">
-					<label for="">Nhập tên</label>
+					<label for="" class="labelbooking">Nhập Họ & Tên***</label>
 					<input type="text" class="form-control" id="" placeholder="Nhập tên người đặt phòng">
 				</div>
 				<div>
-					<label for="">Ngày Nhận</label>
+					<label for="" class="labelbooking">Ngày Nhận***</label>
 					<input type="date" class="form-control" id="" >
 				</div>
 				<div>
-					<label for="">Ngày Trả</label>
+					<label for="" class="labelbooking">Ngày Trả***</label>
 					<input type="date" class="form-control" id="">
 				</div>
 				<div class="form-group">
-					<label for="">Số Đêm</label>
-					<input type="text" class="form-control" id="" placeholder="">
+					<label for="" class="labelbooking">Số Người***</label>
+					<input type="text" class="form-control" id="" placeholder="10">
 				</div>
 				<div class="form-group">
-					<label for="">Số Phòng</label>
-					<input type="text" class="form-control" id="" placeholder="">
+					<label for="" class="labelbooking">Số Phòng**</label>
+					<input type="text" class="form-control" id="" placeholder="3">
 				</div>
 				<div class="form-group">
-					<label for="">Nhập Số điện thoai</label>
-					<input type="text" class="form-control" id="" placeholder="Nhập Số điện thoai">
+					<label for="" class="labelbooking">Nhập Số điện thoai*</label>
+					<input type="text" class="form-control" id="" placeholder="01694993575">
 				</div>
 				<div class="form-group">
-					<label for="">Email</label>
-					<input type="text" class="form-control" id="" placeholder="Nhập email ">
+					<label for="" class="labelbooking">Email***</label>
+					<input type="text" class="form-control" id="" placeholder="tranthihonghue19it@gmail.com">
 				</div>
 				<div>
-					<label for="">Ghi Chú</label>
-					<input type="text" class="form-control" id="" placeholder="Nhập ghi chú ">
+					<label for="" class="labelbooking">Ghi Chú</label>
+					<textarea type="text" class="form-control" id="" placeholder="Nhập ghi chú "></textarea>
 				</div>
 				<button type="submit" class="btn btn-primary">ĐẶT PHÒNG</button>
 			</form>

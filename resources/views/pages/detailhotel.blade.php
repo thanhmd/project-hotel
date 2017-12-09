@@ -43,14 +43,15 @@
 				{{-- Duyệt danh sách các loại phòng --}}
 				@foreach($typeroom as $tp)
 				<tr>
-					<td>
+					<td style="font-weight: 700;color: #00adef;font-size: 16px;padding: 10px;height: auto!important;text-align: center;">
 						{{$tp->name}}
 						<div class="nametyperoom"> <br>
-						<img src="upload/hinhloaiphong/" alt=""></div>
+						<img src="upload/hinhloaiphong/{{ $tp->image }}" alt="" style="width: 150px; height: 150px">
+						</div>
 					</td>
-					<td>{{ $tp->maxpeople}} Người</td>
-					<td>{{$tp->price}}</td>
-					<td><a href="booking-room" type="button" class="btn btn-success">Đặt Phòng</a></td>
+					<td><img src="front_assets/image/people.png" alt="" class=""> x {{ $tp->maxpeople}} Người</td>
+					<td>{{number_format($tp->price)}} VNĐ</td>
+					<td><a href="booking-room" class="btn btn-success" style="color: #942121;; font-weight: bold;">Đặt Phòng</a></td>
 				</tr>
 				@endforeach
 			</tbody>
