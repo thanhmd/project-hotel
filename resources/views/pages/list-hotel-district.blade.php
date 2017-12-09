@@ -3,17 +3,24 @@
 @section("content")
 <section class="mbr-section content8 cid-qAywCyYbRR" id="content8-f" data-rv-view="879">
  	<div class="container">
- 		<h1 style="" class="titelhotel">KHÁCH SẠN {{ $province->name }}</h1>
+ 		<h1 style="" class="titelhotel">KHÁCH SẠN KHU VỰC {{$district->name}} </h1>
  		<p>
- 			{{ $province->description }}
+ 			{{-- {{ $province->description }} --}}
  		</p>
         <div class="row">
  		<div class="col-md-3">
             <div>
-                <div class="khuvuc">KHU VỰC</div> 
-            @foreach($hotelByProvince as $hp)
-                <div class="quanhotel"><a href="list-hotel-district/{{$hp->district->id}}">{{$hp->district->name}}</a></div>    
-            @endforeach
+                <div class="khuvuc">KHU VỰC</div>
+               {{--  @if($province->id == $hotel->province_id)  --}}
+                    @foreach($province as $pr)
+                        @foreach($hotel as $h)
+                            @if($pr->id == $h->province_id)
+                                <div class="quanhotel"><a href="list-hotel-district/{{$h->district->id}}">{{$h->district->name}}</a>
+                                </div> 
+                            @endif
+                        @endforeach  
+                    @endforeach
+                {{--  --}}
             </div>
 
             <div>
@@ -34,7 +41,7 @@
         </div>
        
         <div class="col-md-9">
-     		@foreach($hotelByProvince as $hp)
+     		@foreach($hotelByDistrict as $hp)
             <div class="row infohotel" class="">
             	<div class="col-md-4">
             		<div style="" class="imghotelprovince">
@@ -52,7 +59,7 @@
         				
         				<img src="front_assets/image/christmas_star.png" alt="" class="imgstart">	
     				@endfor
-            		<p>{{ $hp->address_detail }}- {{ $hp->district->name }} - {{$province->name}}</p>
+            		<p>{{ $hp->address_detail }}- {{ $hp->district->name }} - {{ $hp->province->name }}</p>
             		<p>Các Dịch Vụ : </p>
                         @foreach($service_hotel as $sh)
                             @if($sh->hotel_id == $hp->id)
