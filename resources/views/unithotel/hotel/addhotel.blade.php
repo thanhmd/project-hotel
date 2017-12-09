@@ -47,6 +47,10 @@
                                   <label for="">Sức chứa</label>
                                   <input name="capacitytyperoom[]" type="number" class="form-control" id="" min="0" required="required" value="0">
                           </div>
+                          <div class="form-group">
+                              <label>Hình loại phòng</label>
+                              <input type="file" class="form-control" name="roomtypeimage[]">
+                          </div> <br>
                       </div>
                       <div class="servicesection">
                           <div class="form-group">
@@ -151,6 +155,10 @@
                                             <label for="">Sức chứa</label>
                                             <input name="capacitytyperoom[]" type="number" class="form-control" id="" min="0" required="required" value="0">
                                     </div>
+                                    <div class="form-group">
+                                        <label>Hình loại phòng</label>
+                                        <input type="file" class="form-control" name="roomtypeimage[]">
+                                    </div> <br>
                                 </div>
 
                                 <a class="btnThemLoaiphong" href=""><span class="glyphicon glyphicon-plus"></span>Thêm loại phòng</a>
@@ -224,9 +232,7 @@
                 });
         $('.btnXoaLoaiphong').on('click',function(e){
                     e.preventDefault();
-                    if($('.inforoom .roomtype').length > 1){
-                      $(".roomtype:last-of-type").remove();
-                    }
+                    $(".roomtype:last-of-type").remove();
                 });
         $('.btnThemDichvu').on('click',function(e){
                     e.preventDefault();
@@ -235,9 +241,7 @@
                 });
         $('.btnXoaDichvu').on('click',function(e){
                     e.preventDefault();
-                    if($('.infoservice .servicesection').length > 1){
-                      $(".servicesection:last-of-type").remove();
-                    }
+                    $(".servicesection:last-of-type").remove();
                 });
     </script>
 

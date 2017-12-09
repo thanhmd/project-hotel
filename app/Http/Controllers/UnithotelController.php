@@ -285,12 +285,12 @@ class UnithotelController extends Controller
             }
         }
         for ($i = 0; $i < count($req->serviceid); $i++) {
-            /*Khoi tao doi tuong chi tiet phong*/
-            $detail_service = new DetailHotelService();
-             $detail_service -> name = $req->nameservice[$i]; // mac dinh ten dich vu rieng bang ten dich vu cua admin
+          /*Khoi tao doi tuong chi tiet dich vu*/
+             $detail_service = new DetailHotelService();
+             $detail_service -> name = $req->nameservice[$i]; // mac dinh ten dich vu bang ten dich vu cua admin
              $detail_service -> hotel_id = $hotel->id;
              $detail_service -> service_id = $req->serviceid[$i];
-             $detail_service -> price = $req->priceservice[$i]; // gan cung tam thoi, hoac co the bo sung them o giao dien
+             $detail_service -> price = $req->priceservice[$i];
              $detail_service -> save();
         }
         //Moi loai phong se tao ra nhieu phong
@@ -305,7 +305,7 @@ class UnithotelController extends Controller
                     $detail_room -> name = $req->nametyperoom[$i];
                     $detail_room -> price = $req->pricetyperoom[$i];
                     $detail_room -> status = 0;
-                    $detail_room -> maxpeople = $req->capacitytyperoom[$i]; // gan tam
+                    $detail_room -> maxpeople = $req->capacitytyperoom[$i];
                     $detail_room -> save();
                 }
             }
