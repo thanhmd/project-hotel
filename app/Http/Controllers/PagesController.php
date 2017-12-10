@@ -9,6 +9,8 @@ use App\Listimageshotel;
 use App\Typeroom;
 use App\DetailHotelService;
 use App\DetailHotelTyperoom;
+use App\BookingInvoice;
+use App\Customer;
 class PagesController extends Controller
 {
     public function xuli() {
@@ -83,8 +85,40 @@ class PagesController extends Controller
         $detail_room = DetailHotelTyperoom::find($idroom);
         return view("pages.booking-hotel", compact('hotel','detail_room')) ;
     }
-    public function postBookingroom(){
+    public function postBookingroom(Request $req, $idhotel, $idroom){
+      $this->validate($req,
+        [
+          "name" => "required",
+          "check_in_date" => "required",
+          "check_out_date" => "required",
+          "sdt" => "required",
+          "email"    => "required",
+        ],
+        [
+          "name.required"    => "Bạn chưa nhập họ tên",
+          "check_in_date.required" => "Bạn chưa nhập ngày đến",
+          "check_in_date.required" => "Bạn chưa nhập ngày đi",
+          "sdt.required" => "Bạn chưa nhập SĐT",
+          "email.required"    => "Bạn chưa nhập email",
+        ]
+      );
 
+      $booking_invoice = new BookingInvoice;
+      $user = new Customer;
+      //$detail_typeroom = DetailHotelTyperoom::find($idroom);
+      $check = Customer::where('email', $req->email)->get();
+      if(count($check) > 0){
+        $user = $check;
+      }else{
+        $user->email = $req->email;
+        $user->name = $req->name;
+      }
+        $user->save();
+        $booking_invoice -> IDCustomer = $user -> id;
+        $booking_invoice -> IDDetailHotelTypeRoom = $idroom;
+        $booking_invoice -> check_in_date = $req->check_in_date;
+        $booking_invoice -> check_out_date = $req->check_out_date;
+        $booking_invoice -> save();
         return view("pages.success_booking") ;
     }
     public function getFindroomdistrict($district_id) {

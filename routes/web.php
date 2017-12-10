@@ -186,7 +186,7 @@ Route::group(['prefix' => '/'], function(){
 	Route::get('list-hotel-district/{id_district}',   'PagesController@getFindroomdistrict');
 	Route::get('detailhotel/{id}',        'PagesController@getDetailhotel');
 	Route::get('hotel/{hotelid}/room/{roomid}/booking-room',            'PagesController@getBookingroom');
-	Route::post('booking-room',           'PagesController@postBookingroom');
+	Route::post('hotel/{hotelid}/room/{roomid}/booking-room',           'PagesController@postBookingroom');
 	Route::post('mail/xuli', 'PagesController@xuli');
 });
 

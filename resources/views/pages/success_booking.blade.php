@@ -2,8 +2,16 @@
 @section('title', 'chi tiết khách sạn')
 @section("content")
 
-	Chúc Mừng Bạn Đã Đăng Ký Thành Công, Đơn Vị Khách Sạn Sẻ liên hệ với bạn sớm nhất !
-	<a href="">Để tiếp tục đặt phòng, quay lại trang chủ</a>
+<div >
+	<legend style="border:1px slolid"> Thông báo
+		<h4>Chúc Mừng Bạn Đã Đăng Ký Thành Công, Đơn Vị Khách Sạn Sẻ liên hệ với bạn sớm nhất !</h4>
+
+		<br>
+		<a href="">Để tiếp tục đặt phòng, quay lại trang chủ</a>
+	</legend>
+</div>
+
+
 
 @stop
 @section("css")

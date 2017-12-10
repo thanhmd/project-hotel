@@ -10,35 +10,35 @@
 
 				<div class="form-group">
 					<label for="" class="labelbooking">Nhập Họ Tên*</label>
-					<input type="text" class="form-control" id="" placeholder="Nhập tên người đặt phòng">
+					<input type="text" class="form-control" id="" placeholder="Nhập tên người đặt phòng" name="name">
 				</div>
 				<div>
 					<label for="" class="labelbooking">Ngày Nhận*</label>
-					<input type="date" class="form-control" id="" >
+					<input type="date" class="form-control" id="" name="check_in_date" >
 				</div>
 				<div>
 					<label for="" class="labelbooking">Ngày Trả*</label>
-					<input type="date" class="form-control" id="">
+					<input type="date" class="form-control" id="" name="check_out_date">
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="" class="labelbooking">Số Người*</label>
 					<input type="number" class="form-control" id="" placeholder="" min="1">
-				</div>
-				<div class="form-group">
+				</div> -->
+				<!-- <div class="form-group">
 					<label for="" class="labelbooking">Số Phòng*</label>
 					<input type="number" class="form-control" id="" placeholder="" min="1">
-				</div>
+				</div> -->
 				<div class="form-group">
 					<label for="" class="labelbooking">Nhập Số điện thoai*</label>
-					<input type="text" class="form-control" id="" placeholder="">
+					<input type="text" class="form-control" id="" placeholder="" name="sdt">
 				</div>
 				<div class="form-group">
 					<label for="" class="labelbooking">Email*</label>
-					<input type="email" class="form-control" id="" placeholder="abc@gmail.com">
+					<input type="email" class="form-control" id="" placeholder="abc@gmail.com" name="email">
 				</div>
 				<div>
 					<label for="" class="labelbooking">Ghi Chú</label>
-					<textarea type="text" class="form-control" id="" placeholder="Nhập ghi chú "></textarea>
+					<textarea type="text" class="form-control" id="" placeholder="Nhập ghi chú " name="note"></textarea>
 				</div>
 				<button type="submit" class="btn btn-primary">ĐẶT PHÒNG</button>
 			</form>
