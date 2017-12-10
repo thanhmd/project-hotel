@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Province;
 use App\District;
+
 use App\Hotel;
 use App\Listimageshotel;
 use App\Typeroom;
@@ -60,14 +61,19 @@ class PagesController extends Controller
     }
     public function getListhotelByprovince($province_id) {
     	// lấy tất cả các khách sạn theo tỉnh, province_id: cột trong database, $province_id : tham số truyền vào
+        $district           = District::all();
     	$province 			= Province::findOrFail($province_id);    
     	$hotelByProvince 	= Hotel::where('province_id',$province_id)->where('status',1)->get();
         $service_hotel      = DetailHotelService::all();
     	//print_r($province['name']); exit();
     	//dd($service_hotel); 
-    	return view("pages.list-province", compact('hotelByProvince', 'province', 'service_hotel' ));
+    	return view("pages.list-province", compact('hotelByProvince', 'province', 'service_hotel' , 'district'));
+    }
+    public function getFindroomprovinBycestar($start) {
+        $hotelByProvince    = Hotel::where('start',$start)->get();
     }
     public function getDetailhotel($id) {
+
         $hotel      = Hotel::findOrFail($id);
         $imageslist = Listimageshotel::where('hotel_id', $id)->get();
 
@@ -86,14 +92,15 @@ class PagesController extends Controller
         return view("pages.success_booking") ;
     }
     public function getFindroomdistrict($district_id) {
-        
+
+        $district           = District::all();
         $province           = Province::all();
-        $hotel              = Hotel::all();
-        $district           = District::findOrFail($district_id);  
+        // $district           = District::findOrFail($district_id);  
         
         $hotelByDistrict    = Hotel::where('district_id',$district_id)->where('status',1)->get();
+
         $service_hotel      = DetailHotelService::all();
 
-        return view("pages.list-hotel-district", compact('hotelByDistrict', 'service_hotel', 'district', 'province', 'hotel' ));
+        return view("pages.list-hotel-district", compact('hotelByDistrict', 'service_hotel', 'district', 'province', 'hotel', 'district' ));
     }
 }

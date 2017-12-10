@@ -3,24 +3,27 @@
 @section("content")
 <section class="mbr-section content8 cid-qAywCyYbRR" id="content8-f" data-rv-view="879">
  	<div class="container">
- 		<h1 style="" class="titelhotel">KHÁCH SẠN KHU VỰC {{$district->name}} </h1>
+ 		{{-- <h1 style="" class="titelhotel">KHÁCH SẠN KHU VỰC {{$district->name}} </h1> --}}
  		<p>
- 			{{-- {{ $province->description }} --}}
+ 			{{-- {{ $hotelByDistrict->$province->description }} --}}
  		</p>
         <div class="row">
  		<div class="col-md-3">
             <div>
                 <div class="khuvuc">KHU VỰC</div>
-               {{--  @if($province->id == $hotel->province_id)  --}}
-                    @foreach($province as $pr)
-                        @foreach($hotel as $h)
-                            @if($pr->id == $h->province_id)
-                                <div class="quanhotel"><a href="list-hotel-district/{{$h->district->id}}">{{$h->district->name}}</a>
-                                </div> 
-                            @endif
-                        @endforeach  
-                    @endforeach
-                {{--  --}}
+                
+                     
+                            @foreach($hotelByDistrict as $h) 
+                                @foreach($province as $p)
+                                @foreach($district as $d)
+                                @if($d->province_id == $p->id && $h->status == 1)
+                                    <div class="quanhotel"><a href="list-hotel-district/{{$d->id}}">{{ $d->name }}</a></div> 
+                                @endif
+                                @endforeach
+                                @endforeach
+                            @endforeach
+                        
+                
             </div>
 
             <div>
@@ -38,6 +41,8 @@
                 <div class="quanhotel"><a href="">Từ 1000.000 - 2000.000</a></div> 
             </div> 
 
+            
+
         </div>
        
         <div class="col-md-9">
@@ -50,7 +55,6 @@
             	</div>
             	<div class="col-md-5">
             		<h2 class="titleprovince" style="">{{ $hp->name }}</h2>
-            		{{-- <p>Số sao : {{ $hp->start }}</p> --}}
             		@while ($hp->start)
         				<p><span class="glyphicon glyphicon-star" aria-hidden="true"></span></p>
     				@endwhile
