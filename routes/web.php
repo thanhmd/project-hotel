@@ -183,13 +183,11 @@ Route::group(['prefix' => 'unithotel'], function(){
 Route::group(['prefix' => '/'], function(){
 	Route::get('', 'PagesController@getHome');
 	Route::get('listhotel/{province_id}', 'PagesController@getListhotelByprovince');
-	Route::get('detailhotel/{id}',        'PagesController@getDetailhotel');
-	Route::get('booking-room',            'PagesController@getBookingroom');
-	Route::post('booking-room',           'PagesController@postBookingroom');
 	Route::get('list-hotel-district/{id_district}',   'PagesController@getFindroomdistrict');
-
+	Route::get('detailhotel/{id}',        'PagesController@getDetailhotel');
+	Route::get('hotel/{hotelid}/room/{roomid}/booking-room',            'PagesController@getBookingroom');
+	Route::post('booking-room',           'PagesController@postBookingroom');
 	Route::post('mail/xuli', 'PagesController@xuli');
-
 });
 
 Route::get('unithotel/login', 'UnithotelController@getLogin');
