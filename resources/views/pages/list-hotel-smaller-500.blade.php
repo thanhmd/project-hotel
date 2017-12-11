@@ -11,7 +11,7 @@
  		<div class="col-md-3">
             <div>
                 <div class="khuvuc">KHU VỰC</div>
-                            @foreach($hotelByDistrict as $h) 
+                            {{-- @foreach($hotelByDistrict as $h) 
                                 @foreach($province as $p)
                                 @foreach($district as $d)
                                 @if($d->province_id == $p->id && $h->status == 1)
@@ -19,7 +19,7 @@
                                 @endif
                                 @endforeach
                                 @endforeach
-                            @endforeach            
+                            @endforeach --}}            
             </div>
 
             <div>
@@ -42,8 +42,9 @@
         </div>
        
         <div class="col-md-9">
-     		@foreach($hotelByDistrict as $hp)
-            <div class="row infohotel" class="">
+     		@foreach($hotel as $hp)
+            @if($hp->pricetb <= 500000 )
+                <div class="row infohotel" class="">
             	<div class="col-md-4">
             		<div style="" class="imghotelprovince">
             			<img src="upload/hinhkhachsan/{{ $hp->image }}" alt="" style="width: 100%;height: 100%" >
@@ -86,7 +87,8 @@
                     <a href="detailhotel/{{ $hp->id }}" class="btn btn-primary" style="color: #fff; margin: 0px; padding: 20px 25px;">Xem Phòng</a>
 
             	</div>
-            </div>
+                </div>
+            @endif
             <div>&nbsp; &nbsp;</div>
             @endforeach
         </div>

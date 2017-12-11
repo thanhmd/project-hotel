@@ -70,7 +70,8 @@ class PagesController extends Controller
     	return view("pages.list-province", compact('hotelByProvince', 'province', 'service_hotel' , 'district'));
     }
     public function getFindroomprovinBycestar($start) {
-        $hotelByProvince    = Hotel::where('start',$start)->get();
+        $hotelByProvinceStar    = Hotel::where('start',$start)->get();
+        return view("pages.list-province-star", compact('hotelByProvinceStar', 'province', 'service_hotel' , 'district'));
     }
     public function getDetailhotel($id) {
 
@@ -102,5 +103,11 @@ class PagesController extends Controller
         $service_hotel      = DetailHotelService::all();
 
         return view("pages.list-hotel-district", compact('hotelByDistrict', 'service_hotel', 'district', 'province', 'hotel', 'district' ));
+    }
+    public function getHotelsmaller500() {
+        $service_hotel      = DetailHotelService::all();
+        $hotel = Hotel::all();
+        return view("pages.list-hotel-smaller-500", compact('hotel', 'service_hotel' ));
+
     }
 }

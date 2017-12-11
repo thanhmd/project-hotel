@@ -58,6 +58,6 @@ class DistrictController extends Controller
         $district->name= $req->name;
         $district->province_id   = $req->province;
         $district->save();
-        return redirect('admin/district/edit/'.$id)->with('thongbao', 'sửa thành công');
+        return redirect("admin/district/list")->with('thongbao', 'sửa thành công');
     }
 }
